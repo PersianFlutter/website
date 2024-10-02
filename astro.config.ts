@@ -22,6 +22,21 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
+
+  i18n:{
+    defaultLocale: "fa",
+    locales: ["fa", "en"],
+    routing: {
+      prefixDefaultLocale: false,
+      strategy: 'pathname',
+      fallbackType: 'redirect'
+    },
+    fallback:{
+      fa: 'en',
+      en: 'fa',
+    }
+  },
+
   output: 'static',
 
   integrations: [
