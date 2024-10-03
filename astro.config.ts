@@ -32,7 +32,6 @@ export default defineConfig({
       fallbackType: 'redirect'
     },
     fallback:{
-      fa: 'en',
       en: 'fa',
     }
   },
