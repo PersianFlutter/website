@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: 'pinar';
   src: url('../fonts/Pinar-VF-FD.woff2') format('woff2');
   font-weight: 300 900;
-  font-variation-settings: "wght" 300, "DSTY" 4, "KSHD" 100;
-  font-feature-settings: "kern", "liga", "calt", "rvrn";
+  font-variation-settings:
+    'wght' 300,
+    'DSTY' 4,
+    'KSHD' 100;
+  font-feature-settings: 'kern', 'liga', 'calt', 'rvrn';
   background-color: white;
   color: black;
   -webkit-text-stroke-color: transparent;
@@ -16,8 +18,6 @@
   -webkit-text-fill-color: black;
   font-display: swap;
 }
-
-
 
 @layer utilities {
   .bg-page {
@@ -59,13 +59,13 @@
   }
 }
 
-#header.scroll>div:first-child {
+#header.scroll > div:first-child {
   @apply bg-page md:bg-white/90 md:backdrop-blur-md;
   box-shadow: 0 0.375rem 1.5rem 0 rgb(140 152 164 / 13%);
 }
 
-.dark #header.scroll>div:first-child,
-#header.scroll.dark>div:first-child {
+.dark #header.scroll > div:first-child,
+#header.scroll.dark > div:first-child {
   @apply bg-page md:bg-[#030621e6] border-b border-gray-500/20;
   box-shadow: none;
 }
@@ -89,11 +89,11 @@
   display: block;
 }
 
-[astro-icon].icon-light>* {
+[astro-icon].icon-light > * {
   stroke-width: 1.2;
 }
 
-[astro-icon].icon-bold>* {
+[astro-icon].icon-bold > * {
   stroke-width: 2.4;
 }
 
@@ -101,11 +101,11 @@
   @apply transition;
 }
 
-[data-aw-toggle-menu].expanded g>path:first-child {
+[data-aw-toggle-menu].expanded g > path:first-child {
   @apply -rotate-45 translate-y-[15px] translate-x-[-3px];
 }
 
-[data-aw-toggle-menu].expanded g>path:last-child {
+[data-aw-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
 }
 
