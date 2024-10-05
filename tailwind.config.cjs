@@ -11,6 +11,10 @@ module.exports = {
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
+        pfColorFirst: withOpacityValue('--pf-color-first'),
+        pfColorSecond: withOpacityValue('--pf-color-second'),
+        pfColorThird: withOpacityValue('--pf-color-third'),
+        pfColorFourth: withOpacityValue('--pf-color-fourth'),
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
