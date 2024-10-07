@@ -1,6 +1,15 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import typographyPlugin from '@tailwindcss/typography';
 
+function withOpacityValue(variable) {
+  return ({ opacityValue }) => {
+    if (opacityValue === undefined) {
+      return `rgb(var(${variable}))`
+    }
+    return `rgb(var(${variable}) / ${opacityValue})`
+  }
+}
+
 module.exports = {
   content: ['./src/**/*.{astro,html,js,jsx,json,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
