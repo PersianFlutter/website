@@ -1,0 +1,11 @@
+{
+  "home": {
+    "header": {},
+    "hero": {},
+    "flutterCafe": [{}, {}],
+    "activeMembers": [{}, {}],
+    "comments": [{}, {}],
+    "donation": {},
+    "footer": {}
+  }
+}
