@@ -1,5 +1,35 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
+export const socialData = {
+  links: [
+    {
+      name: 'youtube',
+      icon: 'tabler:brand-youtube',
+      url: 'https://www.youtube.com/@PersianFlutter'
+    },
+    {
+      name: 'medium',
+      icon: 'tabler:brand-medium',
+      url: 'https://medium.com/persian-flutter'
+    },
+    {
+      name: 'linkedin',
+      icon: 'tabler:brand-linkedin',
+      url: 'https://www.linkedin.com/company/persianflutter/'
+    },
+    {
+      name: 'telegram',
+      icon: 'tabler:brand-telegram',
+      url: 'https://t.me/persian_flutter'
+    },
+    {
+      name: 'x',
+      icon: 'tabler:brand-x',
+      url: 'https://x.com/PersianFlutter'
+    },
+  ]
+};
+
 export const headerData = {
   links: [
     {
