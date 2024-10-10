@@ -1,0 +1,52 @@
+---
+import { Icon } from 'astro-icon/components';
+import { SITE } from 'astrowind:config';
+import { getHomePermalink } from '~/utils/permalinks';
+import Logo from '~/components/widgets/header/Logo.astro';
+
+interface SocialLink {
+  ariaLabel?: string;
+  icon?: string;
+  href?: string;
+}
+
+export interface Props {
+  socialLinks: Array<SocialLink>;
+  footNote?: string;
+  theme?: string;
+}
+
+const { socialLinks = [], theme = 'light' } = Astro.props;
+---
+
+<footer class="bg-slate-800 py-16">
+  <div class="max-w-[1320px] mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center">
+
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
+        <a class="flex items-center" href={getHomePermalink()}>
+          <Logo />
+        </a>
+        <span class="text-white text-base font-medium w-[253px]">
+          مرجعی برای توسعه‌دهندگان و علاقه‌مندان به فناوری فلاتر در ایران
+        </span>
+      </div>
+
+      <div class="flex flex-row">
+        {
+          socialLinks.map((link) => (
+            <a
+              href={link.href}
+              class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+              aria-label={link.ariaLabel}
+              target="_blank"
+              rel="noopener noreferrer">
+              <Icon name={link.icon} class="w-5 h-5" />
+            </a>
+          ))
+        }
+      </div>
+
+    </div>
+  </div>
+</footer>
