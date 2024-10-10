@@ -65,7 +65,20 @@ export const headerData = {
     },
 
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [
+    {
+      text: 'en',
+      href: 'https://github.com/onwidget/astrowind',
+      target: '_blank',
+      position: 'primary'
+    },
+    {
+      text: 'حمایت مالی',
+      href: '/donate',
+      target: '_blank',
+      position: 'secondary'
+    },
+  ],
 };
 
 export const footerData = {
