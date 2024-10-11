@@ -20,24 +20,25 @@ const { socialLinks = [], theme = 'light' } = Astro.props;
 ---
 
 <footer class="bg-slate-800 py-16">
-  <div class="max-w-[1320px] mx-auto px-4 sm:px-6">
+  <div class="mx-auto max-w-[1320px] px-4">
     <div class="flex flex-col sm:flex-row justify-between items-center">
-
       <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
-        <a class="flex items-center" href={getHomePermalink()}>
+        <a class="footer-logo flex-none" href={getHomePermalink()}>
           <Logo />
         </a>
-        <span class="text-white text-base font-medium w-[253px]">
+        <span class="text-white text-base font-medium w-[210px] text-right">
           مرجعی برای توسعه‌دهندگان و علاقه‌مندان به فناوری فلاتر در ایران
         </span>
       </div>
 
-      <div class="flex flex-row">
+      <!-- social links -->
+      <div
+        class="flex items-center justify-center rounded-full border border-gray-300 dark:border-slate-500 h-10 px-1.5">
         {
           socialLinks.map((link) => (
             <a
               href={link.href}
-              class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+              class="w-9 h-9 inline-flex justify-center items-center text-gray-400 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-full text-base"
               aria-label={link.ariaLabel}
               target="_blank"
               rel="noopener noreferrer">
@@ -46,7 +47,6 @@ const { socialLinks = [], theme = 'light' } = Astro.props;
           ))
         }
       </div>
-
     </div>
   </div>
 </footer>
