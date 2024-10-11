@@ -9,6 +9,12 @@ import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash, getAsset } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
 
+interface SocialLink {
+  ariaLabel?: string;
+  icon?: string;
+  href?: string;
+}
+
 interface Link {
   text?: string;
   href?: string;
@@ -20,14 +26,6 @@ interface MenuLink extends Link {
   links?: Array<MenuLink>;
 }
 
-const socialLinks = [
-  { name: 'youtube', icon: 'tabler:brand-youtube', url: 'https://www.youtube.com/@PersianFlutter' },
-  { name: 'medium', icon: 'tabler:brand-medium', url: 'https://medium.com/persian-flutter' },
-  { name: 'linkedin', icon: 'tabler:brand-linkedin', url: 'https://www.linkedin.com/company/persianflutter/' },
-  { name: 'telegram', icon: 'tabler:brand-telegram', url: 'https://t.me/persian_flutter' },
-  { name: 'x', icon: 'tabler:brand-x', url: 'https://x.com/PersianFlutter' },
-];
-
 export interface Props {
   id?: string;
   links?: Array<MenuLink>;
@@ -38,6 +36,7 @@ export interface Props {
   showToggleTheme?: boolean;
   showRssFeed?: boolean;
   position?: string;
+  socialLinks: Array<SocialLink>;
 }
 
 const {
@@ -49,6 +48,7 @@ const {
   isFullWidth = false,
   showToggleTheme = false,
   position = 'isFullWidth',
+  socialLinks = [],
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
@@ -68,7 +68,7 @@ const callToActionSecondaryPosition = actions.filter((action) => action.position
   <div class="absolute inset-0"></div>
   <div
     class:list={[
-      'relative text-default py-3 px-4 mx-auto max-w-[1320px]',
+      'relative text-default py-8 px-4 mx-auto max-w-[1320px]',
       {
         'md:flex md:justify-between': position !== 'center',
       },
@@ -142,19 +142,29 @@ const callToActionSecondaryPosition = actions.filter((action) => action.position
         { 'ml-auto rtl:ml-0 rtl:mr-auto': position === 'left' },
         'hidden md:self-center md:flex items-center md:mb-0 fixed w-full md:w-auto md:static justify-end left-0 rtl:left-auto rtl:right-0 bottom-0 p-3 md:p-0 md:justify-self-end',
       ]}>
-      <div class="items-center flex flex-row-reverse justify-between w-full md:w-auto">
+      <div class="items-center flex flex-row-reverse justify-between gap-1 w-full md:w-auto">
         <!-- dark mode switch -->
-        <div class="flex">
-          {showToggleTheme && <ToggleTheme  iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+        <div class="flex rounded-full">
+          {
+            showToggleTheme && (
+              <ToggleTheme
+                class="btn-secondary h-10 w-10 border border-gray-300 rounded-full"
+                iconClass="text-gray-400 w-6 h-6 md:w-5 md:h-5 md:inline-block"
+              />
+            )
+          }
         </div>
 
         <!-- lang button -->
         <div class="flex">
           {
             callToActionPrimaryPosition.length > 0 && (
-              <span class="ml-4 rtl:ml-0 rtl:mr-4">
+              <span class="">
                 {callToActionPrimaryPosition.map((btnProps) => (
-                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                  <Button
+                    {...btnProps}
+                    class="border-gray-300 text-gray-400 text-lg font-medium uppercase h-10 px-3 inline-flex justify-center items-center py-0 shadow-none w-auto"
+                  />
                 ))}
               </span>
             )
@@ -162,13 +172,13 @@ const callToActionSecondaryPosition = actions.filter((action) => action.position
         </div>
 
         <!-- social links -->
-        <div class="flex">
+        <div class="flex items-center justify-center rounded-full border border-gray-300 dark:border-slate-500 h-10 px-1.5">
           {
             socialLinks.map((link) => (
               <a
-                href={link.url}
-                class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-                aria-label={link.name}
+                href={link.href}
+                class="w-9 h-9 inline-flex justify-center items-center text-gray-400 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-full text-base"
+                aria-label={link.ariaLabel}
                 target="_blank"
                 rel="noopener noreferrer">
                 <Icon name={link.icon} class="w-5 h-5" />
@@ -178,12 +188,41 @@ const callToActionSecondaryPosition = actions.filter((action) => action.position
         </div>
 
         <!-- donata button -->
-        <div class="flex">
+        <div class="flex ml-3 relative">
+          <span class="animate-jello absolute -start-2.5 -top-2.5">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="Highlight-gr-01">
+                <g id="Group">
+                  <path
+                    id="Vector"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1.4257 8.39731C1.92263 6.32976 1.89009 4.33872 1.94964 2.24157C1.96122 1.83201 1.64681 1.49151 1.24777 1.47917C0.848497 1.46683 0.515277 1.79005 0.503462 2.19961C0.447043 4.18821 0.492618 6.08056 0.0210095 8.04448C-0.0744695 8.4417 0.163028 8.84386 0.55073 8.94009C0.938191 9.03878 1.33047 8.79453 1.4257 8.39731Z"
+                    fill="#9CA3AF"></path>
+                  <path
+                    id="Vector_2"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M5.64761 12.4041C9.01879 9.25098 12.1952 5.19486 14.4153 1.09925C14.6089 0.741496 14.4828 0.289973 14.1337 0.0925941C13.7845 -0.104785 13.3438 0.0235223 13.1502 0.381271C11.0034 4.34118 7.9314 8.2641 4.67161 11.3111C4.37698 11.5875 4.35648 12.0562 4.6258 12.3572C4.89512 12.6582 5.35298 12.6804 5.64761 12.4041Z"
+                    fill="#9CA3AF"></path>
+                  <path
+                    id="Vector_3"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M6.50161 15.8484C9.5849 16.369 12.763 15.4808 15.5666 14.2249C15.9323 14.0596 16.0992 13.6229 15.9393 13.2504C15.7792 12.8754 15.3522 12.7051 14.9865 12.868C12.4331 14.0128 9.54536 14.8615 6.73717 14.3878C6.3432 14.3212 5.97069 14.595 5.90583 14.9972C5.84073 15.3993 6.10788 15.7818 6.50161 15.8484Z"
+                    fill="#9CA3AF"></path>
+                </g>
+              </g>
+            </svg>
+          </span>
           {
             callToActionSecondaryPosition.length > 0 && (
-              <span class="ml-4 rtl:ml-0 rtl:mr-4">
+              <span class="">
                 {callToActionSecondaryPosition.map((btnProps) => (
-                  <Button {...btnProps} class="ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto" />
+                  <Button
+                    {...btnProps}
+                    class="border-gray-300 text-gray-400 text-lg font-medium h-10 px-3 inline-flex justify-center items-center py-0 shadow-none w-auto"
+                  />
                 ))}
               </span>
             )
