@@ -14,6 +14,7 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
+
 <Layout metadata={metadata}>
   <slot name="header">
     <Header {...headerData} socialLinks = {socialData.links} isSticky showToggleTheme />
@@ -22,6 +23,6 @@ const { metadata } = Astro.props;
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} {...socialData} />
+    <Footer {...footerData} socialLinks = {socialData.links} />
   </slot>
 </Layout>
