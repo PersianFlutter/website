@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
 import { getHomePermalink } from '~/utils/permalinks';
 import Logo from '~/components/widgets/header/Logo.astro';
 
@@ -16,7 +15,7 @@ export interface Props {
   theme?: string;
 }
 
-const { socialLinks = [], theme = 'light' } = Astro.props;
+const { socialLinks = []} = Astro.props;
 ---
 
 <footer class="bg-slate-800 py-16">
