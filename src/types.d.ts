@@ -184,10 +184,12 @@ export interface Disclaimer {
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
+  href?: string;
+  target?: string;
   icon?: string;
   classes?: Record<string, string>;
   type?: 'button' | 'submit' | 'reset';
-  position?: 'primary' | 'secondary' | 'tertiary'; 
+  position?: 'primary' | 'secondary' | 'tertiary';
 }
 
 export interface ItemGrid {
@@ -284,4 +286,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+export interface Contact extends Omit<Headline, 'classes'>, Form, Widget { }
