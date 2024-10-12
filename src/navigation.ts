@@ -1,4 +1,5 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import type { CallToAction } from '~/types';
 
 export const socialData = {
   links: [
@@ -71,14 +72,14 @@ export const headerData = {
       href: 'https://github.com/onwidget/astrowind',
       target: '_blank',
       position: 'primary'
-    },
+    } as CallToAction,
     {
       text: 'حمایت مالی',
       href: '/donate',
       target: '_blank',
       position: 'secondary'
-    },
-  ],
+    } as CallToAction,
+  ] as CallToAction[],
 };
 
 export const footerData = {
