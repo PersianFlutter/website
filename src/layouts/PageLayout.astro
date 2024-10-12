@@ -14,15 +14,14 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
-
 <Layout metadata={metadata}>
   <slot name="header">
-    <Header {...headerData} socialLinks = {socialData.links} isSticky showToggleTheme />
+    <Header {...headerData} socialLinks={socialData.links} isSticky showToggleTheme />
   </slot>
   <main>
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} socialLinks = {socialData.links} />
+    <Footer {...footerData} socialLinks={socialData.links} />
   </slot>
 </Layout>

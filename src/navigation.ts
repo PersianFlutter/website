@@ -6,29 +6,29 @@ export const socialData = {
     {
       ariaLabel: 'youtube',
       icon: 'tabler:brand-youtube',
-      href: 'https://www.youtube.com/@PersianFlutter'
+      href: 'https://www.youtube.com/@PersianFlutter',
     },
     {
       ariaLabel: 'medium',
       icon: 'tabler:brand-medium',
-      href: 'https://medium.com/persian-flutter'
+      href: 'https://medium.com/persian-flutter',
     },
     {
       ariaLabel: 'linkedin',
       icon: 'tabler:brand-linkedin',
-      href: 'https://www.linkedin.com/company/persianflutter/'
+      href: 'https://www.linkedin.com/company/persianflutter/',
     },
     {
       ariaLabel: 'telegram',
       icon: 'tabler:brand-telegram',
-      href: 'https://t.me/persian_flutter'
+      href: 'https://t.me/persian_flutter',
     },
     {
       ariaLabel: 'x',
       icon: 'tabler:brand-x',
-      href: 'https://x.com/PersianFlutter'
+      href: 'https://x.com/PersianFlutter',
     },
-  ]
+  ],
 };
 
 export const headerData = {
@@ -64,20 +64,19 @@ export const headerData = {
         },
       ],
     },
-
   ],
   actions: [
     {
       text: 'en',
       href: 'https://github.com/onwidget/astrowind',
       target: '_blank',
-      position: 'primary'
+      position: 'primary',
     } as CallToAction,
     {
       text: 'حمایت مالی',
       href: '/donate',
       target: '_blank',
-      position: 'secondary'
+      position: 'secondary',
     } as CallToAction,
   ] as CallToAction[],
 };

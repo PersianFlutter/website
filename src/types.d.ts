@@ -185,7 +185,7 @@ export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot' | 'href'>
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
   href?: string | URL;
-  target?: string; 
+  target?: string;
   icon?: string;
   classes?: Record<string, string>;
   type?: 'button' | 'submit' | 'reset';
@@ -286,4 +286,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget { }
+export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}

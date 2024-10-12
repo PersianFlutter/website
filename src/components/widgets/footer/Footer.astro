@@ -15,7 +15,7 @@ export interface Props {
   theme?: string;
 }
 
-const { socialLinks = []} = Astro.props;
+const { socialLinks = [] } = Astro.props;
 ---
 
 <footer class="bg-slate-800 py-16">
@@ -32,7 +32,8 @@ const { socialLinks = []} = Astro.props;
 
       <!-- social links -->
       <div
-        class="flex items-center justify-center rounded-full border border-gray-300 dark:border-slate-500 h-10 px-1.5">
+        class="flex items-center justify-center rounded-full border border-gray-300 dark:border-slate-500 h-10 px-1.5"
+      >
         {
           socialLinks.map((link) => (
             <a
@@ -40,7 +41,8 @@ const { socialLinks = []} = Astro.props;
               class="w-9 h-9 inline-flex justify-center items-center text-gray-400 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-full text-base"
               aria-label={link.ariaLabel}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <Icon name={link.icon} class="w-5 h-5" />
             </a>
           ))
