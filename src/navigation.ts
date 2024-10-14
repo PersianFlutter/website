@@ -31,55 +31,44 @@ export const socialData = {
   ],
 };
 
-export const headerData = {
-  links: [
-    {
-      text: 'درباره ما',
-      href: '#',
-    },
-    {
-      text: 'کافه فلاتر',
-      links: [
-        {
-          text: 'عنوان دلخواه',
-          href: getPermalink('/#features'),
-        },
-      ],
-    },
-    {
-      text: 'منابع آموزشی',
-      links: [
-        {
-          text: 'عنوان دلخواه',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
-      text: 'تیم ما',
-      links: [
-        {
-          text: 'عنوان دلخواه',
-          href: getBlogPermalink(),
-        },
-      ],
-    },
-  ],
-  actions: [
-    {
-      text: 'en',
-      href: 'https://github.com/onwidget/astrowind',
-      target: '_blank',
-      position: 'primary',
-    } as CallToAction,
-    {
-      text: 'حمایت مالی',
-      href: '/donate',
-      target: '_blank',
-      position: 'secondary',
-    } as CallToAction,
-  ] as CallToAction[],
-};
+// We need to pass translation function to this function
+
+export function headerData(translation:  any) {
+ return {
+    links: [
+      {
+        text: translation('header.menu.about'),
+        href: '#',
+      },
+      {
+        text: translation('header.menu.cafeFlutter'),
+        href: '#',
+      },
+      {
+        text: translation('header.menu.community'),
+        href: '#',
+      },
+      {
+        text: translation('header.menu.team'),
+        href: '#',
+      },
+    ],
+    actions: [
+      {
+        text: 'en',
+        href: 'https://github.com/onwidget/astrowind',
+        target: '_blank',
+        position: 'primary',
+      } as CallToAction,
+      {
+        text: 'حمایت مالی',
+        href: '/donate',
+        target: '_blank',
+        position: 'secondary',
+      } as CallToAction,
+    ] as CallToAction[],
+  };
+}
 
 export const footerData = {
   links: [

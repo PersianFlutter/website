@@ -1,5 +1,12 @@
 {
-  "header": {},
+  "header": {
+    "menu": {
+      "about": "About Us",
+      "cafeFlutter": "Cafe Flutter",
+      "community": "Community",
+      "team": "Our Team"
+    }
+  },
   "footer": {
     "description": "A reference for Flutter developers and enthusiasts in Iran"
   },
