@@ -1,4 +1,5 @@
 ---
+import { t } from 'i18next';
 import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
 import Logo from '~/components/widgets/header/Logo.astro';
@@ -26,7 +27,7 @@ const { socialLinks = [] } = Astro.props;
           <Logo />
         </a>
         <span class="text-white text-base font-medium w-[210px] text-right">
-          مرجعی برای توسعه‌دهندگان و علاقه‌مندان به فناوری فلاتر در ایران
+          {t('footer.description')}
         </span>
       </div>
 

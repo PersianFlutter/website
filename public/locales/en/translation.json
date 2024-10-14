@@ -1,12 +1,13 @@
 {
-    "home": {
-      "header": {},
-      "hero": {},
-      "flutterCafe": [{}, {}],
-      "activeMembers": [{}, {}],
-      "comments": [{}, {}],
-      "donation": {},
-      "footer": {}
-    }
+  "header": {},
+  "footer": {
+    "description": "A reference for Flutter developers and enthusiasts in Iran"
+  },
+  "home": {
+    "hero": {},
+    "flutterCafe": [],
+    "activeMembers": [],
+    "comments": [],
+    "donation": {}
   }
-  
+}

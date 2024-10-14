@@ -1,12 +1,13 @@
 {
-    "home": {
-      "header": {},
-      "hero": {},
-      "flutterCafe": [{}, {}],
-      "activeMembers": [{}, {}],
-      "comments": [{}, {}],
-      "donation": {},
-      "footer": {}
-    }
+  "header": {},
+  "footer": {
+    "description": "مرجعی برای توسعه‌دهندگان و علاقه‌مندان به فناوری فلاتر در ایران"
+  },
+  "home": {
+    "hero": {},
+    "flutterCafe": [],
+    "activeMembers": [],
+    "comments": [],
+    "donation": {}
   }
-  
+}
