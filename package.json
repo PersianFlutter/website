@@ -33,6 +33,7 @@
     "astro-icon": "^1.1.1",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
+    "simple-parallax-js": "^6.0.1",
     "unpic": "^3.18.0"
   },
   "devDependencies": {
