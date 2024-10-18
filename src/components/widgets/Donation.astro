@@ -1,0 +1,129 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import AnimatedCrownSVG from "~/components/widgets/AnimatedCrownSVG.astro";
+import Headline from '~/components/ui/Headline.astro';
+import type { Features as Props } from '~/types';
+
+import { Image } from 'astro:assets';
+import daonationBgImage from '~/assets/images/donation-bg.jpg';
+
+import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
+import myImage from '~/assets/images/donation-bg.jpg';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+
+  // add by me
+  image = await Astro.slots.render('image'),
+} = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-[501px] overflow-hidden ${classes?.container ?? ''}`}
+  bg={bg}>
+  <!-- <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} /> -->
+  <!-- <div class="h-[501px] overflow-hidden relative">
+    <Image
+      src={daonationBgImage}
+      class:list={['w-full', 'h-full', 'object-cover', 'absolute', 'top-0', 'left-0']}
+      alt="donation"
+    />
+  </div> -->
+
+  <div class="absolute">
+    <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10"></span>
+    <ParallaxSection imageSrc={myImage} altText="توضیح تصویر پارالاکس" />
+  </div>
+
+  <div class="mx-auto max-w-[1320px] px-4 py-16">
+    <div class="flex justify-center items-center gap-20">
+      <!-- box content -->
+      <div
+        class="flex flex-col justify-start items-center gap-11 bg-white/75 rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.05)] backdrop-blur-[5px] px-12 py-12 basis-[400px] grow-0 shrink-0">
+        <div class="text-center text-slate-600 text-xl font-regular leading-normal">
+          هر مبلغی، هر چند کوچک، نشانه‌ای از اعتماد شماست و به ما انگیزه می‌دهد تا با قدرت بیشتری به مسیرمان ادامه دهیم.
+          با حمایت شما، می‌توانیم جامعه فلاتر فارسی را به یکی از بهترین منابع آموزشی در دنیای برنامه‌نویسی تبدیل کنیم.
+        </div>
+        <a
+          href="/"
+          class="text-white text-lg font-bold px-16 py-3 bg-pfColorFourth rounded-full border border-pfColorFourth justify-center items-center gap-2.5 inline-flex"
+          >حمایت مالی</a
+        >
+      </div>
+
+      <!-- Side content -->
+      <div class="flex flex-col justify-start items-center gap-8">
+        <div class="flex flex-col justify-start items-start gap-4">
+          <div class="relative">
+            <div class="absolute start-4 -top-[70px]">
+              <AnimatedCrownSVG />
+            </div>
+            <div>
+              <span class="text-pfColorSecond text-2xl font-bold">با حمایت شما، </span>
+              <span class="text-pfColorFirst text-2xl font-bold">فلاتر فارسی پرواز می‌کند</span>
+            </div>
+          </div>
+
+          <div class="self-stretch text-slate-700 text-xl font-normal">
+            جامعه فلاتر فارسی با عشق و تلاش شما رشد کرده و امروز به نقطه‌ای رسیده که می‌تواند منبعی ارزشمند برای هزاران
+            توسعه‌دهنده باشد. حمایت مالی شما به ما کمک می‌کند تا :
+          </div>
+        </div>
+        <div class="justify-end items-start gap-6 inline-flex">
+          <div class="flex-col justify-start items-end gap-3 inline-flex">
+            <div class="rotate-0">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M39.4969 0.5C39.2312 21.9187 21.9182 39.2312 0.500015 39.4969L0.500019 0.499997L39.4969 0.5Z"
+                  stroke="#334155"></path>
+              </svg>
+            </div>
+            <div class="text-slate-700 text-lg font-normal">زیرساخت‌های فنی جامعه را بهبود بخشیم</div>
+          </div>
+
+          <div class="flex-col justify-start items-end gap-3 inline-flex">
+            <div class="rotate-90">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M39.4969 0.5C39.2312 21.9187 21.9182 39.2312 0.500015 39.4969L0.500019 0.499997L39.4969 0.5Z"
+                  stroke="#334155"></path>
+              </svg>
+            </div>
+            <div class="text-slate-700 text-lg font-normal">دوره‌های آموزشی رایگان بیشتری تولید کنیم</div>
+          </div>
+
+          <div class="flex-col justify-start items-end gap-3 inline-flex">
+            <div class="-rotate-90">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M39.4969 0.5C39.2312 21.9187 21.9182 39.2312 0.500015 39.4969L0.500019 0.499997L39.4969 0.5Z"
+                  stroke="#334155"></path>
+              </svg>
+            </div>
+            <div class="text-slate-700 text-lg font-normal">کیفیت محتوای موجود را ارتقا دهیم</div>
+          </div>
+
+          <div class="flex-col justify-start items-end gap-3 inline-flex">
+            <div class="-rotate-180">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M39.4969 0.5C39.2312 21.9187 21.9182 39.2312 0.500015 39.4969L0.500019 0.499997L39.4969 0.5Z"
+                  stroke="#334155"></path>
+              </svg>
+            </div>
+            <div class="text-slate-700 text-lg font-normal">رویدادهای آموزشی بیشتری برگزار کنیم</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
