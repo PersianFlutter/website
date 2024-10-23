@@ -1,27 +1,18 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import AnimatedCrownSVG from '~/components/widgets/AnimatedCrownSVG.astro';
-import Headline from '~/components/ui/Headline.astro';
 import type { Features as Props } from '~/types';
 
-import { Image } from 'astro:assets';
-import daonationBgImage from '~/assets/images/donation-bg.jpg';
 
 import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
 import myImage from '~/assets/images/donation-bg.jpg';
 
 const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
-  tagline = await Astro.slots.render('tagline'),
-
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
 
-  // add by me
-  image = await Astro.slots.render('image'),
 } = Astro.props;
 ---
 
