@@ -38,8 +38,8 @@ export const socialData = {
 
 // We need to pass translation function to this function
 
-export function headerData(translation:  TranslationFunction) {
- return {
+export function headerData(translation: TranslationFunction) {
+  return {
     links: [
       {
         text: translation('header.menu.about'),

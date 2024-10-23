@@ -11,11 +11,7 @@ const { imageSrc, altText } = Astro.props;
 ---
 
 <div class="parallax-container relative">
-  <Image 
-    class="parallax-image opacity-15"
-    src={imageSrc} 
-    alt={altText} 
-  />
+  <Image class="parallax-image opacity-15" src={imageSrc} alt={altText} />
 </div>
 
 <script>
@@ -23,13 +19,13 @@ const { imageSrc, altText } = Astro.props;
 
   function setupParallax() {
     const images = document.querySelectorAll('.parallax-image');
-    
+
     new simpleParallax(images, {
       scale: 1.5,
       delay: 15.0,
       transition: 'cubic-bezier(0,0,0,1)',
       overflow: true,
-      orientation: 'down'
+      orientation: 'down',
     });
   }
 
