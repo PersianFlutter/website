@@ -1,6 +1,23 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
+export interface Donation {
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+  title?: {
+    firstPart: string;     // "با حمایت شما، "
+    secondPart: string;    // "فلاتر فارسی پرواز می‌کند"
+  };
+  subtitle?: string;
+  donationText?: string;
+  donationButtonText?: string;
+  donationLink?: string;
+  features?: string[];
+  imageSrc?: ImageMetadata;
+}
+
 export interface Post {
   /** A unique ID number that identifies a post. */
   id: string;
@@ -286,4 +303,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+export interface Contact extends Omit<Headline, 'classes'>, Form, Widget { }
