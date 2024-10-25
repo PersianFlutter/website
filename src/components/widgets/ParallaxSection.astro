@@ -7,11 +7,11 @@ interface Props {
   altText: string;
 }
 
-const { imageSrc, altText } = Astro.props;
+const { imageSrc, altText = 'تصویر پارالاکس' } = Astro.props;
 ---
 
 <div class="parallax-container relative">
-  <Image class="parallax-image opacity-15" src={imageSrc} alt={altText} />
+  <Image class="parallax-image opacity-15" src={imageSrc} alt={altText} format="webp" />
 </div>
 
 <script>
