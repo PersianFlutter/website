@@ -37,7 +37,8 @@ const rotationClasses = [
   id={id}
   isDark={isDark}
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max lg:h-[501px] overflow-hidden ${classes?.container ?? ''}`}
-  bg={bg}>
+  bg={bg}
+>
   <div class="absolute w-full h-full">
     <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10"></span>
     {imageSrc && <ParallaxSection imageSrc={imageSrc} altText="تصویر پارالاکس" />}
@@ -47,7 +48,8 @@ const rotationClasses = [
     <div class="flex flex-col lg:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-20">
       <!-- box content -->
       <div
-        class="flex flex-col justify-start items-center gap-8 md:gap-11 bg-white/75 rounded-[20px] md:rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.05)] backdrop-blur-[5px] px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-12 w-full lg:basis-[400px] lg:grow-0 lg:shrink-0">
+        class="flex flex-col justify-start items-center gap-8 md:gap-11 bg-white/75 rounded-[20px] md:rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.05)] backdrop-blur-[5px] px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-12 w-full lg:basis-[400px] lg:grow-0 lg:shrink-0"
+      >
         <div class="text-center text-slate-600 text-xl font-regular leading-normal">
           {donationText}
         </div>
@@ -63,7 +65,8 @@ const rotationClasses = [
         <div class="flex flex-col justify-center items-center lg:justify-start lg:items-start gap-4">
           <div class="relative">
             <div
-              class="absolute end-1/2 -translate-x-1/2 start-auto lg:start-4 lg:translate-x-0 lg:end-auto -top-[70px] lg:block">
+              class="absolute end-1/2 -translate-x-1/2 start-auto lg:start-4 lg:translate-x-0 lg:end-auto -top-[70px] lg:block"
+            >
               <AnimatedCrownSVG />
             </div>
             <div class="text-center lg:text-right">

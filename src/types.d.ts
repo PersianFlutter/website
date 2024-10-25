@@ -7,8 +7,8 @@ export interface Donation {
   classes?: Record<string, string>;
   bg?: string;
   title?: {
-    firstPart: string;     // "با حمایت شما، "
-    secondPart: string;    // "فلاتر فارسی پرواز می‌کند"
+    firstPart: string; // "با حمایت شما، "
+    secondPart: string; // "فلاتر فارسی پرواز می‌کند"
   };
   subtitle?: string;
   donationText?: string;
@@ -303,4 +303,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget { }
+export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
