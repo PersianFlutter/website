@@ -15,6 +15,20 @@
     "flutterCafe": [],
     "activeMembers": [],
     "comments": [],
-    "donation": {}
+    "donation": {
+      "title": {
+        "firstPart": "With your support, ",
+        "secondPart": "Persian flutter flies"
+      },
+      "subtitle": "Flutter Farsi community has grown with your love and efforts and today it has reached a point where it can be a valuable resource for thousands of developers. Your financial support helps us to :",
+      "donationText": "Any amount, however small, is a sign of your trust and motivates us to continue our journey with more strength. With your support, we can make Flutter Farsi community one of the best educational resources in the world of programming. .",
+      "donationButtonText": "Donation",
+      "features": [
+        "Improve the technical infrastructure of the society",
+        "Produce more free courses",
+        "Improve the quality of existing content",
+        "Organize more educational events"
+      ]
+    }
   }
 }
