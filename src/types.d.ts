@@ -6,15 +6,7 @@ export interface Donation {
   isDark?: boolean;
   classes?: Record<string, string>;
   bg?: string;
-  title?: {
-    firstPart: string; // "با حمایت شما، "
-    secondPart: string; // "فلاتر فارسی پرواز می‌کند"
-  };
-  subtitle?: string;
-  donationText?: string;
-  donationButtonText?: string;
   donationLink?: string;
-  features?: string[];
   imageSrc?: ImageMetadata;
 }
 
