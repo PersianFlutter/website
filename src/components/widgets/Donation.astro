@@ -5,6 +5,7 @@ import AnimatedCrownSVG from '~/components/widgets/AnimatedCrownSVG.astro';
 import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
 import type { Donation as Props } from '~/types';
 import donationBgImage from '~/assets/images/donation-bg.jpg';
+import type { string } from 'astro:schema';
 
 const {
   id,
@@ -24,6 +25,7 @@ type DonationTranslations = {
   donationText: string;
   donationButtonText: string;
   features: string[];
+  altText: string;
 };
 
 const translations = {
@@ -32,6 +34,7 @@ const translations = {
   donationText: t('home.donation.donationText'),
   donationButtonText: t('home.donation.donationButtonText'),
   features: t('home.donation.features', { returnObjects: true }) as string[],
+  altText: t('home.donation.altText'),
 };
 
 const rotationClasses = [
@@ -50,7 +53,7 @@ const rotationClasses = [
 >
   <div class="absolute w-full h-full">
     <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10"></span>
-    {imageSrc && <ParallaxSection imageSrc={imageSrc} altText="تصویر پارالاکس" />}
+    {imageSrc && <ParallaxSection imageSrc={imageSrc} altText={translations.altText} />}
   </div>
 
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
