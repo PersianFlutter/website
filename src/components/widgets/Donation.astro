@@ -1,0 +1,127 @@
+---
+import { t } from 'i18next';
+import type { ImageMetadata } from 'astro';
+import type { Widget } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import AnimatedCrownSVG from '~/components/widgets/AnimatedCrownSVG.astro';
+import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
+import donationBgImage from '~/assets/images/donation-bg.jpg';
+
+export interface Donation extends Widget {
+  donationLink?: string;
+  imageSrc?: ImageMetadata;
+}
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  donationLink = '/',
+  imageSrc = donationBgImage,
+} = Astro.props;
+
+type DonationTranslations = {
+  title: {
+    firstPart: string;
+    secondPart: string;
+  };
+  subtitle: string;
+  donationText: string;
+  donationButtonText: string;
+  features: string[];
+  altText: string;
+};
+
+const translations = {
+  title: t('home.donation.title', { returnObjects: true }) as DonationTranslations['title'],
+  subtitle: t('home.donation.subtitle'),
+  donationText: t('home.donation.donationText'),
+  donationButtonText: t('home.donation.donationButtonText'),
+  features: t('home.donation.features', { returnObjects: true }) as string[],
+  altText: t('home.donation.altText'),
+};
+
+const rotationClasses = [
+  'rotate-0', // index 0
+  'rotate-90', // index 1
+  '-rotate-90', // index 2
+  'rotate-180', // index 3
+];
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max lg:h-[501px] overflow-hidden ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <div class="absolute w-full h-full">
+    <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10 dark:bg-slate-900"></span>
+    {imageSrc && <ParallaxSection imageSrc={imageSrc} altText={translations.altText} />}
+  </div>
+
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col lg:flex-row justify-center items-center gap-8 md:gap-12 lg:gap-20">
+      <!-- box content -->
+      <div
+        class="flex flex-col justify-start items-center order-2 lg:order-1 gap-8 md:gap-11 bg-white/75 rounded-[20px] md:rounded-[32px] shadow-[0px_10px_15px_0px_rgba(0,0,0,0.05)] backdrop-blur-[5px] px-6 md:px-8 lg:px-12 py-8 md:py-10 lg:py-12 w-full lg:basis-[400px] lg:grow-0 lg:shrink-0 dark:bg-slate-900/75 dark:shadow-[0px_10px_15px_0px_rgba(0,0,0,0.2)]"
+      >
+        <div class="text-center text-slate-600 text-xl font-regular leading-normal dark:text-slate-300">
+          {translations.donationText}
+        </div>
+        <a
+          href={donationLink}
+          class="text-white text-lg font-bold px-8 md:px-12 lg:px-16 py-3 bg-pfColorFourth rounded-full border border-pfColorFourth justify-center items-center gap-2.5 inline-flex w-full md:w-auto"
+          >{translations.donationButtonText}</a
+        >
+      </div>
+
+      <!-- Side content -->
+      <div class="flex flex-col justify-start items-center order-1 lg:order-2 gap-6 md:gap-8 mt-12 lg:mt-0">
+        <div class="flex flex-col justify-center items-center lg:justify-start lg:items-start gap-4">
+          <div class="relative">
+            <div
+              class="absolute end-1/2 -translate-x-1/2 start-auto lg:start-4 lg:translate-x-0 lg:end-auto -top-[70px] lg:block"
+            >
+              <AnimatedCrownSVG />
+            </div>
+            <div class="text-center lg:text-start">
+              <span class="text-pfColorSecond text-xl lg:text-2xl font-bold dark:text-pfColorFourth"
+                >{translations.title.firstPart}</span
+              >
+              <span class="text-pfColorFirst text-xl lg:text-2xl font-bold dark:text-white"
+                >{translations.title.secondPart}</span
+              >
+            </div>
+          </div>
+
+          <div class="self-stretch text-slate-700 text-xl font-normal text-center lg:text-start dark:text-slate-300">
+            {translations.subtitle}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full">
+          {
+            translations.features.map((feature, index) => (
+              <div class="flex flex-col justify-center items-center lg:justify-start lg:items-start gap-3">
+                <div class={`origin-center ${rotationClasses[index]}`}>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M39.4969 0.5C39.2312 21.9187 21.9182 39.2312 0.500015 39.4969L0.500019 0.499997L39.4969 0.5Z"
+                      stroke="#334155"
+                      class="dark:stroke-slate-300"
+                    />
+                  </svg>
+                </div>
+                <div class="text-slate-700 text-center lg:text-start text-lg font-normal dark:text-slate-300">
+                  {feature}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>

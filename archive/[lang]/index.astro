@@ -1,36 +1,38 @@
 ---
-import { changeLanguage } from "i18next";
-import { getCollection } from "astro:content";
-import Layout from "~/layouts/PageLayout.astro";
-import Hero from "~/components/widgets/Hero.astro";
-import Note from "~/components/widgets/Note.astro";
-import Features from "~/components/widgets/Features.astro";
-import Features2 from "~/components/widgets/Features2.astro";
-import Steps from "~/components/widgets/Steps.astro";
-import Content from "~/components/widgets/Content.astro";
-import BlogLatestPosts from "~/components/widgets/BlogLatestPosts.astro";
-import FAQs from "~/components/widgets/FAQs.astro";
-import Stats from "~/components/widgets/Stats.astro";
-import CallToAction from "~/components/widgets/CallToAction.astro";
+import { changeLanguage } from 'i18next';
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
-changeLanguage("fa");
+changeLanguage('fa');
 
 const metadata = {
-    title: "AstroWind \u2014 Free template for creating websites with Astro + Tailwind CSS",
-    ignoreTitleTemplate: true,
+  title: 'AstroWind \u2014 Free template for creating websites with Astro + Tailwind CSS',
+  ignoreTitleTemplate: true,
 };
 export async function getStaticPaths() {
-    const posts = await getCollection("post");
-    const langs = ["fa", "en"];
-    return langs.flatMap((lang) => posts
-        .filter((post) => post.id.startsWith(`${lang}/`))
-        .map((post) => ({
+  const posts = await getCollection('post');
+  const langs = ['fa', 'en'];
+  return langs.flatMap((lang) =>
+    posts
+      .filter((post) => post.id.startsWith(`${lang}/`))
+      .map((post) => ({
         params: {
-            lang,
-            slug: post.slug.split("/").slice(1).join("/"),
+          lang,
+          slug: post.slug.split('/').slice(1).join('/'),
         },
         props: { post },
-    })));
+      }))
+  );
 }
 ---
 

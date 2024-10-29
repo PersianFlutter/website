@@ -1,5 +1,10 @@
-import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getPermalink, getAsset } from './utils/permalinks';
 import type { CallToAction } from '~/types';
+
+// تعریف interface برای تابع ترجمه
+interface TranslationFunction {
+  (key: string): string;
+}
 
 export const socialData = {
   links: [
@@ -33,8 +38,8 @@ export const socialData = {
 
 // We need to pass translation function to this function
 
-export function headerData(translation:  any) {
- return {
+export function headerData(translation: TranslationFunction) {
+  return {
     links: [
       {
         text: translation('header.menu.about'),
