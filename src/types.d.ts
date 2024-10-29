@@ -1,11 +1,7 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
-export interface Donation {
-  id?: string;
-  isDark?: boolean;
-  classes?: Record<string, string>;
-  bg?: string;
+export interface Donation extends Widget {
   donationLink?: string;
   imageSrc?: ImageMetadata;
 }
