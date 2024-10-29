@@ -1,10 +1,16 @@
 ---
 import { t } from 'i18next';
+import type { Widget } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import AnimatedCrownSVG from '~/components/widgets/AnimatedCrownSVG.astro';
 import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
-import type { Donation as Props } from '~/types';
 import donationBgImage from '~/assets/images/donation-bg.jpg';
+
+export interface Donation extends Widget {
+  donationLink?: string;
+  imageSrc?: ImageMetadata;
+}
+
 
 const {
   id,
