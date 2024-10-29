@@ -1,10 +1,7 @@
 import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 import type { HTMLAttributes, ImageMetadata } from 'astro/types';
 
-export interface Donation extends Widget {
-  donationLink?: string;
-  imageSrc?: ImageMetadata;
-}
+
 
 export interface Post {
   /** A unique ID number that identifies a post. */
