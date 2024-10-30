@@ -1,0 +1,104 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import ParallaxSection from './ParallaxSection.astro';
+import type { Widget } from '~/types';
+import background from '~/assets/images/members-background.jpg';
+import avatar from '~/assets/images/avatar/sample-avatar.png';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+interface ActiveMembers extends Widget {
+  donationLink?: string;
+  imageSrc?: ImageMetadata;
+}
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  donationLink = '/',
+  imageSrc = background,
+} = Astro.props;
+
+const members = [
+  {
+    name: 'امیر',
+    title: 'توسعه‌دهنده ارشد و مشاور فنی',
+    description: 'امیر با تخصص عمیق در فلاتر، راهنمای فنی پروژه‌های پیچیده و چالش‌برانگیز است',
+    image: '/path/to/image1.png',
+  },
+  {
+    name: 'سارا',
+    title: 'مسئول آموزش و منتورینگ',
+    description: 'سارا با تجربه غنی در آموزش، مسیر یادگیری را برای اعضای جامعه هموار می‌کند',
+    image: '/path/to/image2.png',
+  },
+  {
+    name: 'هادی',
+    title: 'مدیر کافه فلاتر',
+    description: 'هادی با برنامه‌ریزی دقیق، کافه فلاتر را به یک رویداد منظم و ارزشمند تبدیل کرده است',
+    image: '/path/to/image3.png',
+  },
+  {
+    name: 'پرهام',
+    title: 'مسئول رسانه‌های اجتماعی',
+    description: 'پرهام با خلاقیت و نوآوری، حضور ما را در شبکه‌های اجتماعی مدیریت می‌کند',
+    image: '/path/to/image4.png',
+  },
+];
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max  overflow-hidden ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <div class="absolute w-full h-full">
+    <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10 dark:bg-slate-900"></span>
+    {imageSrc && <ParallaxSection imageSrc={imageSrc} altText="Alt" />}
+  </div>
+
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-0">
+      <!-- box content -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-purple-600">اعضای فعال جامعه فلاتر فارسی</h2>
+        <p class="text-gray-600 mt-2">
+          در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
+        {
+          members.map((member) => (
+            <div class="h-[386px] p-8 bg-white rounded-3xl justify-center items-center place-items-center gap-2.5">
+              <div class="flex-col justify-start items-center gap-4 flex">
+                <div class="self-stretch flex-col justify-start items-center gap-6 flex">
+                  <Image class="w-[150px] h-[150px] rounded-full shadow" src={avatar} alt={'altText'} format="webp" />
+
+                  <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
+                    <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
+                      <div class="self-stretch text-center text-[#1733b8] text-base font-bold">امیر</div>
+                      <div class="self-stretch text-center line-clamp-1 text-[#47006a] text-base font-medium">
+                        مسئول رسانه‌های اجتماعی
+                      </div>
+                    </div>
+                    <div class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal">
+                      پرهام با خلاقیت و نوآوری، حضور ما را در شبکه‌های اجتماعی مدیریت می‌کند
+                    </div>
+                  </div>
+                </div>
+                <div class="justify-center items-center gap-3 inline-flex">
+                  <Icon name="tabler:brand-telegram" class="w-6 h-6 text-pfOnSurface" />
+                  <Icon name="tabler:brand-github" class="w-6 h-6 text-pfOnSurface" />
+                  <Icon name="tabler:brand-linkedin" class="w-6 h-6 text-pfOnSurface" />
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
