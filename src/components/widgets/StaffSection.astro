@@ -1,6 +1,7 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import ParallaxSection from './ParallaxSection.astro';
+import { t } from 'i18next';
 import type { StaffMember, Widget } from '~/types';
 import background from '~/assets/images/members-background.jpg';
 import avatar1 from '~/assets/images/avatar/sample-avatar-1.png';
@@ -62,17 +63,10 @@ const {
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
     <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
       <!-- box content -->
-      <SectionTitle
-        title="اعضای فعال جامعه فلاتر فارسی"
-        description=`
-    در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند. این اعضای فعال با
-    تخصص‌های گوناگون، نقش‌های کلیدی در پیشبرد اهداف و رشد جامعه ما ایفا می‌کنند. از مدیریت رسانه‌های اجتماعی تا برگزاری
-    رویدادها، هر یک از این افراد سهم مهمی در پویایی و پیشرفت اکوسیستم فلاتر فارسی دارند.
-    `
-      />
+      <SectionTitle title={t('home.staffSection.title')} description={t('home.staffSection.description')} />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
-        {staffMembers.map((member): any => <StaffCard staffMember={member} />)}
+        {staffMembers.map((member) => <StaffCard staffMember={member} />)}
       </div>
     </div>
   </div>
