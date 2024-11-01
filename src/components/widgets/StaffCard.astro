@@ -1,0 +1,43 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { StaffMember } from '~/types';
+
+interface Props {
+  staffMember: StaffMember;
+}
+
+const {  staffMember } = Astro.props;
+---
+
+<div class="h-[386px] p-8 bg-white rounded-3xl justify-center items-center place-items-center gap-2.5">
+  <div class="flex-col justify-start items-center gap-4 flex">
+    <div class="self-stretch flex-col justify-start items-center gap-6 flex">
+      <Image
+        class="rounded-full shadow"
+        src={staffMember.image.src}
+        alt={staffMember.image.alt ?? ''}
+        width={150}
+        height={150}
+        format="webp"
+      />
+
+      <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
+        <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
+          <div class="self-stretch text-center text-[#1733b8] text-base font-bold">{staffMember.name}</div>
+          <div class="self-stretch text-center line-clamp-1 text-[#47006a] text-base font-medium">
+            {staffMember.title}
+          </div>
+        </div>
+        <div class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal">
+          {staffMember.description}
+        </div>
+      </div>
+    </div>
+    <div class="justify-center items-center gap-3 inline-flex">
+      <Icon name="tabler:brand-telegram" class="w-6 h-6 text-pfOnSurface" />
+      <Icon name="tabler:brand-github" class="w-6 h-6 text-pfOnSurface" />
+      <Icon name="tabler:brand-linkedin" class="w-6 h-6 text-pfOnSurface" />
+    </div>
+  </div>
+</div>
