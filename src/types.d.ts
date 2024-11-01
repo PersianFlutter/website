@@ -44,6 +44,15 @@ export interface Post {
   readingTime?: number;
 }
 
+
+export interface StaffMember {
+  name: string;
+  title: string;
+  image: Image;
+  socials: Array<Social>;
+  description: string;
+}
+
 export interface Taxonomy {
   slug: string;
   title: string;
@@ -286,4 +295,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
   callToAction?: CallToAction;
 }
 
-export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+export interface Contact extends Omit<Headline, 'classes'>, Form, Widget { }

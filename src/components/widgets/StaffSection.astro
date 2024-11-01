@@ -1,25 +1,17 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import ParallaxSection from './ParallaxSection.astro';
-import type { Widget } from '~/types';
+import type { StaffMember, Widget } from '~/types';
 import background from '~/assets/images/members-background.jpg';
 import avatar from '~/assets/images/avatar/sample-avatar.png';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 
-interface ActiveMembers extends Widget {
-  donationLink?: string;
-  imageSrc?: ImageMetadata;
+interface StaffSection extends Widget {
+  staff: StaffMember[];
 }
 
-const {
-  id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
-  donationLink = '/',
-  imageSrc = background,
-} = Astro.props;
+const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
 
 const members = [
   {
@@ -57,18 +49,27 @@ const members = [
 >
   <div class="absolute w-full h-full">
     <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10 dark:bg-slate-900"></span>
-    {imageSrc && <ParallaxSection imageSrc={imageSrc} altText="Alt" />}
+    {background && <ParallaxSection imageSrc={background} altText="Alt" />}
   </div>
 
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
-    <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-0">
+    <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
       <!-- box content -->
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold text-purple-600">اعضای فعال جامعه فلاتر فارسی</h2>
-        <p class="text-gray-600 mt-2">
-          در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند.
-        </p>
+      <div class="flex flex-col w-full items-start gap-3">
+        <div class="flex justify-start items-center gap-2">
+          <div class="w-2.5 h-2.5 bg-[#47006a] rounded-[100px]"></div>
+
+          <div class="text-start text-[#47006a] text-2xl font-bold">اعضای فعال جامعه فلاتر فارسی</div>
+
+          <div class="w-[105px] h-1 bg-slate-200 rounded-[10px]"></div>
+        </div>
+        <div class="flex-initial max-w-[780px] text-start text-slate-500 text-lg font-normal">
+          در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند. این اعضای فعال
+          با تخصص‌های گوناگون، نقش‌های کلیدی در پیشبرد اهداف و رشد جامعه ما ایفا می‌کنند. از مدیریت رسانه‌های اجتماعی تا
+          برگزاری رویدادها، هر یک از این افراد سهم مهمی در پویایی و پیشرفت اکوسیستم فلاتر فارسی دارند.
+        </div>
       </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
         {
           members.map((member) => (
