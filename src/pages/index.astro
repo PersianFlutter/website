@@ -1,17 +1,11 @@
 ---
 import { changeLanguage } from 'i18next';
-import i18next, { t } from 'i18next';
 import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
 import '~/assets/styles/custom.css';
 import Donation from '~/components/widgets/Donation.astro';
 import StaffSection from '~/components/widgets/StaffSection.astro';
@@ -254,7 +248,7 @@ const metadata = {
   />
 
   <!-- Features2 Widget ************** -->
-<!-- 
+  <!-- 
   <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
@@ -318,7 +312,7 @@ const metadata = {
   </Features2> -->
 
   <!-- HighlightedPosts Widget ******* -->
-<!-- 
+  <!-- 
   <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`The blog is used to display AstroWind documentation.
@@ -405,6 +399,6 @@ const metadata = {
    -->
 
   <StaffSection />
-  
+
   <Donation donationLink="/" />
 </Layout>
