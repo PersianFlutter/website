@@ -6,6 +6,7 @@ import background from '~/assets/images/members-background.jpg';
 import avatar from '~/assets/images/avatar/sample-avatar.png';
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
+import SectionTitle from './SectionTitle.astro';
 
 interface StaffSection extends Widget {
   staff: StaffMember[];
@@ -55,20 +56,14 @@ const members = [
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
     <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
       <!-- box content -->
-      <div class="flex flex-col w-full items-start gap-3">
-        <div class="flex justify-start items-center gap-2">
-          <div class="w-2.5 h-2.5 bg-[#47006a] rounded-[100px]"></div>
-
-          <div class="text-start text-[#47006a] text-2xl font-bold">اعضای فعال جامعه فلاتر فارسی</div>
-
-          <div class="w-[105px] h-1 bg-slate-200 rounded-[10px]"></div>
-        </div>
-        <div class="flex-initial max-w-[780px] text-start text-slate-500 text-lg font-normal">
-          در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند. این اعضای فعال
-          با تخصص‌های گوناگون، نقش‌های کلیدی در پیشبرد اهداف و رشد جامعه ما ایفا می‌کنند. از مدیریت رسانه‌های اجتماعی تا
-          برگزاری رویدادها، هر یک از این افراد سهم مهمی در پویایی و پیشرفت اکوسیستم فلاتر فارسی دارند.
-        </div>
-      </div>
+      <SectionTitle
+        title="اعضای فعال جامعه فلاتر فارسی"
+        description=`
+    در این بخش با افرادی آشنا می‌شوید که با تلاش و اشتیاق خود، موتور محرکه جامعه فلاتر فارسی هستند. این اعضای فعال با
+    تخصص‌های گوناگون، نقش‌های کلیدی در پیشبرد اهداف و رشد جامعه ما ایفا می‌کنند. از مدیریت رسانه‌های اجتماعی تا برگزاری
+    رویدادها، هر یک از این افراد سهم مهمی در پویایی و پیشرفت اکوسیستم فلاتر فارسی دارند.
+    `
+      />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
         {
