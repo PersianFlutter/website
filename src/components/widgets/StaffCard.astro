@@ -14,7 +14,7 @@ const { staffMember } = Astro.props;
   <div class="flex-col justify-start items-center gap-4 flex">
     <div class="self-stretch flex-col justify-start items-center gap-6 flex">
       <Image
-        class="rounded-full shadow"
+        class="rounded-full shadow-2xl"
         src={staffMember.image.src}
         alt={staffMember.image.alt ?? ''}
         width={150}
@@ -24,20 +24,20 @@ const { staffMember } = Astro.props;
 
       <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
         <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
-          <div class="self-stretch text-center text-[#1733b8] text-base font-bold">{staffMember.name}</div>
-          <div class="self-stretch text-center line-clamp-1 text-[#47006a] text-base font-medium">
+          <h2 class="self-stretch text-center text-pfColorFirst text-base font-bold">{staffMember.name}</h2>
+          <span class="self-stretch text-center line-clamp-1 text-pfColorSecond text-base font-medium">
             {staffMember.title}
-          </div>
+          </span>
         </div>
-        <div class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal">
+        <p class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal">
           {staffMember.description}
-        </div>
+        </p>
       </div>
     </div>
     <div class="justify-center items-center gap-3 inline-flex">
-      <Icon name="tabler:brand-telegram" class="w-6 h-6 text-pfOnSurface" />
-      <Icon name="tabler:brand-github" class="w-6 h-6 text-pfOnSurface" />
-      <Icon name="tabler:brand-linkedin" class="w-6 h-6 text-pfOnSurface" />
+      <Icon name="tabler:brand-telegram" class="w-6 h-6 text-slate-300" />
+      <Icon name="tabler:brand-github" class="w-6 h-6 text-slate-300" />
+      <Icon name="tabler:brand-linkedin" class="w-6 h-6 text-slate-300" />
     </div>
   </div>
 </div>

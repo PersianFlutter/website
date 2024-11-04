@@ -24,7 +24,6 @@ module.exports = {
         pfColorSecond: withOpacityValue('--pf-color-second'),
         pfColorThird: withOpacityValue('--pf-color-third'),
         pfColorFourth: withOpacityValue('--pf-color-fourth'),
-        pfOnSurface: withOpacityValue('--pf-color-on-surface-gray'),
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
