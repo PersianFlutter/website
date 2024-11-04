@@ -52,10 +52,9 @@ const {
 <WidgetWrapper
   id={id}
   isDark={isDark}
-  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max  overflow-hidden ${classes?.container ?? ''}`}
-  bg={bg}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
 >
-  <div class="absolute w-full h-full">
+  <div slot="bg" class="absolute w-full h-full overflow-hidden">
     <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10 dark:bg-slate-900"></span>
     {background && <ParallaxSection imageSrc={background} altText="Alt" />}
   </div>
