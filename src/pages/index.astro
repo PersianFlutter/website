@@ -2,6 +2,7 @@
 import { changeLanguage } from 'i18next';
 import Layout from '~/layouts/PageLayout.astro';
 import Donation from '~/components/widgets/Donation.astro';
+import Hero from '~/components/widgets/hero/hero.astro';
 import '~/assets/styles/custom.css';
 
 changeLanguage('fa');
@@ -13,9 +14,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  
-
-
+  <Hero />
 
   <Donation donationLink="/" />
 </Layout>
