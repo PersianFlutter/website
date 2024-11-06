@@ -1,0 +1,77 @@
+---
+import { t } from 'i18next';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import type { Widget } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+import profileImg01 from '~/assets/images/donation-bg.jpg';
+
+export interface Donation extends Widget {
+  donationLink?: string;
+  imageSrc?: ImageMetadata;
+}
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  donationLink = '/',
+  imageSrc = profileImg01,
+} = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max lg:h-[501px] overflow-hidden ${classes?.container ?? ''}`}
+  bg={bg}>
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
+      <!-- <div class="h-[386px] p-8 bg-white rounded-3xl justify-center items-center place-items-center gap-2.5">
+        <div class="flex-col justify-start items-center gap-4 flex">
+          <div class="self-stretch flex-col justify-start items-center gap-6 flex">
+            <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
+              <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
+                <div class="self-stretch text-center text-[#1733b8] text-base font-bold">پرهام</div>
+                <div class="self-stretch text-center line-clamp-1 text-[#47006a] text-base font-medium">
+                  مسئول رسانه‌های اجتماعی
+                </div>
+              </div>
+              <div class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal">
+                پرهام با خلاقیت و نوآوری، حضور ما را در شبکه‌های اجتماعی مدیریت می‌کند
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="hero">
+        <div class="hero__content">
+          <div class="hero__title">
+            <h1 class="hero__title-main">جامعه فلاتر فارسی</h1>
+            <h2 class="hero__title-sub">قلب تپنده فلاتر ایران</h2>
+          </div>
+          <div class="hero__description">
+            <p class="hero__description-item">به مرجع اصلی توسعه‌دهندگان فلاتر ایران خوش آمدید.</p>
+            <p class="hero__description-item">اینجا محلی برای یادگیری، اشتراک‌گذاری تجربیات و رشد مهارت‌های شماست.</p>
+            <p class="hero__description-item">با ما همراه شوید تا آینده برنامه‌نویسی موبایل را با فلاتر شکل دهیم.</p>
+          </div>
+          <div class="hero__socials">
+            <div class="social-card social-card--telegram">
+              <div class="social-card__users flex items-center gap-4">
+                <!-- <Image src="" alt="" class="w-16 h-16 rounded-full" width={64} height={64} /> -->
+              </div>
+              <div class="social-card__id"></div>
+            </div>
+            <div class="social-card social-card--youtube">
+              <div class="social-card__logo"></div>
+              <div class="social-card__subscribe"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__images"></div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
