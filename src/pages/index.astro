@@ -4,15 +4,11 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
-import Stats from '~/components/widgets/Stats.astro';
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Donation from '~/components/widgets/Donation.astro';
 import '~/assets/styles/custom.css';
+import Donation from '~/components/widgets/Donation.astro';
+import StaffSection from '~/components/widgets/StaffSection.astro';
 
 changeLanguage('fa');
 
@@ -252,7 +248,7 @@ const metadata = {
   />
 
   <!-- Features2 Widget ************** -->
-
+  <!-- 
   <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
@@ -313,20 +309,20 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2>
+  </Features2> -->
 
   <!-- HighlightedPosts Widget ******* -->
-
+  <!-- 
   <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
                         Astro is a very interesting technology. Thanks.
                 `}
-  />
+  /> -->
 
   <!-- FAQs Widget ******************* -->
-
+  <!-- 
   <FAQs
     title="Frequently Asked Questions"
     subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
@@ -364,10 +360,11 @@ const metadata = {
           "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
       },
     ]}
-  />
+  /> 
+  -->
 
   <!-- Stats Widget ****************** -->
-
+  <!-- 
   <Stats
     stats={[
       { title: 'Downloads', amount: '132K' },
@@ -375,10 +372,10 @@ const metadata = {
       { title: 'Forks', amount: '10.3K' },
       { title: 'Users', amount: '48.4K' },
     ]}
-  />
+  /> -->
 
   <!-- CallToAction Widget *********** -->
-
+  <!-- 
   <CallToAction
     actions={[
       {
@@ -399,6 +396,9 @@ const metadata = {
       waste more time! :P
     </Fragment>
   </CallToAction>
+   -->
+
+  <StaffSection />
 
   <Donation donationLink="/" />
 </Layout>
