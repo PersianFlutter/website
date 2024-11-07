@@ -53,8 +53,7 @@ const {
   isDark={isDark}
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
 >
-  <div slot="bg" class="absolute w-full h-full overflow-hidden">
-    <span id="color-layer" class="absolute left-0 top-0 w-full h-full bg-[#ebebeb] -z-10 dark:bg-slate-900"></span>
+  <div slot="bg" class="absolute w-full h-full overflow-hidden bg-[#ebebeb] dark:bg-slate-900">
     {background && <ParallaxSection imageSrc={background} altText="Alt" />}
   </div>
 
