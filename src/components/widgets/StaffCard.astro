@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { StaffMember } from '~/types';
+
+interface Props {
+  staffMember: StaffMember;
+}
+
+const { staffMember } = Astro.props;
+---
+
+<div
+  class="h-[386px] p-8 bg-white rounded-3xl justify-center items-center place-items-center gap-2.5 dark:bg-slate-800"
+>
+  <div class="flex-col justify-start items-center gap-4 flex">
+    <div class="self-stretch flex-col justify-start items-center gap-6 flex">
+      <Image
+        class="rounded-full shadow-2xl"
+        src={staffMember.image.src}
+        alt={staffMember.image.alt ?? ''}
+        width={150}
+        height={150}
+        format="webp"
+      />
+
+      <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
+        <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
+          <h2 class="self-stretch text-center text-base font-bold text-pfColorFirst dark:text-pfColorFourth">
+            {staffMember.name}
+          </h2>
+          <span
+            class="self-stretch text-center line-clamp-1 text-pfColorSecond text-base font-medium dark:text-slate-100"
+          >
+            {staffMember.title}
+          </span>
+        </div>
+        <p class="self-stretch text-center line-clamp-2 text-slate-600 text-sm font-normal dark:text-slate-300">
+          {staffMember.description}
+        </p>
+      </div>
+    </div>
+    <div class="justify-center items-center gap-3 inline-flex">
+      <!-- TODO(payam): add link tag to this items -->
+      <Icon name="tabler:brand-telegram" class="w-6 h-6 text-slate-300 dark:text-slate-500" />
+      <Icon name="tabler:brand-github" class="w-6 h-6 text-slate-300 dark:text-slate-500" />
+      <Icon name="tabler:brand-linkedin" class="w-6 h-6 text-slate-300 dark:text-slate-500" />
+    </div>
+  </div>
+</div>

@@ -44,6 +44,14 @@ export interface Post {
   readingTime?: number;
 }
 
+export interface StaffMember {
+  name: string;
+  title: string;
+  image: Image;
+  socials: Array<Social>;
+  description: string;
+}
+
 export interface Taxonomy {
   slug: string;
   title: string;

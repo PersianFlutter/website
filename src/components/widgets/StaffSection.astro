@@ -1,0 +1,70 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import ParallaxSection from './ParallaxSection.astro';
+import { t } from 'i18next';
+import type { StaffMember, Widget } from '~/types';
+import background from '~/assets/images/members-background.jpg';
+import avatar1 from '~/assets/images/avatar/sample-avatar-1.png';
+import avatar2 from '~/assets/images/avatar/sample-avatar-2.png';
+import avatar3 from '~/assets/images/avatar/sample-avatar-3.png';
+import avatar4 from '~/assets/images/avatar/sample-avatar-4.png';
+import SectionTitle from './SectionTitle.astro';
+import StaffCard from './StaffCard.astro';
+
+interface Props extends Widget {
+  staff?: StaffMember[];
+}
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  staff: staffMembers = [
+    {
+      name: 'امیر',
+      title: 'توسعه‌دهنده ارشد و مشاور فنی',
+      description: 'امیر با تخصص عمیق در فلاتر، راهنمای فنی پروژه‌های پیچیده و چالش‌برانگیز است',
+      image: { src: avatar1, alt: 'امیر' },
+    },
+    {
+      name: 'سارا',
+      title: 'مسئول آموزش و منتورینگ',
+      description: 'سارا با تجربه غنی در آموزش، مسیر یادگیری را برای اعضای جامعه هموار می‌کند',
+      image: { src: avatar2, alt: 'سارا' },
+    },
+    {
+      name: 'هادی',
+      title: 'مدیر کافه فلاتر',
+      description: 'هادی با برنامه‌ریزی دقیق، کافه فلاتر را به یک رویداد منظم و ارزشمند تبدیل کرده است',
+      image: { src: avatar3, alt: 'هادی' },
+    },
+    {
+      name: 'پرهام',
+      title: 'مسئول رسانه‌های اجتماعی',
+      description: 'پرهام با خلاقیت و نوآوری، حضور ما را در شبکه‌های اجتماعی مدیریت می‌کند',
+      image: { src: avatar4, alt: 'پرهام' },
+    },
+  ],
+} = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
+>
+  <div slot="bg" class="absolute w-full h-full overflow-hidden bg-[#ebebeb] dark:bg-slate-900">
+    {background && <ParallaxSection imageSrc={background} altText="Alt" />}
+  </div>
+
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
+      <!-- box content -->
+      <SectionTitle title={t('home.staffSection.title')} description={t('home.staffSection.description')} />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
+        {staffMembers.map((member) => <StaffCard staffMember={member} />)}
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>

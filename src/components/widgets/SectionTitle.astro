@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title = 'This is a title', description = 'This is a description' } = Astro.props;
+---
+
+<div class="flex flex-col w-full items-start gap-3">
+  <div class="flex justify-start items-center gap-2">
+    <div class="w-2.5 h-2.5 bg-pfColorSecond dark:bg-slate-400 rounded-[100px]"></div>
+
+    <h2 class="text-start text-pfColorSecond text-2xl font-bold dark:text-pfColorFourth">{title}</h2>
+
+    <div class="w-[105px] h-1 bg-slate-200 rounded-[10px] dark:bg-slate-500"></div>
+  </div>
+  <div class="flex-initial max-w-[780px] text-start text-slate-500 text-lg font-normal dark:text-slate-400">
+    {description}
+  </div>
+</div>
