@@ -9,6 +9,7 @@ import Content from '~/components/widgets/Content.astro';
 import '~/assets/styles/custom.css';
 import Donation from '~/components/widgets/Donation.astro';
 import StaffSection from '~/components/widgets/StaffSection.astro';
+import HeroSection from '~/components/widgets/hero/Hero.astro';
 
 changeLanguage('fa');
 
@@ -20,6 +21,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
+   <HeroSection />
   <Hero
     actions={[
       {
