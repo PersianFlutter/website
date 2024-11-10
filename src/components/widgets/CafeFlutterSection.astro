@@ -1,13 +1,22 @@
 ---
-import type { Widget } from '~/types';
+import type { CafeFlutterItem, Widget } from '~/types';
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
-import { Icon } from 'astro-icon/components';
+import { pastCafeFlutterEvents } from '~/data/mockCafeFlutter';
+import PastCafeFlutterCard from './PastCafeFlutterCard.astro';
+// import { upcomingCafeFlutterEvent } from '~/data/mockCafeFlutter';
 
 interface Props extends Widget {
-  someValue?: string;
+  upcomingEvent?: CafeFlutterItem;
+  pastEvents?: CafeFlutterItem[];
 }
 
-const { id, isDark = false, classes = {} } = Astro.props;
+const {
+  id,
+  isDark = false,
+  classes = {},
+//   upcomingEvent = upcomingCafeFlutterEvent,
+  pastEvents = pastCafeFlutterEvents,
+} = Astro.props;
 ---
 
 <WidgetWrapper
@@ -16,73 +25,20 @@ const { id, isDark = false, classes = {} } = Astro.props;
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
 >
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
-    <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
-      <article class="w-[408px] h-[608px] relative bg-[#f1f4f8] rounded-3xl p-4">
-        <figure>
-          <img
-            class="w-full h-[301px] rounded-3xl shadow-xl border-4 border-white"
-            src="https://via.placeholder.com/376x200"
-            alt="تصویر رویداد کافه فلاتر شماره ۳4"
-          />
-          
-          <div
-            class="px-2.5 py-1.5 start-5 top-5 absolute bg-[#fd6035] rounded-tr-2xl rounded-bl-2xl justify-end items-center inline-flex"
-            aria-label="وضعیت رویداد"
-          >
-            <span class="text-right text-white text-xs font-normal">برگزار شده</span>
-          </div>
-        </figure>
-
-        <div class="flex flex-col w-full justify-start items-start gap-6 mt-6 px-4">
-          <div class="w-full">
-            <h2 class="text-start text-slate-600 text-base font-bold mb-3">کافه فلاتر شماره ۳4</h2>
-            <div class="space-y-2">
-              <div class="flex justify-end items-center gap-2.5" aria-label="ارائه دهنده اول">
-                <img
-                  class="w-[50px] h-[50px] rounded-2xl shadow-lg border-2 border-white"
-                  src="https://via.placeholder.com/50x50"
-                  alt="تصویر علیرضا تقی‌زاده"
-                />
-                <div class="flex-grow">
-                  <h3 class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</h3>
-                  <p class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</p>
-                </div>
-              </div>
-
-              <div class="flex justify-end items-center gap-2.5" aria-label="ارائه دهنده دوم">
-                <img
-                  class="w-[50px] h-[50px] rounded-2xl shadow-lg border-2 border-white"
-                  src="https://via.placeholder.com/50x50"
-                  alt="تصویر علیرضا تقی‌زاده"
-                />
-                <div class="flex-grow">
-                  <h3 class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</h3>
-                  <p class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</p>
-                </div>
-              </div>
+    <div class="flex flex-col gap-8 md:gap-12 lg:gap-16">
+      <!-- Past Events Grid -->
+      {
+        pastEvents && pastEvents.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-center mb-8">رویدادهای گذشته</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8  lg:gap-10">
+              {pastEvents.map((event) => (
+                <PastCafeFlutterCard item={event} />
+              ))}
             </div>
           </div>
-
-          <hr class="w-full border-t border-slate-300" />
-        </div>
-
-        <div class="w-full mt-6 px-4 justify-between items-start inline-flex">
-          <div class="flex-col justify-start items-start gap-1.5 inline-flex">
-            <time class="justify-end items-center gap-1.5 inline-flex">
-              <Icon name="tabler:calendar" class="w-5 h-5 text-slate-500 relative" />
-              <span class="text-right text-slate-500 text-sm font-normal">جمعه ۳۰ مرداد ۱۴۰۲</span>
-            </time>
-            <div class="justify-end items-center gap-1.5 inline-flex">
-              <Icon name="tabler:clock" class="w-5 h-5 text-slate-500 relative" />
-              <span class="text-right text-slate-500 text-sm font-normal">ساعت 20:00</span>
-            </div>
-          </div>
-          <a href="#" class="rounded bg-blue-300 justify-center items-start gap-1.5 inline-flex" aria-label="مشاهده در یوتیوب">
-            <Icon name="tabler:brand-youtube" class="w-5 h-5 text-slate-500 relative" />
-            <span class="text-right text-slate-500 text-xs font-normal">مشاهده در یوتیوب</span>
-          </a>
-        </div>
-      </article>
+        )
+      }
     </div>
   </div>
 </WidgetWrapper>

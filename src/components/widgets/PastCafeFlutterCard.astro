@@ -1,0 +1,99 @@
+---
+import type { CafeFlutterItem } from '~/types';
+import { Icon } from 'astro-icon/components';
+import { pastCafeFlutterEvents } from '~/data/mockCafeFlutter';
+
+interface Props {
+  item?: CafeFlutterItem;
+}
+
+const {  item = pastCafeFlutterEvents[0] } = Astro.props;
+
+// Helper function to format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('fa-IR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+};
+
+const formatTime = (date: Date) => {
+  return new Intl.DateTimeFormat('fa-IR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(date);
+};
+---
+
+<article class="w-[408px] h-[608px] relative bg-[#f1f4f8] rounded-3xl p-4">
+    <figure>
+      <img
+        class="w-full h-[301px] rounded-3xl shadow-xl border-4 border-white"
+        src={item.image.src}
+        alt={item.image.alt || `تصویر کافه فلاتر شماره ${item.number}`}
+      />
+
+      <div
+        class="px-2.5 py-1.5 start-5 top-5 absolute bg-[#fd6035] rounded-tr-2xl rounded-bl-2xl justify-end items-center inline-flex"
+        aria-label="وضعیت رویداد"
+      >
+        <span class="text-start text-white text-xs font-normal">
+          {item.status === 'completed' ? 'برگزار شده' : 'به زودی'}
+        </span>
+      </div>
+    </figure>
+
+    <div class="flex flex-col w-full justify-start items-start gap-6 mt-6 px-4">
+      <div class="w-full">
+        <h2 class="text-start text-slate-600 text-base font-bold mb-3">
+          کافه فلاتر شماره {item.number}
+        </h2>
+        <div class="space-y-2">
+          {
+            item.speakers.map((speaker) => (
+              <div class="flex justify-end items-center gap-2.5" aria-label={`ارائه دهنده ${speaker.name}`}>
+                <img
+                  class="w-[50px] h-[50px] rounded-2xl shadow-lg border-2 border-white"
+                  src={speaker.image.src}
+                  alt={speaker.image.alt || `تصویر ${speaker.name}`}
+                />
+                <div class="flex-grow">
+                  <h3 class="text-start text-slate-500 text-base font-medium">{speaker.name}</h3>
+                  <p class="text-start text-slate-500 text-sm font-normal">{speaker.title}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <hr class="w-full border-t border-slate-300" />
+    </div>
+
+    <div class="w-full mt-6 px-4 justify-between items-start inline-flex">
+      <div class="flex-col justify-start items-start gap-1.5 inline-flex">
+        <time class="justify-end items-center gap-1.5 inline-flex">
+          <Icon name="tabler:calendar" class="w-5 h-5 text-slate-500 relative" />
+          <span class="text-start text-slate-500 text-sm font-normal">
+            {formatDate(item.dateTime)}
+          </span>
+        </time>
+        <div class="justify-end items-center gap-1.5 inline-flex">
+          <Icon name="tabler:clock" class="w-5 h-5 text-slate-500 relative" />
+          <span class="text-start text-slate-500 text-sm font-normal">
+            {`ساعت ${formatTime(item.dateTime)}`}
+          </span>
+        </div>
+      </div>
+      {
+        item.youtubeLink && (
+          <a href={item.youtubeLink} class="rounded  justify-center items-start gap-1.5 inline-flex">
+            <Icon name="tabler:brand-youtube" class="w-5 h-5 text-slate-500 relative" />
+            <span class="text-start text-slate-500 text-xs font-normal">مشاهده در یوتیوب</span>
+          </a>
+        )
+      }
+    </div>
+  </article>
