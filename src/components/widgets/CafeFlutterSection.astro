@@ -15,55 +15,49 @@ const { id, isDark = false, classes = {} } = Astro.props;
   isDark={isDark}
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
 >
-  <!-- <div slot="bg" class="absolute w-full h-full overflow-hidden bg-[#ebebeb] dark:bg-slate-900">
-    {background && <ParallaxSection imageSrc={background} altText="Alt" />}
-  </div> -->
-
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
     <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
-      <div class="w-[408px] h-[608px] relative bg-[#f1f4f8] rounded-3xl p-4">
-        <!-- Cafe Flutter Image -->
-        <div>
+      <article class="w-[408px] h-[608px] relative bg-[#f1f4f8] rounded-3xl p-4">
+        <figure>
           <img
             class="w-full h-[301px] rounded-3xl shadow-xl border-4 border-white"
             src="https://via.placeholder.com/376x200"
+            alt="تصویر رویداد کافه فلاتر شماره ۳4"
           />
-
-          <!-- Status Tag -->
+          
           <div
             class="px-2.5 py-1.5 start-5 top-5 absolute bg-[#fd6035] rounded-tr-2xl rounded-bl-2xl justify-end items-center inline-flex"
+            aria-label="وضعیت رویداد"
           >
-            <div class="text-right text-white text-xs font-normal">برگزار شده</div>
+            <span class="text-right text-white text-xs font-normal">برگزار شده</span>
           </div>
-        </div>
+        </figure>
 
         <div class="flex flex-col w-full justify-start items-start gap-6 mt-6 px-4">
           <div class="w-full">
-            <h3 class="text-start text-slate-600 text-base font-bold mb-3">کافه فلاتر شماره ۳4</h3>
+            <h2 class="text-start text-slate-600 text-base font-bold mb-3">کافه فلاتر شماره ۳4</h2>
             <div class="space-y-2">
-              {/* Speaker Card 1 */}
-              <div class="flex justify-end items-center gap-2.5">
+              <div class="flex justify-end items-center gap-2.5" aria-label="ارائه دهنده اول">
                 <img
                   class="w-[50px] h-[50px] rounded-2xl shadow-lg border-2 border-white"
                   src="https://via.placeholder.com/50x50"
-                  alt="علیرضا تقی‌زاده"
+                  alt="تصویر علیرضا تقی‌زاده"
                 />
                 <div class="flex-grow">
-                  <div class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</div>
-                  <div class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</div>
+                  <h3 class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</h3>
+                  <p class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</p>
                 </div>
               </div>
 
-              {/* Speaker Card 2 */}
-              <div class="flex justify-end items-center gap-2.5">
+              <div class="flex justify-end items-center gap-2.5" aria-label="ارائه دهنده دوم">
                 <img
                   class="w-[50px] h-[50px] rounded-2xl shadow-lg border-2 border-white"
                   src="https://via.placeholder.com/50x50"
-                  alt="علیرضا تقی‌زاده"
+                  alt="تصویر علیرضا تقی‌زاده"
                 />
                 <div class="flex-grow">
-                  <div class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</div>
-                  <div class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</div>
+                  <h3 class="text-start text-slate-500 text-base font-medium">علیرضا تقی‌زاده</h3>
+                  <p class="text-start text-slate-500 text-sm font-normal">بررسی اصول SOLID و مزیت‌های آن</p>
                 </div>
               </div>
             </div>
@@ -74,21 +68,21 @@ const { id, isDark = false, classes = {} } = Astro.props;
 
         <div class="w-full mt-6 px-4 justify-between items-start inline-flex">
           <div class="flex-col justify-start items-start gap-1.5 inline-flex">
-            <div class="justify-end items-center gap-1.5 inline-flex">
+            <time class="justify-end items-center gap-1.5 inline-flex">
               <Icon name="tabler:calendar" class="w-5 h-5 text-slate-500 relative" />
-              <div class="text-right text-slate-500 text-sm font-normal">جمعه ۳۰ مرداد ۱۴۰۲</div>
-            </div>
+              <span class="text-right text-slate-500 text-sm font-normal">جمعه ۳۰ مرداد ۱۴۰۲</span>
+            </time>
             <div class="justify-end items-center gap-1.5 inline-flex">
               <Icon name="tabler:clock" class="w-5 h-5 text-slate-500 relative" />
-              <div class="text-right text-slate-500 text-sm font-normal">ساعت 20:00</div>
+              <span class="text-right text-slate-500 text-sm font-normal">ساعت 20:00</span>
             </div>
           </div>
-          <div class="rounded bg-blue-300 justify-center items-start gap-1.5 inline-flex">
+          <a href="#" class="rounded bg-blue-300 justify-center items-start gap-1.5 inline-flex" aria-label="مشاهده در یوتیوب">
             <Icon name="tabler:brand-youtube" class="w-5 h-5 text-slate-500 relative" />
-            <div class="text-right text-slate-500 text-xs font-normal">مشاهد در یوتیوب</div>
-          </div>
+            <span class="text-right text-slate-500 text-xs font-normal">مشاهده در یوتیوب</span>
+          </a>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </WidgetWrapper>
