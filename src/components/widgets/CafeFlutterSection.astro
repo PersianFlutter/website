@@ -10,13 +10,7 @@ interface Props extends Widget {
   pastEvents?: CafeFlutterItem[];
 }
 
-const {
-  id,
-  isDark = false,
-  classes = {},
-//   upcomingEvent = upcomingCafeFlutterEvent,
-  pastEvents = pastCafeFlutterEvents,
-} = Astro.props;
+const { id, isDark = false, classes = {}, pastEvents = pastCafeFlutterEvents } = Astro.props;
 ---
 
 <WidgetWrapper
@@ -24,14 +18,13 @@ const {
   isDark={isDark}
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
 >
-  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
     <div class="flex flex-col gap-8 md:gap-12 lg:gap-16">
-      <!-- Past Events Grid -->
       {
         pastEvents && pastEvents.length > 0 && (
           <div>
-            <h2 class="text-2xl font-bold text-center mb-8">رویدادهای گذشته</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8  lg:gap-10">
+            <h2 class="text-xl md:text-2xl font-bold text-center mb-6 md:mb-8">رویدادهای گذشته</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:justify-items-stretch sm:justify-items-center gap-4 sm:gap-6 lg:gap-8 auto-rows-fr">
               {pastEvents.map((event) => (
                 <PastCafeFlutterCard item={event} />
               ))}
