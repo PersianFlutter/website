@@ -10,6 +10,7 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import Scripts from '~/components/common/Scripts.astro';
 
 // Comment the line below to disable View Transitions
 import { ViewTransitions } from 'astro:transitions';
@@ -34,11 +35,13 @@ const { metadata = {} } = Astro.props;
     <SiteVerification />
     <Analytics />
 
+    <Scripts />
+
     <!-- Comment the line below to disable View Transitions -->
     <ViewTransitions fallback="swap" />
   </head>
 
-  <body class="antialiased text-regular bg-page tracking-tight font-pinar">
+  <body class="antialiased text-regular bg-page font-pinar">
     <slot />
 
     <BasicScripts />

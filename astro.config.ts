@@ -88,5 +88,11 @@ export default defineConfig({
         '~': path.resolve(__dirname, './src'),
       },
     },
+    optimizeDeps: {
+      include: ['gsap/dist/gsap', 'gsap/dist/MotionPathPlugin'],
+    },
+    ssr: {
+      noExternal: ['gsap'],
+    },
   },
 });

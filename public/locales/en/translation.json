@@ -11,7 +11,29 @@
     "description": "A reference for Flutter developers and enthusiasts in Iran"
   },
   "home": {
-    "hero": {},
+    "hero": {
+      "title": {
+        "main": "Persian Flutter Community",
+        "sub": "The Beating Heart of Flutter Iran"
+      },
+      "description": [
+        "Welcome to the main reference for Flutter developers in Iran.",
+        "This is a place for learning, sharing experiences, and growing your skills.",
+        "Join us to shape the future of mobile development with Flutter."
+      ],
+      "socials": {
+        "telegram": {
+          "members": {
+            "text": "Active Telegram Members"
+          },
+          "joinButton": "Join Telegram Channel"
+        },
+        "youtube": {
+          "description": "Access to latest videos, interviews and tutorials",
+          "button": "Subscribe"
+        }
+      }
+    },
     "flutterCafe": [],
     "staffSection": {
       "title": "Active members of the Persian Flutter community",
