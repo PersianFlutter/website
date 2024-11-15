@@ -321,7 +321,7 @@ const portraitPaths = {
         newImg.style.left = '0';
         newImg.style.width = '100%';
         newImg.style.height = '100%';
-        newImg.style.opacity = '0.7';
+        newImg.style.opacity = '1';
         newImg.style.transition = 'opacity 0.8s ease-in-out';
 
         // Setup container for crossfade
@@ -347,14 +347,14 @@ const portraitPaths = {
         // Animate with GSAP timeline
         tl.to(newImg, {
           opacity: 1,
-          duration: 1.2,
+          duration: 5.0,
           ease: 'power2.inOut',
         })
           .to(
             img,
             {
               opacity: 0,
-              duration: 1.2,
+              duration: 5.0,
               ease: 'power2.inOut',
             },
             '<'
@@ -362,12 +362,12 @@ const portraitPaths = {
           .fromTo(
             newImg,
             {
-              scale: 1.02,
+              scale: 1,
             },
             {
               scale: 1,
-              duration: 1.2,
-              ease: 'power2.out',
+              duration: 5.0,
+              ease: 'elastic.out(1, 0.8)',
             },
             '<'
           );
@@ -414,7 +414,7 @@ const portraitPaths = {
         newImg.style.left = '0';
         newImg.style.width = '100%';
         newImg.style.height = '100%';
-        newImg.style.opacity = '0.7';
+        newImg.style.opacity = '1';
         newImg.style.transition = 'opacity 0.8s ease-in-out';
 
         // Setup container for crossfade
@@ -440,14 +440,14 @@ const portraitPaths = {
         // Animate with GSAP timeline
         tl.to(newImg, {
           opacity: 1,
-          duration: 1.2,
+          duration: 5.0,
           ease: 'power2.inOut',
         })
           .to(
             img,
             {
               opacity: 0,
-              duration: 1.2,
+              duration: 5.0,
               ease: 'power2.inOut',
             },
             '<'
@@ -455,12 +455,12 @@ const portraitPaths = {
           .fromTo(
             newImg,
             {
-              scale: 1.02,
+              scale: 1,
             },
             {
               scale: 1,
-              duration: 1.2,
-              ease: 'power2.out',
+              duration: 5.0,
+              ease: 'elastic.out(1, 0.8)',
             },
             '<'
           );
