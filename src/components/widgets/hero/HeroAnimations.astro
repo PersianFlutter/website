@@ -1,224 +1,228 @@
 ---
+
 ---
 
 <script>
+  // @ts-ignore
+  if (!window.gsapTypesAdded) {
     // @ts-ignore
-    if (!window.gsapTypesAdded) {
+    window.gsapTypesAdded = true;
+  }
+
+  class HighlightAnimation {
+    private highlightElement: Element | null;
+    private gsap: any;
+    private MotionPathPlugin: any;
+
+    constructor() {
       // @ts-ignore
-      window.gsapTypesAdded = true;
-    }
-  
-    class HighlightAnimation {
-      private highlightElement: Element | null;
-      private gsap: any;
-      private MotionPathPlugin: any;
-  
-      constructor() {
-        // @ts-ignore
-        this.gsap = window.gsap;
-        // @ts-ignore
-        this.MotionPathPlugin = window.MotionPathPlugin;
-        this.highlightElement = document.getElementById('highlight-telegram');
-        
-        if (this.highlightElement) {
-          this.initAnimation();
-        }
+      this.gsap = window.gsap;
+      // @ts-ignore
+      this.MotionPathPlugin = window.MotionPathPlugin;
+      this.highlightElement = document.getElementById('highlight-telegram');
+
+      if (this.highlightElement) {
+        this.initAnimation();
       }
-  
-      private initAnimation(): void {
-        const path = [
-          { x: 0, y: 0 },
-          { x: 10, y: -10 },
-          { x: -5, y: -15 },
-          { x: 15, y: 0 },
-          { x: 0, y: 10 },
-          { x: 0, y: 0 }
-        ];
-  
-        if (!this.highlightElement) return;
-  
-        // @ts-ignore
-        const mainTimeline = this.gsap.timeline({
-          repeat: -1,
-          repeatDelay: 2
-        });
-  
-        mainTimeline
-          .to(this.highlightElement, {
-            duration: 2,
-            motionPath: {
-              path: path,
-              curviness: 1.5,
-              type: "soft"
-            },
-            ease: "power1.inOut"
-          })
-          .to(this.highlightElement, {
+    }
+
+    private initAnimation(): void {
+      const path = [
+        { x: 0, y: 0 },
+        { x: 10, y: -10 },
+        { x: -5, y: -15 },
+        { x: 15, y: 0 },
+        { x: 0, y: 10 },
+        { x: 0, y: 0 },
+      ];
+
+      if (!this.highlightElement) return;
+
+      // @ts-ignore
+      const mainTimeline = this.gsap.timeline({
+        repeat: -1,
+        repeatDelay: 2,
+      });
+
+      mainTimeline
+        .to(this.highlightElement, {
+          duration: 2,
+          motionPath: {
+            path: path,
+            curviness: 1.5,
+            type: 'soft',
+          },
+          ease: 'power1.inOut',
+        })
+        .to(
+          this.highlightElement,
+          {
             duration: 1,
             rotation: 360,
             scale: 1.2,
-            ease: "power2.inOut"
-          }, "-=2")
-          .to(this.highlightElement, {
-            duration: 0.5,
-            scale: 1,
-            rotation: 0,
-            ease: "back.out(1.7)"
-          });
-  
-        const pathElement = this.highlightElement.querySelector('path');
-        if (pathElement) {
+            ease: 'power2.inOut',
+          },
+          '-=2'
+        )
+        .to(this.highlightElement, {
+          duration: 0.5,
+          scale: 1,
+          rotation: 0,
+          ease: 'back.out(1.7)',
+        });
+
+      const pathElement = this.highlightElement.querySelector('path');
+      if (pathElement) {
+        // @ts-ignore
+        this.gsap.to(pathElement, {
+          fill: '#BB58FF',
+          duration: 0.5,
+          repeat: -1,
+          yoyo: true,
+          ease: 'power1.inOut',
+        });
+      }
+
+      this.highlightElement.addEventListener('mouseenter', () => {
+        if (this.highlightElement) {
           // @ts-ignore
-          this.gsap.to(pathElement, {
-            fill: "#BB58FF",
-            duration: 0.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
+          this.gsap.to(this.highlightElement, {
+            scale: 1.3,
+            duration: 0.3,
+            ease: 'back.out(1.7)',
           });
         }
-  
-        this.highlightElement.addEventListener('mouseenter', () => {
-          if (this.highlightElement) {
-            // @ts-ignore
-            this.gsap.to(this.highlightElement, {
-              scale: 1.3,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          }
-        });
-  
-        this.highlightElement.addEventListener('mouseleave', () => {
-          if (this.highlightElement) {
-            // @ts-ignore
-            this.gsap.to(this.highlightElement, {
-              scale: 1,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          }
+      });
+
+      this.highlightElement.addEventListener('mouseleave', () => {
+        if (this.highlightElement) {
+          // @ts-ignore
+          this.gsap.to(this.highlightElement, {
+            scale: 1,
+            duration: 0.3,
+            ease: 'back.out(1.7)',
+          });
+        }
+      });
+    }
+  }
+
+  class ArrowYoutubeAnimation {
+    private arrowElement: Element | null;
+    private gsap: any;
+    private isAnimating: boolean = false;
+
+    constructor() {
+      // @ts-ignore
+      this.gsap = window.gsap;
+      this.arrowElement = document.getElementById('arrow-youtube');
+
+      if (this.arrowElement) {
+        this.initAnimation();
+        this.setupEventListeners();
+      }
+    }
+
+    private initAnimation(): void {
+      if (!this.arrowElement) return;
+
+      const floatPath = [
+        { y: 0, rotation: 0 },
+        { y: -10, rotation: -5 },
+        { y: 0, rotation: 0 },
+        { y: 5, rotation: 5 },
+        { y: 0, rotation: 0 },
+      ];
+
+      const floatTimeline = this.gsap.timeline({
+        repeat: -1,
+        repeatDelay: 0.5,
+      });
+
+      floatTimeline.to(this.arrowElement, {
+        duration: 3,
+        keyframes: floatPath,
+        ease: 'power1.inOut',
+      });
+
+      const paths = this.arrowElement.querySelectorAll('path');
+      if (paths.length > 0) {
+        paths.forEach((path) => {
+          this.gsap.to(path, {
+            fill: '#64748b',
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: 'power1.inOut',
+          });
         });
       }
     }
 
-    class ArrowYoutubeAnimation {
-      private arrowElement: Element | null;
-      private gsap: any;
-      private isAnimating: boolean = false;
-  
-      constructor() {
-        // @ts-ignore
-        this.gsap = window.gsap;
-        this.arrowElement = document.getElementById('arrow-youtube');
-        
-        if (this.arrowElement) {
-          this.initAnimation();
-          this.setupEventListeners();
-        }
-      }
-  
-      private initAnimation(): void {
-        if (!this.arrowElement) return;
-  
-        const floatPath = [
-          { y: 0, rotation: 0 },
-          { y: -10, rotation: -5 },
-          { y: 0, rotation: 0 },
-          { y: 5, rotation: 5 },
-          { y: 0, rotation: 0 }
-        ];
-  
-        const floatTimeline = this.gsap.timeline({
-          repeat: -1,
-          repeatDelay: 0.5
+    private setupEventListeners(): void {
+      if (!this.arrowElement) return;
+
+      this.arrowElement.addEventListener('mouseenter', () => {
+        if (this.isAnimating || !this.arrowElement) return;
+        this.isAnimating = true;
+
+        const bounceTimeline = this.gsap.timeline({
+          onComplete: () => {
+            this.isAnimating = false;
+          },
         });
-  
-        floatTimeline
+
+        bounceTimeline
           .to(this.arrowElement, {
-            duration: 3,
-            keyframes: floatPath,
-            ease: "power1.inOut"
+            scale: 1.2,
+            y: -15,
+            rotation: -10,
+            duration: 0.3,
+            ease: 'power2.out',
+          })
+          .to(this.arrowElement, {
+            scale: 1,
+            y: 0,
+            rotation: 0,
+            duration: 0.5,
+            ease: 'bounce.out',
           });
-  
+
         const paths = this.arrowElement.querySelectorAll('path');
         if (paths.length > 0) {
           paths.forEach((path) => {
             this.gsap.to(path, {
-              fill: "#64748b",
-              duration: 1.5,
-              repeat: -1,
-              yoyo: true,
-              ease: "power1.inOut"
+              fill: '#1e40af',
+              duration: 0.3,
             });
           });
         }
-      }
-  
-      private setupEventListeners(): void {
-        if (!this.arrowElement) return;
-  
-        this.arrowElement.addEventListener('mouseenter', () => {
-          if (this.isAnimating || !this.arrowElement) return;
-          this.isAnimating = true;
-  
-          const bounceTimeline = this.gsap.timeline({
-            onComplete: () => {
-              this.isAnimating = false;
-            }
-          });
-  
-          bounceTimeline
-            .to(this.arrowElement, {
-              scale: 1.2,
-              y: -15,
-              rotation: -10,
-              duration: 0.3,
-              ease: "power2.out"
-            })
-            .to(this.arrowElement, {
-              scale: 1,
-              y: 0,
-              rotation: 0,
-              duration: 0.5,
-              ease: "bounce.out"
-            });
-  
+      });
+
+      this.arrowElement.addEventListener('mouseleave', () => {
+        if (!this.isAnimating && this.arrowElement) {
           const paths = this.arrowElement.querySelectorAll('path');
           if (paths.length > 0) {
             paths.forEach((path) => {
               this.gsap.to(path, {
-                fill: "#1e40af",
-                duration: 0.3
+                fill: '#94A3B8',
+                duration: 0.3,
               });
             });
           }
-        });
-  
-        this.arrowElement.addEventListener('mouseleave', () => {
-          if (!this.isAnimating && this.arrowElement) {
-            const paths = this.arrowElement.querySelectorAll('path');
-            if (paths.length > 0) {
-              paths.forEach((path) => {
-                this.gsap.to(path, {
-                  fill: "#94A3B8",
-                  duration: 0.3
-                });
-              });
-            }
-          }
-        });
-      }
+        }
+      });
     }
-  
-    function setupAnimations() {
-      new HighlightAnimation();
-      new ArrowYoutubeAnimation();
-    }
-  
-    document.addEventListener('astro:page-load', setupAnimations);
-  
-    if (document.readyState === 'complete') {
-      setupAnimations();
-    }
-  </script>
+  }
+
+  function setupAnimations() {
+    new HighlightAnimation();
+    new ArrowYoutubeAnimation();
+  }
+
+  document.addEventListener('astro:page-load', setupAnimations);
+
+  if (document.readyState === 'complete') {
+    setupAnimations();
+  }
+</script>

@@ -89,10 +89,10 @@ export default defineConfig({
       },
     },
     optimizeDeps: {
-      include: ['gsap/dist/gsap', 'gsap/dist/MotionPathPlugin']
+      include: ['gsap/dist/gsap', 'gsap/dist/MotionPathPlugin'],
     },
     ssr: {
-      noExternal: ['gsap']
-    }
+      noExternal: ['gsap'],
+    },
   },
 });

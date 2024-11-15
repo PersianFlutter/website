@@ -1,34 +1,34 @@
 ---
 /**
  * CurvedAnimation Component
- * 
+ *
  * This component creates an interactive animation system that combines curved motion paths,
  * SVG icons, and portrait images to create a dynamic and engaging user interface.
- * 
+ *
  * Key Features:
  * - Curved motion paths for smooth icon animations using GSAP
  * - Dynamic icon switching system with mobile development-themed SVG icons
  * - Portrait image management with crossfade transitions
  * - Responsive layout with coordinated animations
  * - Grouped animation sequences (top/bottom, left/right coordination)
- * 
+ *
  * Technical Implementation:
  * - Uses GSAP (GreenSock Animation Platform) for motion paths and transitions
  * - Implements custom image preloading and transition management
  * - Handles both initial page load and Astro page transitions
  * - Manages multiple synchronized animation timelines
- * 
+ *
  * Animation Structure:
  * - 4 curved paths (top-left, top-right, bottom-left, bottom-right)
  * - 17 portrait images with dynamic transitions
  * - 20 mobile development themed SVG icons
  * - Coordinated group transitions with alternating patterns
- * 
+ *
  * Portrait Layout:
  * - 7 portrait positions (3 middle + 4 corner positions)
  * - Crossfade transitions with scale effects
  * - Grouped transitions for visual cohesion
- * 
+ *
  * Element Requirements:
  * - Curve elements with .curve-path class
  * - Icon elements with position-specific classes (e.g., .top-left-icon)
@@ -553,6 +553,6 @@ const portraitPaths = {
     createAnimation();
   }
 
-  // Execute on Astro page change 
+  // Execute on Astro page change
   document.addEventListener('astro:page-load', createAnimation);
 </script>

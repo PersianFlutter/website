@@ -74,37 +74,37 @@ module.exports = {
   },
   plugins: [
     typographyPlugin,
-    plugin(function({ addBase }) {
+    plugin(function ({ addBase }) {
       addBase({
         'body.font-pinar .font-thin, body.font-pinar [class*="font-weight-100"]': {
-          'font-variation-settings': '"wght" 100, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 100, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-extralight, body.font-pinar [class*="font-weight-200"]': {
-          'font-variation-settings': '"wght" 200, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 200, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-light, body.font-pinar [class*="font-weight-300"]': {
-          'font-variation-settings': '"wght" 300, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 300, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-normal, body.font-pinar [class*="font-weight-400"]': {
-          'font-variation-settings': '"wght" 400, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 400, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-medium, body.font-pinar [class*="font-weight-500"]': {
-          'font-variation-settings': '"wght" 500, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 500, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-semibold, body.font-pinar [class*="font-weight-600"]': {
-          'font-variation-settings': '"wght" 600, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 600, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-bold, body.font-pinar [class*="font-weight-700"]': {
-          'font-variation-settings': '"wght" 700, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 700, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-extrabold, body.font-pinar [class*="font-weight-800"]': {
-          'font-variation-settings': '"wght" 800, "DSTY" 4, "KSHD" 100'
+          'font-variation-settings': '"wght" 800, "DSTY" 4, "KSHD" 100',
         },
         'body.font-pinar .font-black, body.font-pinar [class*="font-weight-900"]': {
-          'font-variation-settings': '"wght" 900, "DSTY" 4, "KSHD" 100'
-        }
-      })
-    })
+          'font-variation-settings': '"wght" 900, "DSTY" 4, "KSHD" 100',
+        },
+      });
+    }),
   ],
   darkMode: 'class',
 };

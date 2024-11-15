@@ -1,27 +1,27 @@
 ---
-import { changeLanguage } from "i18next";
-import Layout from "~/layouts/PageLayout.astro";
-import Hero from "~/components/widgets/Hero.astro";
-import Note from "~/components/widgets/Note.astro";
-import Features from "~/components/widgets/Features.astro";
-import Steps from "~/components/widgets/Steps.astro";
-import Content from "~/components/widgets/Content.astro";
-import "~/assets/styles/custom.css";
-import Donation from "~/components/widgets/Donation.astro";
-import StaffSection from "~/components/widgets/StaffSection.astro";
-import HeroSection from "~/components/widgets/hero/Hero.astro";
+import { changeLanguage } from 'i18next';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import '~/assets/styles/custom.css';
+import Donation from '~/components/widgets/Donation.astro';
+import StaffSection from '~/components/widgets/StaffSection.astro';
+import HeroSection from '~/components/widgets/hero/Hero.astro';
 
-changeLanguage("en");
+changeLanguage('en');
 
 const metadata = {
-    title: "Persin Flutter",
-    ignoreTitleTemplate: true,
+  title: 'Persin Flutter',
+  ignoreTitleTemplate: true,
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
-   <HeroSection />
+  <HeroSection />
   <Hero
     actions={[
       {
@@ -131,7 +131,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold  dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      <h3 class="text-2xl font-bold dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
       Gain a competitive advantage by incorporating industry leading practices
     </Fragment>
 

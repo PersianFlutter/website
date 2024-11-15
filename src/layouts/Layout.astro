@@ -34,18 +34,17 @@ const { metadata = {} } = Astro.props;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
-    
+
     <Scripts />
 
     <!-- Comment the line below to disable View Transitions -->
     <ViewTransitions fallback="swap" />
   </head>
 
-  <body class="antialiased text-regular bg-page  font-pinar">
+  <body class="antialiased text-regular bg-page font-pinar">
     <slot />
 
     <BasicScripts />
-  
 
     <style is:global>
       img {
