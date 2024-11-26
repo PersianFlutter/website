@@ -9,6 +9,7 @@ import Content from '~/components/widgets/Content.astro';
 import '~/assets/styles/custom.css';
 import Donation from '~/components/widgets/Donation.astro';
 import StaffSection from '~/components/widgets/StaffSection.astro';
+import HeroSection from '~/components/widgets/hero/Hero.astro';
 
 changeLanguage('en');
 
@@ -20,6 +21,7 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
+  <HeroSection />
   <Hero
     actions={[
       {
@@ -129,7 +131,7 @@ const metadata = {
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
+      <h3 class="text-2xl font-bold dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
       Gain a competitive advantage by incorporating industry leading practices
     </Fragment>
 
