@@ -6,7 +6,7 @@ export const pastCafeFlutterEvents: CafeFlutterItem[] = [
     status: 'completed',
     image: {
       src: '/images/events/cafe-flutter-34.jpg',
-      alt: 'کافه فلاتر شماره 34'
+      alt: 'کافه فلاتر شماره 34',
     },
     speakers: [
       {
@@ -14,27 +14,27 @@ export const pastCafeFlutterEvents: CafeFlutterItem[] = [
         title: 'بررسی اصول SOLID و مزیت‌های آن',
         image: {
           src: '/images/speakers/alireza-taghizadeh.jpg',
-          alt: 'علیرضا تقی‌زاده'
-        }
+          alt: 'علیرضا تقی‌زاده',
+        },
       },
       {
         name: 'امیر حسین',
         title: 'معماری تمیز در فلاتر',
         image: {
           src: '/images/speakers/amir-hossein.jpg',
-          alt: 'امیر حسین'
-        }
-      }
+          alt: 'امیر حسین',
+        },
+      },
     ],
     dateTime: new Date('2023-08-21T20:00:00'),
-    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-34'
+    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-34',
   },
   {
     number: 33,
     status: 'completed',
     image: {
       src: '/images/events/cafe-flutter-33.jpg',
-      alt: 'کافه فلاتر شماره 33'
+      alt: 'کافه فلاتر شماره 33',
     },
     speakers: [
       {
@@ -42,19 +42,19 @@ export const pastCafeFlutterEvents: CafeFlutterItem[] = [
         title: 'مدیریت State در فلاتر',
         image: {
           src: '/images/speakers/mohammad-rezaei.jpg',
-          alt: 'محمد رضایی'
-        }
-      }
+          alt: 'محمد رضایی',
+        },
+      },
     ],
     dateTime: new Date('2023-08-14T20:00:00'),
-    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-33'
+    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-33',
   },
   {
     number: 32,
     status: 'completed',
     image: {
       src: '/images/events/cafe-flutter-32.jpg',
-      alt: 'کافه فلاتر شماره 32'
+      alt: 'کافه فلاتر شماره 32',
     },
     speakers: [
       {
@@ -62,21 +62,21 @@ export const pastCafeFlutterEvents: CafeFlutterItem[] = [
         title: 'انیمیشن‌ها در فلاتر',
         image: {
           src: '/images/speakers/zahra-mohammadi.jpg',
-          alt: 'زهرا محمدی'
-        }
+          alt: 'زهرا محمدی',
+        },
       },
       {
         name: 'علی کریمی',
         title: 'بهینه‌سازی عملکرد در فلاتر',
         image: {
           src: '/images/speakers/ali-karimi.jpg',
-          alt: 'علی کریمی'
-        }
-      }
+          alt: 'علی کریمی',
+        },
+      },
     ],
     dateTime: new Date('2023-08-07T20:00:00'),
-    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-32'
-  }
+    youtubeLink: 'https://youtube.com/watch?v=cafe-flutter-32',
+  },
 ];
 
 export const upcomingCafeFlutterEvent: CafeFlutterItem = {
@@ -84,7 +84,7 @@ export const upcomingCafeFlutterEvent: CafeFlutterItem = {
   status: 'upcoming',
   image: {
     src: '/images/events/cafe-flutter-35.jpg',
-    alt: 'کافه فلاتر شماره 35'
+    alt: 'کافه فلاتر شماره 35',
   },
   speakers: [
     {
@@ -92,19 +92,19 @@ export const upcomingCafeFlutterEvent: CafeFlutterItem = {
       title: 'تست‌نویسی در فلاتر',
       image: {
         src: '/images/speakers/sara-ahmadi.jpg',
-        alt: 'سارا احمدی'
-      }
+        alt: 'سارا احمدی',
+      },
     },
     {
       name: 'مهدی حسینی',
       title: 'CI/CD در پروژه‌های فلاتر',
       image: {
         src: '/images/speakers/mahdi-hosseini.jpg',
-        alt: 'مهدی حسینی'
-      }
-    }
+        alt: 'مهدی حسینی',
+      },
+    },
   ],
   dateTime: new Date('2023-09-28T20:00:00'),
   googleMeetLink: 'https://meet.google.com/cafe-flutter-35',
-  googleCalendarLink: 'https://calendar.google.com/event?id=cafe-flutter-35'
+  googleCalendarLink: 'https://calendar.google.com/event?id=cafe-flutter-35',
 };
