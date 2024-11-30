@@ -1,6 +1,4 @@
 ---
-import { t } from 'i18next';
-
 import { Image } from 'astro:assets';
 import type { Widget } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
@@ -14,9 +12,6 @@ import googleCalendarImage from '~/assets/images/google-calendar-icon.png';
 import googleMeetImage from '~/assets/images/google-meet-icon.png';
 
 import countdownBg from '~/assets/images/countdown-bg.jpg';
-import telegramAvatar5 from '~/assets/images/telegram/telegram-avatar-5.jpg';
-
-import youtubeIcon from '~/assets/images/youtube-icon.jpg';
 
 export interface Props extends Widget {
   noiseImage?: ImageMetadata;
@@ -28,48 +23,15 @@ export interface Props extends Widget {
   youtubeLink?: string;
 }
 
-type HeroTranslations = {
-  title: {
-    main: string;
-    sub: string;
-  };
-  description: string[];
-  socials: {
-    telegram: {
-      members: {
-        text: string;
-      };
-      joinButton: string;
-    };
-    youtube: {
-      description: string;
-      button: string;
-    };
-  };
-};
-
-const translations = {
-  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'],
-  description: t('home.hero.description', { returnObjects: true }) as string[],
-  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'],
-};
-
-const {
-  id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
-  youtubeIconImg = youtubeIcon,
-  telegramLink = 'https://t.me/persian_flutter',
-  youtubeLink = 'https://www.youtube.com/@PersianFlutter',
-} = Astro.props;
+const { id, isDark = false, classes = {}, bg = await Astro.slots.render('bg') } = Astro.props;
 ---
 
 <WidgetWrapper
   id={id}
   isDark={isDark}
   containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max ${classes?.container ?? ''}`}
-  bg={bg}>
+  bg={bg}
+>
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
     <div class="flex flex-col justify-between">
       <!-- section title -->
@@ -91,19 +53,27 @@ const {
         </div>
       </div>
 
-      <div id="countdown-wrapper" class="px-4 lg:px-0 rounded-[32px] lg:rounded-[64px] bg-[#F1F4F8] lg:bg-transparent ">
+      <div id="countdown-wrapper" class="px-4 lg:px-0 rounded-[32px] lg:rounded-[64px] bg-[#F1F4F8] lg:bg-transparent">
         <!-- Cafe Flutter BG -->
         <div class="h-full lg:h-[309px] rounded-[32px] lg:rounded-[64px] w-full">
           <div class="relative">
             <div
-              class="h-full lg:h-[309px] absolute top-0 -translate-y-0 lg:top-1/2 lg:-translate-y-1/2 rounded-[32px] lg:rounded-[64px] overflow-hidden">
-              {countdownBg && <ParallaxSection class="opacity-90 lg:-mt-10 hidden lg:block" imageSrc={countdownBg} altText="" />}
+              class="h-full lg:h-[309px] absolute top-0 -translate-y-0 lg:top-1/2 lg:-translate-y-1/2 rounded-[32px] lg:rounded-[64px] overflow-hidden"
+            >
+              {
+                countdownBg && (
+                  <ParallaxSection class="opacity-90 lg:-mt-10 hidden lg:block" imageSrc={countdownBg} altText="" />
+                )
+              }
             </div>
 
-            <div class="relative h-full lg:h-[373px] py-8 lg:py-0 flex flex-col items-center justify-center gap-8 lg:gap-0 md:flex-row lg:justify-between">
+            <div
+              class="relative h-full lg:h-[373px] py-8 lg:py-0 flex flex-col items-center justify-center gap-8 lg:gap-0 md:flex-row lg:justify-between"
+            >
               <!-- Cafe Flutter title -->
               <div
-                class="max-lg:flex-[100%] max-md:flex- max-lg:flex-grow w-[458px] max-md:w-full h-[373px] rounded-[32px] sm:rounded-[64px] bg-white shadow-[0px_30px_60px_-30px_rgba(23,51,184,0.30)] overflow-hidden">
+                class="max-lg:flex-[100%] max-md:flex-auto max-lg:flex-grow w-[458px] max-md:w-full h-[373px] rounded-[32px] sm:rounded-[64px] bg-white shadow-[0px_30px_60px_-30px_rgba(23,51,184,0.30)] overflow-hidden"
+              >
                 <div class="relative h-full">
                   <!-- noise Image - circles BG Svg -->
                   <div class="relative h-full">
@@ -119,7 +89,8 @@ const {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 856 773"
                         preserveAspectRatio="xMidYMid meet"
-                        style="width: 175%;height: 175%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);">
+                        style="width: 175%;height: 175%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);"
+                      >
                         <g filter="url(#filter0_f_1234_855)">
                           <ellipse cx="506.503" cy="273.131" rx="149.497" ry="73.1307" fill="#BB58FF"></ellipse>
                         </g>
@@ -142,7 +113,8 @@ const {
                             width="698.994"
                             height="546.261"
                             filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB">
+                            color-interpolation-filters="sRGB"
+                          >
                             <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
                             <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
@@ -155,7 +127,8 @@ const {
                             width="687.389"
                             height="540.585"
                             filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB">
+                            color-interpolation-filters="sRGB"
+                          >
                             <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
                             <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
@@ -168,7 +141,8 @@ const {
                             width="658.341"
                             height="521.166"
                             filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB">
+                            color-interpolation-filters="sRGB"
+                          >
                             <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
                             <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
@@ -181,7 +155,8 @@ const {
                             width="648.314"
                             height="516.463"
                             filterUnits="userSpaceOnUse"
-                            color-interpolation-filters="sRGB">
+                            color-interpolation-filters="sRGB"
+                          >
                             <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
                             <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
                             <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
@@ -194,9 +169,11 @@ const {
 
                   <!-- Cafe Flutter content -->
                   <div
-                    class="max-lg:w-full inline-flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-[calc(100%-32px)] w-auto px-4 lg:px-0">
+                    class="max-lg:w-full inline-flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-[calc(100%-32px)] w-auto px-4 lg:px-0"
+                  >
                     <div
-                      class="w-[394px] max-lg:w-full h-auto lg:h-[309px] max-lg:h-full bg-[#f9f9f9]/30 rounded-[24px] md:rounded-[64px] border border-white backdrop-blur-[32px] p-4 lg:p-8 max-lg:py-8">
+                      class="w-[394px] max-lg:w-full h-auto lg:h-[309px] max-lg:h-full bg-[#f9f9f9]/30 rounded-[24px] md:rounded-[64px] border border-white backdrop-blur-[32px] p-4 lg:p-8 max-lg:py-8"
+                    >
                       <div class="h-[51px] pr-3 border-r-2 border-[#fd6035] mb-4">
                         <!-- Online Meeting title -->
                         <div class="">
@@ -213,7 +190,8 @@ const {
                                 height="21"
                                 viewBox="0 0 20 21"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
                                 <g clip-path="url(#clip0_432_635)">
                                   <path
                                     d="M15.8333 2.16667H15V1.33333C15 1.11232 14.9122 0.900358 14.7559 0.744078C14.5996 0.587797 14.3877 0.5 14.1667 0.5C13.9457 0.5 13.7337 0.587797 13.5774 0.744078C13.4211 0.900358 13.3333 1.11232 13.3333 1.33333V2.16667H6.66667V1.33333C6.66667 1.11232 6.57887 0.900358 6.42259 0.744078C6.26631 0.587797 6.05435 0.5 5.83333 0.5C5.61232 0.5 5.40036 0.587797 5.24408 0.744078C5.0878 0.900358 5 1.11232 5 1.33333V2.16667H4.16667C3.062 2.16799 2.00296 2.6074 1.22185 3.38852C0.440735 4.16963 0.00132321 5.22867 0 6.33333L0 16.3333C0.00132321 17.438 0.440735 18.497 1.22185 19.2782C2.00296 20.0593 3.062 20.4987 4.16667 20.5H15.8333C16.938 20.4987 17.997 20.0593 18.7782 19.2782C19.5593 18.497 19.9987 17.438 20 16.3333V6.33333C19.9987 5.22867 19.5593 4.16963 18.7782 3.38852C17.997 2.6074 16.938 2.16799 15.8333 2.16667V2.16667ZM1.66667 6.33333C1.66667 5.67029 1.93006 5.03441 2.3989 4.56557C2.86774 4.09673 3.50363 3.83333 4.16667 3.83333H15.8333C16.4964 3.83333 17.1323 4.09673 17.6011 4.56557C18.0699 5.03441 18.3333 5.67029 18.3333 6.33333V7.16667H1.66667V6.33333ZM15.8333 18.8333H4.16667C3.50363 18.8333 2.86774 18.5699 2.3989 18.1011C1.93006 17.6323 1.66667 16.9964 1.66667 16.3333V8.83333H18.3333V16.3333C18.3333 16.9964 18.0699 17.6323 17.6011 18.1011C17.1323 18.5699 16.4964 18.8333 15.8333 18.8333Z"
@@ -246,7 +224,8 @@ const {
                                 height="21"
                                 viewBox="0 0 20 21"
                                 fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
                                 <g clip-path="url(#clip0_432_632)">
                                   <path
                                     d="M10 0.5C8.02219 0.5 6.08879 1.08649 4.4443 2.1853C2.79981 3.28412 1.51809 4.8459 0.761209 6.67317C0.00433286 8.50043 -0.193701 10.5111 0.192152 12.4509C0.578004 14.3907 1.53041 16.1725 2.92894 17.5711C4.32746 18.9696 6.10929 19.922 8.0491 20.3079C9.98891 20.6937 11.9996 20.4957 13.8268 19.7388C15.6541 18.9819 17.2159 17.7002 18.3147 16.0557C19.4135 14.4112 20 12.4778 20 10.5C19.9971 7.84872 18.9426 5.30684 17.0679 3.4321C15.1932 1.55736 12.6513 0.502868 10 0.5V0.5ZM10 18.8333C8.35183 18.8333 6.74066 18.3446 5.37025 17.4289C3.99984 16.5132 2.93174 15.2117 2.30101 13.689C1.67028 12.1663 1.50525 10.4908 1.82679 8.87425C2.14834 7.25774 2.94201 5.77288 4.10745 4.60744C5.27289 3.44201 6.75774 2.64833 8.37425 2.32679C9.99076 2.00525 11.6663 2.17027 13.189 2.801C14.7118 3.43173 16.0132 4.49984 16.9289 5.87025C17.8446 7.24066 18.3333 8.85182 18.3333 10.5C18.3309 12.7094 17.4522 14.8276 15.8899 16.3899C14.3276 17.9522 12.2094 18.8309 10 18.8333Z"
@@ -309,11 +288,15 @@ const {
                       </div>
 
                       <!-- Online Meeting Calendar -->
-                      <div id="CafeFlutterCalendar" class="h-11 justify-end items-center gap-4 inline-flex flex-col sm:flex-row">
+                      <div
+                        id="CafeFlutterCalendar"
+                        class="h-11 justify-end items-center gap-4 inline-flex flex-col sm:flex-row"
+                      >
                         <!-- Calendar -->
                         <a href="http://" class="justify-start items-center flex">
                           <div
-                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10">
+                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10"
+                          >
                             <Image
                               src={googleCalendarImage}
                               class="w-[24px] h-[24px]"
@@ -324,7 +307,8 @@ const {
                             />
                           </div>
                           <div
-                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex">
+                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex"
+                          >
                             <div class="text-right text-slate-700 text-xs font-normal">اضافه به گوگل کلندر</div>
                           </div>
                         </a>
@@ -332,7 +316,8 @@ const {
                         <!-- Meet -->
                         <a href="http://" class="justify-start items-center flex">
                           <div
-                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10">
+                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10"
+                          >
                             <Image
                               src={googleMeetImage}
                               class="w-[24px] h-[24px]"
@@ -343,7 +328,8 @@ const {
                             />
                           </div>
                           <div
-                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex">
+                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex"
+                          >
                             <div class="text-right text-slate-700 text-xs font-normal">لینک گوگل میت</div>
                           </div>
                         </a>
@@ -356,15 +342,21 @@ const {
               <!-- Cafe Flutter Countdown -->
               <div
                 id="CafeFlutterCountdown"
-                class="flex flex-col items-center gap-4 lg:gap-8 static lg:absolute w-full lg:w-auto lg:end-[clamp(2.5rem,-3.6538rem+9.6154vw,5rem);] 2xl:end-20 top-full lg:top-1/2 lg:-translate-y-1/2 mt-4 lg:mt-0">
+                class="flex flex-col items-center gap-4 lg:gap-8 static lg:absolute w-full lg:w-auto lg:end-[clamp(2.5rem,-3.6538rem+9.6154vw,5rem);] 2xl:end-20 top-full lg:top-1/2 lg:-translate-y-1/2 mt-4 lg:mt-0"
+              >
                 <div
                   class="flex flex-wrap flex-row-reverse justify-center lg:justify-start items-center gap-2 lg:gap-1"
                   data-countdown-date="2024-12-07"
-                  data-countdown-time="20:00">
+                  data-countdown-time="20:00"
+                >
                   <!-- Day -->
-                  <div id="CafeFlutterCountdownDay" class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
+                  <div
+                    id="CafeFlutterCountdownDay"
+                    class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]"
+                  >
                     <div
-                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]"
+                    >
                       <span id="dataCountdownDay" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
                         >18</span
                       >
@@ -377,7 +369,8 @@ const {
                   <!-- Hour -->
                   <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
                     <div
-                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]"
+                    >
                       <span id="dataCountdownHour" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
                         >10</span
                       >
@@ -390,7 +383,8 @@ const {
                   <!-- Minute -->
                   <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
                     <div
-                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]"
+                    >
                       <span id="dataCountdownMinute" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
                         >45</span
                       >
@@ -403,7 +397,8 @@ const {
                   <!-- Second -->
                   <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
                     <div
-                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]"
+                    >
                       <span id="dataCountdownSecond" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
                         >27</span
                       >
@@ -499,7 +494,7 @@ const {
       };
     }
 
-    private animateValue(element: HTMLElement, value: string): void {
+    private animateValue(element: HTMLElement, _value: string): void {
       gsap.fromTo(
         element,
         {
