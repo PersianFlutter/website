@@ -1,0 +1,638 @@
+---
+import { t } from 'i18next';
+
+import { Image } from 'astro:assets';
+import type { Widget } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { ImageMetadata } from 'astro';
+import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
+import SectionTitle from '../SectionTitle.astro';
+
+import noiseImage from '~/assets/images/noise.jpg';
+
+import googleCalendarImage from '~/assets/images/google-calendar-icon.png';
+import googleMeetImage from '~/assets/images/google-meet-icon.png';
+
+import countdownBg from '~/assets/images/countdown-bg.jpg';
+import telegramAvatar5 from '~/assets/images/telegram/telegram-avatar-5.jpg';
+
+import youtubeIcon from '~/assets/images/youtube-icon.jpg';
+
+export interface Props extends Widget {
+  noiseImage?: ImageMetadata;
+  googleCalendarImage?: ImageMetadata;
+  googleMeetImage?: ImageMetadata;
+  telegramSkyImg?: ImageMetadata;
+  youtubeIconImg?: ImageMetadata;
+  telegramLink?: string;
+  youtubeLink?: string;
+}
+
+type HeroTranslations = {
+  title: {
+    main: string;
+    sub: string;
+  };
+  description: string[];
+  socials: {
+    telegram: {
+      members: {
+        text: string;
+      };
+      joinButton: string;
+    };
+    youtube: {
+      description: string;
+      button: string;
+    };
+  };
+};
+
+const translations = {
+  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'],
+  description: t('home.hero.description', { returnObjects: true }) as string[],
+  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'],
+};
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  youtubeIconImg = youtubeIcon,
+  telegramLink = 'https://t.me/persian_flutter',
+  youtubeLink = 'https://www.youtube.com/@PersianFlutter',
+} = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max ${classes?.container ?? ''}`}
+  bg={bg}>
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col justify-between">
+      <!-- section title -->
+      <div class="flex flex-col lg:flex-row justify-between mb-8 lg:mb-0">
+        <SectionTitle
+          title="کافه فلاتر: گردهمایی ماهانه متخصصان"
+          description="هر ماه، در آخرین جمعه، جامعه فلاتر فارسی در فضای مجازی گرد هم می‌آیند. کافه فلاتر، محلی برای یادگیری، اشتراک دانش و تبادل ایده‌هاست. از ارائه‌های تخصصی تا بحث‌های آزاد، این رویداد فرصتی منحصر به فرد برای رشد و شبکه‌سازی در دنیای فلاتر فراهم می‌کند."
+        />
+        <!-- down arrow -->
+        <div id="downArrowSvg" class="me-20 hidden lg:block">
+          <svg width="152" height="170" viewBox="0 0 152 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15.7088 166.423C14.9312 163.429 14.4646 160.279 14.3479 157.091L18.2752 156.935C18.3918 159.851 18.8195 162.69 19.5195 165.451L15.7088 166.423ZM18.8195 148.342L14.9312 147.72C15.4367 144.648 16.2532 141.615 17.342 138.66L21.0359 140.021C20.0249 142.742 19.2861 145.542 18.8195 148.381V148.342ZM24.7688 132.166L21.3859 130.144C23.019 127.422 24.8854 124.895 26.9462 122.562L29.8625 125.167C27.9572 127.267 26.2463 129.639 24.7299 132.127L24.7688 132.166ZM36.2395 119.451L33.9064 116.263C36.4728 114.357 39.2335 112.802 42.1109 111.558L43.6663 115.174C41.0611 116.263 38.5725 117.701 36.2395 119.412V119.451ZM105.569 113.23V109.302C108.68 109.263 111.557 109.069 114.318 108.719L114.824 112.607C111.946 112.957 108.913 113.152 105.608 113.191L105.569 113.23ZM96.3927 112.996C93.3598 112.841 90.3269 112.569 87.3328 112.296L87.6828 108.369C90.6379 108.641 93.632 108.875 96.626 109.069L96.3927 112.996ZM51.9485 112.569L51.0931 108.719C54.0094 108.058 57.0034 107.63 60.3086 107.397L60.6196 111.324C57.5089 111.558 54.6704 111.985 51.9485 112.569ZM78.3506 111.519C75.3955 111.285 72.4014 111.13 69.4462 111.091L69.524 107.164C72.557 107.242 75.6288 107.397 78.6617 107.63L78.3895 111.558L78.3506 111.519ZM123.922 110.741L122.834 106.969C124.856 106.386 126.8 105.647 128.627 104.831C129.366 104.52 130.066 104.131 130.805 103.742L132.71 107.164C131.894 107.591 131.116 108.019 130.261 108.369C128.277 109.263 126.139 110.041 123.961 110.702L123.922 110.741ZM140.37 101.603L137.687 98.7649C139.787 96.7818 141.615 94.5654 143.092 92.1935L146.436 94.2543C144.764 96.8984 142.742 99.387 140.409 101.603H140.37ZM150.247 85.4666L146.436 84.4945C146.903 82.6669 147.136 80.8005 147.136 79.0119C147.136 78.1176 147.058 77.1844 146.942 76.29L150.83 75.7456C150.986 76.8344 151.063 77.9231 151.063 79.0119C151.063 81.1505 150.791 83.2891 150.208 85.4666H150.247ZM144.142 68.591C142.859 66.4135 141.148 64.3527 138.737 61.9808L141.498 59.1812C144.103 61.7475 146.008 64.1194 147.486 66.5302L144.142 68.5521V68.591ZM132.166 56.0704C129.833 54.0485 127.539 52.0265 125.4 49.7713L128.239 47.0494C130.222 49.1491 132.438 51.0933 134.693 53.0764L132.127 56.0315L132.166 56.0704ZM119.723 42.1112C118.245 39.3115 117.234 36.2397 116.69 32.9734L120.578 32.3124C121.045 35.1509 121.939 37.8339 123.223 40.2447L119.762 42.0723L119.723 42.1112ZM120.384 23.8747L116.496 23.408C116.846 20.2196 117.662 17.1089 118.868 14.1537L122.484 15.6313C121.434 18.2365 120.695 20.9972 120.384 23.8358V23.8747ZM126.722 8.39889L123.689 5.91033C125.594 3.5773 127.772 1.59424 130.183 0L132.36 3.26623C130.261 4.66604 128.394 6.37693 126.761 8.39889H126.722Z"
+              fill="#94A3B8"></path>
+            <path
+              d="M31.5736 150.13L28.2685 148.031L17.8477 164.323L2.33302 152.736L0 155.924L18.8975 170L31.5736 150.13Z"
+              fill="#94A3B8"></path>
+          </svg>
+        </div>
+      </div>
+
+      <div id="countdown-wrapper" class="px-4 lg:px-0 rounded-[32px] lg:rounded-[64px] bg-[#F1F4F8] lg:bg-transparent ">
+        <!-- Cafe Flutter BG -->
+        <div class="h-full lg:h-[309px] rounded-[32px] lg:rounded-[64px] w-full">
+          <div class="relative">
+            <div
+              class="h-full lg:h-[309px] absolute top-0 -translate-y-0 lg:top-1/2 lg:-translate-y-1/2 rounded-[32px] lg:rounded-[64px] overflow-hidden">
+              {countdownBg && <ParallaxSection class="opacity-90 lg:-mt-10 hidden lg:block" imageSrc={countdownBg} altText="" />}
+            </div>
+
+            <div class="relative h-full lg:h-[373px] py-8 lg:py-0 flex flex-col items-center justify-center gap-8 lg:gap-0 md:flex-row lg:justify-between">
+              <!-- Cafe Flutter title -->
+              <div
+                class="max-lg:flex-[100%] max-md:flex- max-lg:flex-grow w-[458px] max-md:w-full h-[373px] rounded-[32px] sm:rounded-[64px] bg-white shadow-[0px_30px_60px_-30px_rgba(23,51,184,0.30)] overflow-hidden">
+                <div class="relative h-full">
+                  <!-- noise Image - circles BG Svg -->
+                  <div class="relative h-full">
+                    <!-- noise Image -->
+                    <div id="noiseImg" class="absolute inset-0 opacity-10">
+                      <Image src={noiseImage} alt="Background noise pattern" class="w-full h-full object-cover" />
+                    </div>
+
+                    <!-- Circles BG Svg -->
+                    <div class="w-full h-full relative">
+                      <svg
+                        id="countdownColorSvg"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 856 773"
+                        preserveAspectRatio="xMidYMid meet"
+                        style="width: 175%;height: 175%;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);">
+                        <g filter="url(#filter0_f_1234_855)">
+                          <ellipse cx="506.503" cy="273.131" rx="149.497" ry="73.1307" fill="#BB58FF"></ellipse>
+                        </g>
+                        <g filter="url(#filter1_f_1234_855)">
+                          <ellipse cx="343.695" cy="502.708" rx="143.695" ry="70.2923" fill="#1733B8"></ellipse>
+                        </g>
+                        <g opacity="0.8">
+                          <g filter="url(#filter2_f_1234_855)">
+                            <ellipse cx="495.829" cy="292.583" rx="129.171" ry="60.5828" fill="#BB58FF"></ellipse>
+                          </g>
+                          <g filter="url(#filter3_f_1234_855)">
+                            <ellipse cx="355.157" cy="482.769" rx="124.157" ry="58.2314" fill="#1733B8"></ellipse>
+                          </g>
+                        </g>
+                        <defs>
+                          <filter
+                            id="filter0_f_1234_855"
+                            x="157.006"
+                            y="0"
+                            width="698.994"
+                            height="546.261"
+                            filterUnits="userSpaceOnUse"
+                            color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
+                            ></feGaussianBlur>
+                          </filter>
+                          <filter
+                            id="filter1_f_1234_855"
+                            x="0"
+                            y="232.415"
+                            width="687.389"
+                            height="540.585"
+                            filterUnits="userSpaceOnUse"
+                            color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
+                            ></feGaussianBlur>
+                          </filter>
+                          <filter
+                            id="filter2_f_1234_855"
+                            x="166.659"
+                            y="32"
+                            width="658.341"
+                            height="521.166"
+                            filterUnits="userSpaceOnUse"
+                            color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
+                            ></feGaussianBlur>
+                          </filter>
+                          <filter
+                            id="filter3_f_1234_855"
+                            x="31"
+                            y="224.537"
+                            width="648.314"
+                            height="516.463"
+                            filterUnits="userSpaceOnUse"
+                            color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+                            <feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1234_855"
+                            ></feGaussianBlur>
+                          </filter>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Cafe Flutter content -->
+                  <div
+                    class="max-lg:w-full inline-flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 h-[calc(100%-32px)] w-auto px-4 lg:px-0">
+                    <div
+                      class="w-[394px] max-lg:w-full h-auto lg:h-[309px] max-lg:h-full bg-[#f9f9f9]/30 rounded-[24px] md:rounded-[64px] border border-white backdrop-blur-[32px] p-4 lg:p-8 max-lg:py-8">
+                      <div class="h-[51px] pr-3 border-r-2 border-[#fd6035] mb-4">
+                        <!-- Online Meeting title -->
+                        <div class="">
+                          <div class="w-[100px] h-[26px] text-right text-slate-800 text-lg font-bold">
+                            کافه فلاتر 36
+                          </div>
+                        </div>
+                        <div class="inline-flex justify-start items-center gap-4 mt-1">
+                          <!-- Online Meeting Date -->
+                          <div class="flex justify-end items-center gap-1.5">
+                            <span class="w-5 h-5">
+                              <svg
+                                width="20"
+                                height="21"
+                                viewBox="0 0 20 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_432_635)">
+                                  <path
+                                    d="M15.8333 2.16667H15V1.33333C15 1.11232 14.9122 0.900358 14.7559 0.744078C14.5996 0.587797 14.3877 0.5 14.1667 0.5C13.9457 0.5 13.7337 0.587797 13.5774 0.744078C13.4211 0.900358 13.3333 1.11232 13.3333 1.33333V2.16667H6.66667V1.33333C6.66667 1.11232 6.57887 0.900358 6.42259 0.744078C6.26631 0.587797 6.05435 0.5 5.83333 0.5C5.61232 0.5 5.40036 0.587797 5.24408 0.744078C5.0878 0.900358 5 1.11232 5 1.33333V2.16667H4.16667C3.062 2.16799 2.00296 2.6074 1.22185 3.38852C0.440735 4.16963 0.00132321 5.22867 0 6.33333L0 16.3333C0.00132321 17.438 0.440735 18.497 1.22185 19.2782C2.00296 20.0593 3.062 20.4987 4.16667 20.5H15.8333C16.938 20.4987 17.997 20.0593 18.7782 19.2782C19.5593 18.497 19.9987 17.438 20 16.3333V6.33333C19.9987 5.22867 19.5593 4.16963 18.7782 3.38852C17.997 2.6074 16.938 2.16799 15.8333 2.16667V2.16667ZM1.66667 6.33333C1.66667 5.67029 1.93006 5.03441 2.3989 4.56557C2.86774 4.09673 3.50363 3.83333 4.16667 3.83333H15.8333C16.4964 3.83333 17.1323 4.09673 17.6011 4.56557C18.0699 5.03441 18.3333 5.67029 18.3333 6.33333V7.16667H1.66667V6.33333ZM15.8333 18.8333H4.16667C3.50363 18.8333 2.86774 18.5699 2.3989 18.1011C1.93006 17.6323 1.66667 16.9964 1.66667 16.3333V8.83333H18.3333V16.3333C18.3333 16.9964 18.0699 17.6323 17.6011 18.1011C17.1323 18.5699 16.4964 18.8333 15.8333 18.8333Z"
+                                    fill="#1E293B"></path>
+                                  <path
+                                    d="M10 14.25C10.6904 14.25 11.25 13.6904 11.25 13C11.25 12.3096 10.6904 11.75 10 11.75C9.30964 11.75 8.75 12.3096 8.75 13C8.75 13.6904 9.30964 14.25 10 14.25Z"
+                                    fill="#1E293B"></path>
+                                  <path
+                                    d="M5.83325 14.25C6.52361 14.25 7.08325 13.6904 7.08325 13C7.08325 12.3096 6.52361 11.75 5.83325 11.75C5.1429 11.75 4.58325 12.3096 4.58325 13C4.58325 13.6904 5.1429 14.25 5.83325 14.25Z"
+                                    fill="#1E293B"></path>
+                                  <path
+                                    d="M14.1667 14.25C14.8571 14.25 15.4167 13.6904 15.4167 13C15.4167 12.3096 14.8571 11.75 14.1667 11.75C13.4764 11.75 12.9167 12.3096 12.9167 13C12.9167 13.6904 13.4764 14.25 14.1667 14.25Z"
+                                    fill="#1E293B"></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="clip0_432_635">
+                                    <rect width="20" height="20" fill="white" transform="translate(0 0.5)"></rect>
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </span>
+                            <div class="text-right text-slate-800 text-sm font-medium">جمعه 30 مهر 1402</div>
+                          </div>
+
+                          <!-- Online Meeting Time -->
+                          <div class="flex justify-end items-center gap-1.5">
+                            <span class="w-5 h-5">
+                              <svg
+                                width="20"
+                                height="21"
+                                viewBox="0 0 20 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_432_632)">
+                                  <path
+                                    d="M10 0.5C8.02219 0.5 6.08879 1.08649 4.4443 2.1853C2.79981 3.28412 1.51809 4.8459 0.761209 6.67317C0.00433286 8.50043 -0.193701 10.5111 0.192152 12.4509C0.578004 14.3907 1.53041 16.1725 2.92894 17.5711C4.32746 18.9696 6.10929 19.922 8.0491 20.3079C9.98891 20.6937 11.9996 20.4957 13.8268 19.7388C15.6541 18.9819 17.2159 17.7002 18.3147 16.0557C19.4135 14.4112 20 12.4778 20 10.5C19.9971 7.84872 18.9426 5.30684 17.0679 3.4321C15.1932 1.55736 12.6513 0.502868 10 0.5V0.5ZM10 18.8333C8.35183 18.8333 6.74066 18.3446 5.37025 17.4289C3.99984 16.5132 2.93174 15.2117 2.30101 13.689C1.67028 12.1663 1.50525 10.4908 1.82679 8.87425C2.14834 7.25774 2.94201 5.77288 4.10745 4.60744C5.27289 3.44201 6.75774 2.64833 8.37425 2.32679C9.99076 2.00525 11.6663 2.17027 13.189 2.801C14.7118 3.43173 16.0132 4.49984 16.9289 5.87025C17.8446 7.24066 18.3333 8.85182 18.3333 10.5C18.3309 12.7094 17.4522 14.8276 15.8899 16.3899C14.3276 17.9522 12.2094 18.8309 10 18.8333Z"
+                                    fill="#1E293B"></path>
+                                  <path
+                                    d="M9.99979 5.5C9.77878 5.5 9.56682 5.5878 9.41054 5.74408C9.25426 5.90036 9.16646 6.11232 9.16646 6.33333V9.93749L6.35729 11.6975C6.16943 11.8148 6.03588 12.002 5.98603 12.2179C5.93618 12.4337 5.9741 12.6605 6.09146 12.8483C6.20882 13.0362 6.396 13.1697 6.61182 13.2196C6.82764 13.2694 7.05443 13.2315 7.24229 13.1142L10.4423 11.1142C10.5632 11.0384 10.6626 10.9329 10.7311 10.8077C10.7995 10.6825 10.8346 10.5418 10.8331 10.3992V6.33333C10.8331 6.11232 10.7453 5.90036 10.589 5.74408C10.4328 5.5878 10.2208 5.5 9.99979 5.5Z"
+                                    fill="#1E293B"></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="clip0_432_632">
+                                    <rect width="20" height="20" fill="white" transform="translate(0 0.5)"></rect>
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </span>
+                            <div class="text-right text-slate-800 text-sm font-medium">ساعت 20</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Online Meeting speakers -->
+                      <div id="CafeFlutterSpeakers" class="flex flex-col gap-2 mb-[26px]">
+                        <!-- 1 -->
+                        <div class="inline-flex h-[50px] justify-start items-center gap-2.5">
+                          <Image
+                            src="https://via.placeholder.com/50x50"
+                            class="w-[50px] h-[50px] rounded-2xl shadow border-2 border-white"
+                            alt="alt title"
+                            width={50}
+                            height={50}
+                            format="webp"
+                          />
+                          <div class="inline-flex flex-col justify-start items-end">
+                            <div class="self-stretch text-right text-slate-700 text-base font-medium">
+                              ایمان خوش‌آبی
+                            </div>
+                            <div class="w-full sm:w-[270px] text-right text-slate-700 text-sm font-normal line-clamp-1">
+                              صحبت در مورد Flame Game Engine
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 2 -->
+                        <div class="inline-flex h-[50px] justify-start items-center gap-2.5">
+                          <Image
+                            src="https://via.placeholder.com/50x50"
+                            class="w-[50px] h-[50px] rounded-2xl shadow border-2 border-white"
+                            alt="alt title"
+                            width={50}
+                            height={50}
+                            format="webp"
+                          />
+                          <div class="inline-flex flex-col justify-start items-end">
+                            <div class="self-stretch text-right text-slate-700 text-base font-medium">ساسان صفری</div>
+                            <div class="w-full sm:w-[270px] text-right text-slate-700 text-sm font-normal line-clamp-1">
+                              صحبت در مورد Flutter Web
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Online Meeting Calendar -->
+                      <div id="CafeFlutterCalendar" class="h-11 justify-end items-center gap-4 inline-flex flex-col sm:flex-row">
+                        <!-- Calendar -->
+                        <a href="http://" class="justify-start items-center flex">
+                          <div
+                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10">
+                            <Image
+                              src={googleCalendarImage}
+                              class="w-[24px] h-[24px]"
+                              alt="alt title"
+                              width={24}
+                              height={24}
+                              format="webp"
+                            />
+                          </div>
+                          <div
+                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex">
+                            <div class="text-right text-slate-700 text-xs font-normal">اضافه به گوگل کلندر</div>
+                          </div>
+                        </a>
+
+                        <!-- Meet -->
+                        <a href="http://" class="justify-start items-center flex">
+                          <div
+                            class="p-2.5 bg-white rounded-3xl shadow justify-start items-center gap-2.5 flex relative z-10">
+                            <Image
+                              src={googleMeetImage}
+                              class="w-[24px] h-[24px]"
+                              alt="alt title"
+                              width={24}
+                              height={24}
+                              format="webp"
+                            />
+                          </div>
+                          <div
+                            class="pl-4 pr-7 py-2 -ms-[22px] bg-white/50 rounded-tl-3xl rounded-bl-3xl shadow justify-start items-center gap-1.5 flex">
+                            <div class="text-right text-slate-700 text-xs font-normal">لینک گوگل میت</div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cafe Flutter Countdown -->
+              <div
+                id="CafeFlutterCountdown"
+                class="flex flex-col items-center gap-4 lg:gap-8 static lg:absolute w-full lg:w-auto lg:end-[clamp(2.5rem,-3.6538rem+9.6154vw,5rem);] 2xl:end-20 top-full lg:top-1/2 lg:-translate-y-1/2 mt-4 lg:mt-0">
+                <div
+                  class="flex flex-wrap flex-row-reverse justify-center lg:justify-start items-center gap-2 lg:gap-1"
+                  data-countdown-date="2024-12-07"
+                  data-countdown-time="20:00">
+                  <!-- Day -->
+                  <div id="CafeFlutterCountdownDay" class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
+                    <div
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      <span id="dataCountdownDay" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
+                        >18</span
+                      >
+                      <span class="h-[24px] lg:h-[30px] text-center text-slate-500 text-xl lg:text-2xl font-normal"
+                        >روز</span
+                      >
+                    </div>
+                  </div>
+                  <span class="text-center text-slate-500 text-3xl lg:text-[44px] font-normal max-lg:hidden">:</span>
+                  <!-- Hour -->
+                  <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
+                    <div
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      <span id="dataCountdownHour" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
+                        >10</span
+                      >
+                      <span class="h-[24px] lg:h-[30px] text-center text-slate-500 text-xl lg:text-2xl font-normal"
+                        >ساعت</span
+                      >
+                    </div>
+                  </div>
+                  <span class="text-center text-slate-500 text-3xl lg:text-[44px] font-normal max-lg:hidden">:</span>
+                  <!-- Minute -->
+                  <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
+                    <div
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      <span id="dataCountdownMinute" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
+                        >45</span
+                      >
+                      <span class="h-[24px] lg:h-[30px] text-center text-slate-500 text-xl lg:text-2xl font-normal"
+                        >دقیقه</span
+                      >
+                    </div>
+                  </div>
+                  <span class="text-center text-slate-500 text-3xl lg:text-[44px] font-normal max-lg:hidden">:</span>
+                  <!-- Second -->
+                  <div class="w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] max-md:flex-[25%] max-sm:flex-[45%]">
+                    <div
+                      class="w-full h-full flex flex-col justify-center items-center bg-white/50 rounded-[24px] lg:rounded-[32px] shadow backdrop-blur-[5px]">
+                      <span id="dataCountdownSecond" class="text-center text-slate-700 text-5xl lg:text-7xl font-normal"
+                        >27</span
+                      >
+                      <span class="h-[24px] lg:h-[30px] text-center text-slate-500 text-xl lg:text-2xl font-normal"
+                        >ثانیه</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <p class="text-center text-black text-base lg:text-xl font-normal px-4 lg:px-0">
+                  آماده دیدار با شما هستیم، لحظات هیجان‌انگیز کافه فلاتر نزدیک است.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<style>
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    div[data-countdown-date] > div {
+      width: clamp(6.25rem, 14.62vw - 3.107rem, 9.375rem);
+      height: clamp(6.25rem, 14.62vw - 3.107rem, 9.375rem);
+    }
+    div[data-countdown-date] > div > div > span:first-child {
+      font-size: clamp(2rem, -4.1538rem + 9.6154vw, 4.5rem);
+    }
+    div[data-countdown-date] > div > div > span:last-child {
+      font-size: clamp(1rem, -0.2308rem + 1.9231vw, 1.5rem);
+    }
+    div[data-countdown-date] + p {
+      width: clamp(25rem, 0.3846rem + 38.4615vw, 35rem);
+    }
+  }
+</style>
+
+<script>
+  interface CountdownElements {
+    dayElement: HTMLElement | null;
+    hourElement: HTMLElement | null;
+    minuteElement: HTMLElement | null;
+    secondElement: HTMLElement | null;
+  }
+
+  class CountdownTimer {
+    private targetDate: Date;
+    private elements: CountdownElements;
+    private timer: number | null = null;
+    private previousValues: { days: string; hours: string; minutes: string; seconds: string };
+
+    constructor() {
+      const countdownContainer = document.querySelector('[data-countdown-date]');
+      if (!countdownContainer) throw new Error('Countdown container not found');
+
+      const date = countdownContainer.getAttribute('data-countdown-date') || '';
+      const time = countdownContainer.getAttribute('data-countdown-time') || '00:00';
+
+      this.targetDate = new Date(`${date}T${time}`);
+
+      this.elements = {
+        dayElement: document.getElementById('dataCountdownDay'),
+        hourElement: document.getElementById('dataCountdownHour'),
+        minuteElement: document.getElementById('dataCountdownMinute'),
+        secondElement: document.getElementById('dataCountdownSecond'),
+      };
+
+      // مقادیر اولیه برای مقایسه
+      this.previousValues = {
+        days: '',
+        hours: '',
+        minutes: '',
+        seconds: '',
+      };
+
+      this.init();
+    }
+
+    private calculateTimeRemaining(): { days: number; hours: number; minutes: number; seconds: number } {
+      const total = this.targetDate.getTime() - new Date().getTime();
+      const seconds = Math.floor((total / 1000) % 60);
+      const minutes = Math.floor((total / 1000 / 60) % 60);
+      const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+      return {
+        days: Math.max(0, days),
+        hours: Math.max(0, hours),
+        minutes: Math.max(0, minutes),
+        seconds: Math.max(0, seconds),
+      };
+    }
+
+    private animateValue(element: HTMLElement, value: string): void {
+      gsap.fromTo(
+        element,
+        {
+          opacity: 0,
+          y: 20,
+          scale: 0.8,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: 'back.out(1.7)',
+        }
+      );
+    }
+
+    private updateDisplay(): void {
+      const timeRemaining = this.calculateTimeRemaining();
+
+      // تبدیل اعداد به رشته با پد صفر
+      const currentValues = {
+        days: timeRemaining.days.toString(),
+        hours: timeRemaining.hours.toString().padStart(2, '0'),
+        minutes: timeRemaining.minutes.toString().padStart(2, '0'),
+        seconds: timeRemaining.seconds.toString().padStart(2, '0'),
+      };
+
+      // بررسی و آپدیت روزها
+      if (this.elements.dayElement && currentValues.days !== this.previousValues.days) {
+        this.elements.dayElement.textContent = currentValues.days;
+        this.animateValue(this.elements.dayElement, currentValues.days);
+        this.previousValues.days = currentValues.days;
+      }
+
+      // بررسی و آپدیت ساعت‌ها
+      if (this.elements.hourElement && currentValues.hours !== this.previousValues.hours) {
+        this.elements.hourElement.textContent = currentValues.hours;
+        this.animateValue(this.elements.hourElement, currentValues.hours);
+        this.previousValues.hours = currentValues.hours;
+      }
+
+      // بررسی و آپدیت دقیقه‌ها
+      if (this.elements.minuteElement && currentValues.minutes !== this.previousValues.minutes) {
+        this.elements.minuteElement.textContent = currentValues.minutes;
+        this.animateValue(this.elements.minuteElement, currentValues.minutes);
+        this.previousValues.minutes = currentValues.minutes;
+      }
+
+      // بررسی و آپدیت ثانیه‌ها
+      if (this.elements.secondElement && currentValues.seconds !== this.previousValues.seconds) {
+        this.elements.secondElement.textContent = currentValues.seconds;
+        this.animateValue(this.elements.secondElement, currentValues.seconds);
+        this.previousValues.seconds = currentValues.seconds;
+      }
+
+      // اگر زمان به پایان رسیده باشد
+      if (this.targetDate.getTime() <= new Date().getTime()) {
+        this.stop();
+      }
+    }
+
+    private init(): void {
+      this.updateDisplay();
+      this.timer = window.setInterval(() => this.updateDisplay(), 1000);
+    }
+
+    public stop(): void {
+      if (this.timer !== null) {
+        clearInterval(this.timer);
+        this.timer = null;
+      }
+    }
+  }
+
+  // شروع شمارنده هنگام بارگذاری صفحه
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      new CountdownTimer();
+    } catch (error) {
+      console.error('Error initializing countdown:', error);
+    }
+  });
+
+  class BouncingAnimation {
+    private arrowElement: HTMLElement | null;
+
+    constructor() {
+      this.arrowElement = document.getElementById('downArrowSvg');
+
+      if (!this.arrowElement) {
+        throw new Error('Arrow element not found');
+      }
+
+      this.init();
+    }
+
+    private startBouncing(): void {
+      if (!this.arrowElement) return;
+
+      gsap.to(this.arrowElement, {
+        y: 20,
+        duration: 1,
+        ease: 'power1.inOut',
+        yoyo: true,
+        repeat: -1,
+        yoyoEase: 'power2.out',
+        onUpdate: () => {
+          // افکت اضافی در هنگام حرکت
+          const progress = gsap.getProperty(this.arrowElement, 'y') as number;
+          const normalizedProgress = progress / 20; // تبدیل به مقدار بین 0 و 1
+
+          // تغییر مقیاس و شفافیت در طول حرکت
+          gsap.set(this.arrowElement, {
+            scale: 1 + 0.1 * Math.abs(normalizedProgress),
+            opacity: 1 - 0.2 * Math.abs(normalizedProgress),
+          });
+        },
+      });
+    }
+
+    private init(): void {
+      this.startBouncing();
+    }
+
+    public destroy(): void {
+      if (this.arrowElement) {
+        gsap.killTweensOf(this.arrowElement);
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    new BouncingAnimation();
+  });
+</script>
