@@ -1,0 +1,719 @@
+---
+import { t } from 'i18next';
+
+import { Image } from 'astro:assets';
+import type { Widget } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import type { ImageMetadata } from 'astro';
+
+import CurvedAnimation from '~/components/widgets/hero/CurvedAnimation.astro';
+import HeroAnimations from '~/components/widgets/hero/HeroAnimations.astro';
+
+// telegram Avatars
+import telegramAvatar1 from '~/assets/images/telegram/telegram-avatar-1.jpg';
+import telegramAvatar2 from '~/assets/images/telegram/telegram-avatar-2.jpg';
+import telegramAvatar3 from '~/assets/images/telegram/telegram-avatar-3.jpg';
+import telegramAvatar4 from '~/assets/images/telegram/telegram-avatar-4.jpg';
+import telegramAvatar5 from '~/assets/images/telegram/telegram-avatar-5.jpg';
+
+// telegram Icon & bg
+import telegramIcon from '~/assets/images/telegram-icon.png';
+import telegramSky from '~/assets/images/telegram-sky.jpg';
+
+import youtubeIcon from '~/assets/images/youtube-icon.jpg';
+
+//portrait images
+import portraitImage1 from '~/assets/images/portraits/portrait-img-01.jpg';
+import portraitImage2 from '~/assets/images/portraits/portrait-img-02.jpg';
+import portraitImage3 from '~/assets/images/portraits/portrait-img-03.jpg';
+import portraitImage4 from '~/assets/images/portraits/portrait-img-04.jpg';
+import portraitImage5 from '~/assets/images/portraits/portrait-img-05.jpg';
+import portraitImage6 from '~/assets/images/portraits/portrait-img-06.jpg';
+import portraitImage7 from '~/assets/images/portraits/portrait-img-07.jpg';
+import portraitImage8 from '~/assets/images/portraits/portrait-img-08.jpg';
+import portraitImage9 from '~/assets/images/portraits/portrait-img-09.jpg';
+import portraitImage10 from '~/assets/images/portraits/portrait-img-10.jpg';
+import portraitImage11 from '~/assets/images/portraits/portrait-img-11.jpg';
+import portraitImage12 from '~/assets/images/portraits/portrait-img-12.jpg';
+import portraitImage13 from '~/assets/images/portraits/portrait-img-13.jpg';
+import portraitImage14 from '~/assets/images/portraits/portrait-img-14.jpg';
+import portraitImage15 from '~/assets/images/portraits/portrait-img-15.jpg';
+import portraitImage16 from '~/assets/images/portraits/portrait-img-16.jpg';
+import portraitImage17 from '~/assets/images/portraits/portrait-img-17.jpg';
+
+export interface Props extends Widget {
+  telegramIconImg?: ImageMetadata;
+  telegramSkyImg?: ImageMetadata;
+  youtubeIconImg?: ImageMetadata;
+  telegramLink?: string;
+  youtubeLink?: string;
+}
+
+type HeroTranslations = {
+  title: {
+    main: string;
+    sub: string;
+  };
+  description: string[];
+  socials: {
+    telegram: {
+      members: {
+        text: string;
+      };
+      joinButton: string;
+    };
+    youtube: {
+      description: string;
+      button: string;
+    };
+  };
+};
+
+const translations = {
+  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'],
+  description: t('home.hero.description', { returnObjects: true }) as string[],
+  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'],
+};
+
+const {
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+  telegramIconImg = telegramIcon,
+  telegramSkyImg = telegramSky,
+  youtubeIconImg = youtubeIcon,
+  telegramLink = 'https://t.me/persian_flutter',
+  youtubeLink = 'https://www.youtube.com/@PersianFlutter',
+} = Astro.props;
+
+const telegramMembers = [
+  { image: { src: telegramAvatar1, alt: 'amir' } },
+  { image: { src: telegramAvatar2, alt: 'alireza' } },
+  { image: { src: telegramAvatar3, alt: 'mary' } },
+  { image: { src: telegramAvatar4, alt: 'payam' } },
+  { image: { src: telegramAvatar5, alt: 'reza' } },
+];
+
+const portraitImages = [
+  { image: { src: portraitImage1, alt: 'portraitImage1' } },
+  { image: { src: portraitImage2, alt: 'portraitImage2' } },
+  { image: { src: portraitImage3, alt: 'portraitImage3' } },
+  { image: { src: portraitImage4, alt: 'portraitImage4' } },
+  { image: { src: portraitImage5, alt: 'portraitImage5' } },
+  { image: { src: portraitImage6, alt: 'portraitImage6' } },
+  { image: { src: portraitImage7, alt: 'portraitImage7' } },
+  { image: { src: portraitImage8, alt: 'portraitImage8' } },
+  { image: { src: portraitImage9, alt: 'portraitImage9' } },
+  { image: { src: portraitImage10, alt: 'portraitImage10' } },
+  { image: { src: portraitImage11, alt: 'portraitImage11' } },
+  { image: { src: portraitImage12, alt: 'portraitImage12' } },
+  { image: { src: portraitImage13, alt: 'portraitImage13' } },
+  { image: { src: portraitImage14, alt: 'portraitImage14' } },
+  { image: { src: portraitImage15, alt: 'portraitImage15' } },
+  { image: { src: portraitImage16, alt: 'portraitImage16' } },
+  { image: { src: portraitImage17, alt: 'portraitImage17' } },
+];
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-row justify-between">
+      <!-- titles - socials -->
+      <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
+        <div class="hero">
+          <div class="hero__content">
+            <!-- main title -->
+            <div
+              class="hero__title inline-flex flex-col bg-gradient-to-b from-pfColorFirst to-pfColorThird text-transparent bg-clip-text text-start text-[#1733b8] text-5xl mb-5"
+            >
+              <h1 class="hero__title-main inline-flex flex-col w-max leading-loose font-bold h-max">
+                {translations.title.main}
+                <span class="block w-full h-2.5 bg-blue-700/20 -mt-10"></span>
+              </h1>
+              <h2 class="hero__title-sub inline-flex flex-col w-max leading-loose font-bold h-max pb-4">
+                {translations.title.sub}
+                <span class="block w-full h-2.5 bg-blue-700/20 -mt-[36px]"></span>
+              </h2>
+            </div>
+
+            <!-- descriptions -->
+            <div class="hero__description">
+              {
+                translations.description.map((text) => (
+                  <p class="hero__description-item text-start text-slate-700 text-xl font-normal">{text}</p>
+                ))
+              }
+            </div>
+
+            <!-- socials -->
+            <div class="hero__socials mt-6 relative">
+              <!-- telegram card -->
+              <div class="flex flex-col sm:flex-row gap-3">
+                <div
+                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center"
+                >
+                  <div class="social-card__users flex flex-row-reverse justify-end items-center -gap-4">
+                    {
+                      telegramMembers
+                        .toReversed()
+                        .map((member, index) => (
+                          <Image
+                            src={member.image.src}
+                            alt={member.image.alt}
+                            class={`w-[50px] h-[50px] rounded-full shadow-lg border-2 border-white ${
+                              index !== telegramMembers.length - 1 ? '-ms-4' : ''
+                            } hover:-translate-x-1 hover:z-20 transition-transform duration-500`}
+                            width={64}
+                            height={64}
+                          />
+                        ))
+                    }
+                  </div>
+                  <div class="social-card__id flex flex-col justify-start align-top">
+                    <span class="rtl:text-end text-slate-800 text-sm font-medium h-5 ltr:text-start" dir="ltr"
+                      >+1.7K</span
+                    >
+                    <span class="text-start text-slate-800 text-sm font-medium h-5"
+                      >{translations.socials.telegram.members.text}</span
+                    >
+                  </div>
+                </div>
+                <!-- link to telegram -->
+                <div class="social-card social-card--telegram relative">
+                  <div id="highlight-telegram" class="absolute end-[-10px] top-[-10px] z-10">
+                    <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M7.3609 22.3967C5.26021 21.8097 3.06087 21.5136 0.927365 21.2423C0.467841 21.1855 0.0412044 21.5028 0.00838127 21.9499C-0.057265 22.3973 0.271159 22.8065 0.69786 22.8634C2.76572 23.1245 4.89903 23.404 6.90124 23.9691C7.32794 24.0916 7.78766 23.8393 7.91895 23.4053C8.05025 22.9716 7.7876 22.5196 7.3609 22.3967Z"
+                        fill="#94A3B8"></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M13.7283 14.0747C10.3476 10.6394 6.54007 7.64636 3.22493 4.11893C2.92952 3.78949 2.40435 3.77184 2.07612 4.07938C1.74789 4.38725 1.71519 4.90494 2.04342 5.23438C5.35856 8.77195 9.16605 11.7748 12.5468 15.2202C12.8751 15.5418 13.4001 15.5464 13.7283 15.23C14.0237 14.914 14.0566 14.3963 13.7283 14.0747Z"
+                        fill="#94A3B8"></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M20.0636 0.861436C20.1621 2.82762 20.2603 4.79381 20.3588 6.76033C20.3588 7.21069 20.7529 7.55844 21.2124 7.53654C21.6719 7.51432 22 7.13095 22 6.68026C21.9015 4.7108 21.8032 2.74167 21.7048 0.772539C21.6719 0.322172 21.278 -0.0232842 20.8185 0.00122783C20.3918 0.0257398 20.0308 0.411396 20.0636 0.861436Z"
+                        fill="#94A3B8"></path>
+                    </svg>
+                  </div>
+
+                  <div class="social-card__logo relative">
+                    <a href={telegramLink} target="_blank">
+                      <div class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden">
+                        <Image src={telegramSkyImg} class="parallax-image-telegram -mt-14" alt="telegram bg image" />
+                      </div>
+                      <div class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px]">
+                        <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
+                        <h3 class="text-start text-white text-sm font-bold">
+                          {translations.socials.telegram.joinButton}
+                        </h3>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- youtube card -->
+              <div class="flex flex-col sm:flex-row gap-3 mt-3">
+                <!-- link to youtube -->
+                <div class="social-card social-card--telegram relative">
+                  <div class="social-card__logo relative">
+                    <a href={youtubeLink} target="_blank">
+                      <div class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden"></div>
+                      <div
+                        class="w-[155px] h-[70px] rounded-full overflow-hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                      >
+                        <Image
+                          src={youtubeIconImg}
+                          class="w-full h-full object-contain"
+                          alt="youtube icon"
+                          width={155}
+                          height={70}
+                          format="webp"
+                        />
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center"
+                >
+                  <div class="flex flex-row justify-center align-center gap-4">
+                    <span class="text-start text-slate-700 text-sm font-medium justify-center items-center inline-flex"
+                      >{translations.socials.youtube.description}</span
+                    >
+                    <a
+                      href={youtubeLink}
+                      target="_blank"
+                      class="h-[35px] p-2.5 bg-black rounded-full justify-center items-center inline-flex text-center text-white text-xs font-bold"
+                    >
+                      {translations.socials.youtube.button}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div id="arrow-youtube" class="absolute -bottom-16 left-1/2 -translate-x-1/2">
+                <svg width="64" height="48" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M27.9667 32.8954C27.1262 34.4361 26.8735 36.2172 27.4585 38.2166C29.2685 44.4017 34.1119 46.9037 39.8533 47.2416C48.2369 47.7345 58.554 43.5434 63.6817 39.7973C63.9248 39.6201 63.9769 39.2795 63.7998 39.0378C63.6227 38.7948 63.2821 38.7413 63.039 38.9184C58.0624 42.5547 48.0529 46.6332 39.9165 46.1553C34.6447 45.845 30.1652 43.5915 28.5036 37.9104C28.0078 36.22 28.2262 34.7176 28.9334 33.4131C29.793 33.8621 30.6541 34.281 31.5151 34.6682C33.8921 35.7366 40.4919 37.3336 45.3449 36.7377C48.826 36.3092 51.4064 34.7561 51.3157 31.3615C51.2649 29.4746 50.0894 28.1097 48.2191 27.2748C45.6484 26.1254 41.71 25.9963 37.9363 26.8051C34.7944 27.478 31.7719 28.7963 29.7436 30.6666C29.2987 31.0786 28.8991 31.5153 28.5558 31.9781C16.7514 25.5239 5.71339 13.5342 1.05813 1.22176C0.951017 0.94162 0.637938 0.798829 0.356425 0.905941C0.0749126 1.01168 -0.0665385 1.32616 0.0392005 1.6063C4.77136 14.1192 15.9701 26.308 27.9667 32.8954ZM29.5321 32.4985C30.341 32.9188 31.1512 33.3115 31.9614 33.6754C34.2396 34.6984 40.5619 36.2282 45.2117 35.657C48.0653 35.3068 50.3023 34.1725 50.2281 31.3903C50.1883 29.9292 49.2229 28.9158 47.7756 28.2676C46.1826 27.5563 44.0252 27.2844 41.7251 27.3983C38.2329 27.5714 34.4126 28.6383 31.7087 30.4949C30.8518 31.0827 30.1089 31.7515 29.5321 32.4985Z"
+                    fill="#94A3B8"></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M18.8712 10.9508C12.472 9.85493 5.65798 5.67206 0.939551 1.16374C0.722581 0.95638 0.377886 0.964603 0.170527 1.18157C-0.0368307 1.39855 -0.0299485 1.74324 0.187022 1.9506C5.05239 6.60036 12.0902 10.8931 18.6872 12.0233C18.9825 12.0741 19.264 11.8749 19.3148 11.5783C19.3656 11.2831 19.1665 11.0016 18.8712 10.9508Z"
+                    fill="#94A3B8"></path>
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.0721973 2.02072C2.75275 6.71443 3.12353 13.9143 1.76541 19.1628C1.68988 19.4539 1.86429 19.7519 2.15542 19.8261C2.44654 19.9016 2.74314 19.7272 2.81866 19.4361C4.24133 13.9377 3.82526 6.39863 1.017 1.48108C0.86869 1.22016 0.534973 1.12947 0.274059 1.27777C0.0131442 1.42746 -0.0774851 1.7598 0.0721973 2.02072Z"
+                    fill="#94A3B8"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fancy Images Flex Layout -->
+      <div class="fancy-images w-full max-w-[632px] relative">
+        <!-- Container for all rows  -->
+        <div class="flex flex-col gap-4">
+          <!-- Top Row  -->
+          <div class="flex justify-center gap-4">
+            <div class="relative">
+              <div id="portrait-top-left" class="w-[200px] h-[150px] rounded-[44px] bg-yellow-300 overflow-hidden">
+                <Image
+                  src={portraitImages[0].image.src}
+                  alt={portraitImages[0].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+
+            <div class="relative">
+              <div id="portrait-top-right" class="w-[200px] h-[150px] rounded-[44px] bg-orange-200 overflow-hidden">
+                <Image
+                  src={portraitImages[1].image.src}
+                  alt={portraitImages[1].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Row  -->
+          <!-- Middle Row  -->
+          <div class="flex justify-center gap-4">
+            <div class="relative">
+              <div id="portrait-middle-left" class="w-[200px] h-[150px] rounded-[44px] bg-gray-100 overflow-hidden">
+                <Image
+                  src={portraitImages[2].image.src}
+                  alt={portraitImages[2].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+
+            <div class="relative">
+              <div id="portrait-middle-center" class="w-[200px] h-[150px] rounded-[44px] bg-blue-500 overflow-hidden">
+                <Image
+                  src={portraitImages[3].image.src}
+                  alt={portraitImages[3].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+
+            <div class="relative">
+              <div id="portrait-middle-right" class="w-[200px] h-[150px] rounded-[44px] bg-red-300 overflow-hidden">
+                <Image
+                  src={portraitImages[4].image.src}
+                  alt={portraitImages[4].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row  -->
+          <div class="flex justify-center gap-4">
+            <div class="relative">
+              <div id="portrait-bottom-left" class="w-[200px] h-[150px] rounded-[44px] bg-cyan-200 overflow-hidden">
+                <Image
+                  src={portraitImages[5].image.src}
+                  alt={portraitImages[5].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+
+            <div class="relative">
+              <div id="portrait-bottom-right" class="w-[200px] h-[150px] rounded-[44px] bg-green-400 overflow-hidden">
+                <Image
+                  src={portraitImages[6].image.src}
+                  alt={portraitImages[6].image.alt}
+                  class="w-full h-full object-cover"
+                  width={200}
+                  height={150}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curved Lines with Icons -->
+        <div class="absolute inset-0">
+          {/* Top Left Curve */}
+          <div class="absolute left-[53px] top-[76px]">
+            <svg
+              class="top-left-curve"
+              width="64"
+              height="99"
+              viewBox="0 0 64 99"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="curve-path"
+                d="M8 91L8 56C8 29.4903 29.4903 8 56 8V8"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="2 6"></path>
+              <path
+                d="M8.00001 86L13 91L8 96L3.00001 91L8.00001 86Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M51 7.99999L56 3.00001L61 8L56 13L51 7.99999Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <div
+              class="top-left-icon absolute top-[71px] left-[-12px] w-10 h-10 bg-blue-500 rounded-xl shadow-lg flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+
+          {/* Top Right Curve */}
+          <div class="absolute right-[53px] top-[76px] scale-x-[-1]">
+            <svg
+              class="top-right-curve"
+              width="64"
+              height="99"
+              viewBox="0 0 64 99"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="curve-path"
+                d="M8 91L8 56C8 29.4903 29.4903 8 56 8V8"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="2 6"></path>
+              <path
+                d="M8.00001 86L13 91L8 96L3.00001 91L8.00001 86Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M51 7.99999L56 3.00001L61 8L56 13L51 7.99999Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <div
+              class="top-right-icon absolute bottom-[-11px] left-[-12px] w-10 h-10 bg-green-500 rounded-xl shadow-lg flex items-center justify-center scale-x-[-1]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          {/* Bottom Left Curve */}
+          <div class="absolute left-[53px] bottom-[76px] rotate-180 scale-x-[-1]">
+            <svg
+              class="bottom-left-curve"
+              width="64"
+              height="99"
+              viewBox="0 0 64 99"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="curve-path"
+                d="M8 91L8 56C8 29.4903 29.4903 8 56 8V8"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="2 6"></path>
+              <path
+                d="M8.00001 86L13 91L8 96L3.00001 91L8.00001 86Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M51 7.99999L56 3.00001L61 8L56 13L51 7.99999Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <div
+              class="bottom-left-icon absolute top-[45px] left-[-16px] w-10 h-10 bg-yellow-500 rounded-xl shadow-lg flex items-center justify-center scale-x-[-1]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          {/* Bottom Right Curve */}
+          <div class="absolute right-[53px] bottom-[76px] rotate-180">
+            <svg
+              class="bottom-right-curve"
+              width="64"
+              height="99"
+              viewBox="0 0 64 99"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                class="curve-path"
+                d="M8 91L8 56C8 29.4903 29.4903 8 56 8V8"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-dasharray="2 6"></path>
+              <path
+                d="M8.00001 86L13 91L8 96L3.00001 91L8.00001 86Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+              <path
+                d="M51 7.99999L56 3.00001L61 8L56 13L51 7.99999Z"
+                fill="white"
+                stroke="#94A3B8"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+            <div
+              class="bottom-right-icon absolute top-[45px] left-[-16px] w-10 h-10 bg-red-500 rounded-xl shadow-lg flex items-center justify-center"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6 text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Curved Lines with Icons -->
+        <div class="absolute inset-0">
+          {/* Left Curve */}
+          <div class="absolute left-[207px] top-[92px]">
+            <svg width="112" height="299" viewBox="0 0 112 299" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M110 1C108.341 22.5877 112.986 65.2572 59.235 65.2572C5.48381 65.2572 2 91.5673 2 147.223C2 202.879 2.99539 234.249 59.235 234.249C115.475 234.249 109.336 276.581 109.005 298"
+                stroke="#94A3B8"
+                stroke-width="3"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+
+          {/* Right Curve - Mirrored */}
+          <div class="absolute right-[207px] top-[92px]">
+            <svg width="112" height="299" viewBox="0 0 112 299" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M2 1C3.659 22.5877 -0.986 65.2572 52.765 65.2572C106.516 65.2572 110 91.5673 110 147.223C110 202.879 109.005 234.249 52.765 234.249C-3.475 234.249 2.664 276.581 2.995 298"
+                stroke="#94A3B8"
+                stroke-width="3"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+
+          {/* Top Hexagon Icon */}
+          <div class="absolute top-[50px] left-1/2 -translate-x-1/2">
+            <div class="relative w-14 h-14 flex items-center justify-center">
+              <svg width="56" height="58" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13 1.88675C16.094 0.100424 19.906 0.100423 23 1.88675L30.3205 6.11325C33.4145 7.89958 35.3205 11.2008 35.3205 14.7735V23.2265C35.3205 26.7992 33.4145 30.1004 30.3205 31.8868L23 36.1132C19.906 37.8996 16.094 37.8996 13 36.1132L5.67949 31.8868C2.58548 30.1004 0.679491 26.7992 0.679491 23.2265V14.7735C0.679491 11.2008 2.58548 7.89958 5.67949 6.11325L13 1.88675Z"
+                  fill="#94A3B8"></path>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Hexagon Icon */}
+          <div class="absolute bottom-[50px] left-1/2 -translate-x-1/2">
+            <div class="relative w-14 h-14 flex items-center justify-center">
+              <svg width="56" height="58" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M13 1.88675C16.094 0.100424 19.906 0.100423 23 1.88675L30.3205 6.11325C33.4145 7.89958 35.3205 11.2008 35.3205 14.7735V23.2265C35.3205 26.7992 33.4145 30.1004 30.3205 31.8868L23 36.1132C19.906 37.8996 16.094 37.8996 13 36.1132L5.67949 31.8868C2.58548 30.1004 0.679491 26.7992 0.679491 23.2265V14.7735C0.679491 11.2008 2.58548 7.89958 5.67949 6.11325L13 1.88675Z"
+                  fill="#94A3B8"></path>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          {/* Left Middle Rectangle Icon */}
+          <div class="absolute left-[180px] top-1/2 -translate-y-1/2">
+            <div class="w-14 h-14 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-blue-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+
+          {/* Right Middle Rectangle Icon */}
+          <div class="absolute right-[180px] top-1/2 -translate-y-1/2">
+            <div class="w-14 h-14 bg-white rounded-xl shadow-lg flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-8 h-8 text-green-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<script>
+  import simpleParallax from 'simple-parallax-js/vanilla';
+
+  function setupParallax() {
+    const images = document.querySelectorAll('.parallax-image-telegram');
+
+    new simpleParallax(images, {
+      scale: 1.5,
+      delay: 10.0,
+      transition: 'cubic-bezier(0,0,0,1)',
+      overflow: true,
+      orientation: 'down',
+    });
+  }
+
+  // اجرای تابع setup زمانی که DOM آماده است
+  document.addEventListener('astro:page-load', setupParallax);
+</script>
+
+<CurvedAnimation />
+<HeroAnimations />

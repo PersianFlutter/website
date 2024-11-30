@@ -1,0 +1,36 @@
+---
+import type { CafeFlutterItem, Widget } from '~/types';
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import { pastCafeFlutterEvents } from '~/data/mockCafeFlutter';
+import PastCafeFlutterCard from './PastCafeFlutterCard.astro';
+// import { upcomingCafeFlutterEvent } from '~/data/mockCafeFlutter';
+
+interface Props extends Widget {
+  upcomingEvent?: CafeFlutterItem;
+  pastEvents?: CafeFlutterItem[];
+}
+
+const { id, isDark = false, classes = {}, pastEvents = pastCafeFlutterEvents } = Astro.props;
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
+>
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <div class="flex flex-col gap-8 md:gap-12 lg:gap-16">
+      {
+        pastEvents && pastEvents.length > 0 && (
+          <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:justify-items-stretch sm:justify-items-center gap-4 sm:gap-6 lg:gap-8 auto-rows-fr">
+              {pastEvents.map((event) => (
+                <PastCafeFlutterCard item={event} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</WidgetWrapper>
