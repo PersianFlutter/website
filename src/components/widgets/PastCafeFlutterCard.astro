@@ -1,22 +1,51 @@
 ---
 import type { CafeFlutterItem } from '~/types';
 import { Icon } from 'astro-icon/components';
-import { pastCafeFlutterEvents } from '~/data/mockCafeFlutter';
+import { cafeFlutterEvents } from '~/data/mockCafeFlutter';
 
 interface Props {
   item?: CafeFlutterItem;
 }
 
-const { item = pastCafeFlutterEvents[0] } = Astro.props;
+const { item = cafeFlutterEvents[0] } = Astro.props;
+
+// Helper function to determine event status
+const getEventStatus = (eventDateTime: Date) => {
+  const now = new Date();
+  const eventStartTime = new Date(eventDateTime);
+  const eventEndTime = new Date(eventStartTime.getTime() + (3 * 60 * 60 * 1000));
+  
+  if (now < eventStartTime) {
+    return 'به زودی';
+  } else if (now >= eventStartTime && now < eventEndTime) {
+    return 'در حال برگزاری';
+  } else {
+    return 'برگزار شده';
+  }
+};
 
 // Helper function to format date
 const formatDate = (date: Date) => {
-  return new Intl.DateTimeFormat('fa-IR', {
+  // تنظیم آپشن‌های فرمت تاریخ
+  const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
-  }).format(date);
+  };
+
+  // گرفتن اجزای تاریخ به صورت جداگانه
+  const formatter = new Intl.DateTimeFormat('fa-IR', options);
+  const parts = formatter.formatToParts(date);
+
+  // پیدا کردن هر جزء تاریخ
+  const weekday = parts.find((part) => part.type === 'weekday')?.value || '';
+  const day = parts.find((part) => part.type === 'day')?.value || '';
+  const month = parts.find((part) => part.type === 'month')?.value || '';
+  const year = parts.find((part) => part.type === 'year')?.value || '';
+
+  // ترکیب اجزا با فرمت دلخواه
+  return `${weekday} ${day} ${month} ${year}`;
 };
 
 const formatTime = (date: Date) => {
@@ -30,17 +59,16 @@ const formatTime = (date: Date) => {
 <article class="flex flex-col max-w-[408px] bg-[#f1f4f8] rounded-3xl p-4 relative">
   <figure>
     <img
-      class="w-full h-[301px] rounded-3xl shadow-xl border-4 border-white"
+      class="w-full h-[301px] rounded-3xl shadow-xl border-4 border-white object-cover"
       src={item.image.src}
       alt={item.image.alt || `تصویر کافه فلاتر شماره ${item.number}`}
     />
 
     <div
       class="px-2.5 py-1.5 start-5 top-5 absolute bg-[#fd6035] rounded-tr-2xl rounded-bl-2xl justify-end items-center inline-flex"
-      aria-label="وضعیت رویداد"
-    >
+      aria-label="وضعیت رویداد">
       <span class="text-start text-white text-xs font-normal">
-        {item.status === 'completed' ? 'برگزار شده' : 'به زودی'}
+        {getEventStatus(item.dateTime)}
       </span>
     </div>
   </figure>
@@ -61,7 +89,7 @@ const formatTime = (date: Date) => {
               />
               <div class="flex-grow">
                 <h3 class="text-start text-slate-500 text-base font-medium">{speaker.name}</h3>
-                <p class="text-start text-slate-500 text-sm font-normal">{speaker.title}</p>
+                <p class="text-start text-slate-500 text-sm font-normal line-clamp-1">{speaker.title}</p>
               </div>
             </div>
           ))
@@ -89,7 +117,7 @@ const formatTime = (date: Date) => {
     </div>
     {
       item.youtubeLink && (
-        <a href={item.youtubeLink} class="rounded  justify-center items-start gap-1.5 inline-flex">
+        <a href={item.youtubeLink} target="_blank" class="rounded justify-center items-start gap-1.5 inline-flex">
           <Icon name="tabler:brand-youtube" class="w-5 h-5 text-slate-500 relative" />
           <span class="text-start text-slate-500 text-xs font-normal">مشاهده در یوتیوب</span>
         </a>
