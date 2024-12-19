@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { Widget } from '~/types';
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { ImageMetadata } from 'astro';
 import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
 
@@ -26,10 +25,6 @@ export interface Props extends Widget {
 }
 
 const {
- id,
- isDark = false,
- classes = {},
- bg = await Astro.slots.render('bg'),
  upcomingEvent: propsUpcomingEvent
 } = Astro.props;
 
@@ -38,7 +33,7 @@ const getServerTime = async () => {
  try {
    const serverTime = new Date();
    return serverTime;
- } catch (error) {
+ } catch {
    return new Date();
  }
 };
@@ -54,17 +49,6 @@ const upcomingEvent = propsUpcomingEvent || cafeFlutterEvents
 // محاسبه زمان‌های مهم
 const eventStartTime = upcomingEvent ? new Date(upcomingEvent.dateTime) : null;
 const eventEndTime = eventStartTime ? new Date(eventStartTime.getTime() + (3 * 60 * 60 * 1000)) : null;
-
-// وضعیت‌های مختلف رویداد
-const isLive = Boolean(
- eventStartTime && 
- eventEndTime && 
- now >= eventStartTime && 
- now < eventEndTime
-);
-
-
-const isFinished = Boolean(eventStartTime && eventEndTime && now >= eventEndTime);
 
 // فقط زمانی نمایش می‌دهیم که رویداد وجود داشته باشد و تمام نشده باشد
 const shouldRender = Boolean(
@@ -588,9 +572,7 @@ const formatTime = (date: Date) => {
       this.elements.minuteElement && 
       this.elements.secondElement) {
     this.init();
-  } else {
-
-  }
+  } 
 }
 
 
@@ -707,8 +689,7 @@ const formatTime = (date: Date) => {
 
       }, 500); // زمان انیمیشن transition
     });
-  } else {
-  }
+  } 
 }
 
 
@@ -766,10 +747,6 @@ const formatTime = (date: Date) => {
       if (now >= startTime && now < endTime) {
         countdownContainer.setAttribute('data-is-live', 'true');
       }
-      
-      // بررسی وضعیت فعلی المان‌ها
-      const liveSection = document.querySelector('.live-section');
-      const countdownSection = document.querySelector('.countdown-section');
     }
     return;
   }
@@ -820,10 +797,7 @@ const formatTime = (date: Date) => {
 
   // شروع شمارنده هنگام بارگذاری صفحه
   document.addEventListener('DOMContentLoaded', () => {
-    try {
       new CountdownTimer();
-    } catch (error) {
-    }
   });
 
 

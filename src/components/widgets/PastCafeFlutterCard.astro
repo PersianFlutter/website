@@ -13,8 +13,8 @@ const { item = cafeFlutterEvents[0] } = Astro.props;
 const getEventStatus = (eventDateTime: Date) => {
   const now = new Date();
   const eventStartTime = new Date(eventDateTime);
-  const eventEndTime = new Date(eventStartTime.getTime() + (3 * 60 * 60 * 1000));
-  
+  const eventEndTime = new Date(eventStartTime.getTime() + 3 * 60 * 60 * 1000);
+
   if (now < eventStartTime) {
     return 'به زودی';
   } else if (now >= eventStartTime && now < eventEndTime) {
@@ -66,7 +66,8 @@ const formatTime = (date: Date) => {
 
     <div
       class="px-2.5 py-1.5 start-5 top-5 absolute bg-[#fd6035] rounded-tr-2xl rounded-bl-2xl justify-end items-center inline-flex"
-      aria-label="وضعیت رویداد">
+      aria-label="وضعیت رویداد"
+    >
       <span class="text-start text-white text-xs font-normal">
         {getEventStatus(item.dateTime)}
       </span>

@@ -52,7 +52,6 @@ export interface Speaker {
 
 export interface CafeFlutterItem {
   number: number;
-  status: 'upcoming' | 'completed';
   image: Image;
   speakers: Speaker[];
   dateTime: Date;
