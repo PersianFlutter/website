@@ -44,6 +44,22 @@ export interface Post {
   readingTime?: number;
 }
 
+export interface Speaker {
+  name: string;
+  title: string;
+  image: Image;
+}
+
+export interface CafeFlutterItem {
+  number: number;
+  image: Image;
+  speakers: Speaker[];
+  dateTime: Date;
+  youtubeLink?: string;
+  googleMeetLink?: string;
+  googleCalendarLink?: string;
+}
+
 export interface StaffMember {
   name: string;
   title: string;

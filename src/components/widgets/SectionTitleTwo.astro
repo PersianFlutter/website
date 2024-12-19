@@ -1,0 +1,29 @@
+---
+type SectionInfo = {
+  title: {
+    firstPart: string;
+    secondPart: string;
+  };
+  description: string;
+};
+
+interface Props {
+  sectionInfo: SectionInfo;
+}
+
+const { sectionInfo } = Astro.props;
+---
+
+<div class="flex flex-col w-full items-start gap-3">
+  <div class="flex justify-start items-center gap-2">
+    <div class="w-2.5 h-2.5 bg-pfColorSecond dark:bg-slate-400 rounded-[100px]"></div>
+    <span class="text-pfColorSecond text-xl lg:text-2xl font-bold dark:text-pfColorFourth"
+      >{sectionInfo.title.firstPart}</span
+    >
+    <span class="text-pfColorFirst text-xl lg:text-2xl font-bold dark:text-white">{sectionInfo.title.secondPart}</span>
+    <div class="w-[105px] h-1 bg-slate-200 rounded-[10px] dark:bg-slate-500"></div>
+  </div>
+  <div class="flex-initial max-w-[780px] text-start text-slate-500 text-lg font-normal dark:text-slate-400">
+    {sectionInfo.description}
+  </div>
+</div>
