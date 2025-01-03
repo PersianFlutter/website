@@ -1,5 +1,5 @@
 ---
-import { t } from 'i18next';
+import { t } from 'astro-i18next';
 
 import { Image } from 'astro:assets';
 import type { Widget } from '~/types';
@@ -123,32 +123,34 @@ const portraitImages = [
   bg={bg}
 >
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
-    <div class="flex flex-row justify-between">
+    <div class="flex flex-col gap-16 xl:flex-row xl:justify-between lg:gap-0">
       <!-- titles - socials -->
       <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
         <div class="hero">
-          <div class="hero__content">
-            <!-- main title -->
-            <div
-              class="hero__title inline-flex flex-col bg-gradient-to-b from-pfColorFirst to-pfColorThird text-transparent bg-clip-text text-start text-[#1733b8] text-5xl mb-5"
-            >
-              <h1 class="hero__title-main inline-flex flex-col w-max leading-loose font-bold h-max">
-                {translations.title.main}
-                <span class="block w-full h-2.5 bg-blue-700/20 -mt-10"></span>
-              </h1>
-              <h2 class="hero__title-sub inline-flex flex-col w-max leading-loose font-bold h-max pb-4">
-                {translations.title.sub}
-                <span class="block w-full h-2.5 bg-blue-700/20 -mt-[36px]"></span>
-              </h2>
-            </div>
+          <div class="hero__content max-xl:flex">
+            <div>
+              <!-- main title -->
+              <div
+                class="hero__title inline-flex flex-col bg-gradient-to-b from-pfColorFirst to-pfColorThird text-transparent bg-clip-text text-start text-[#1733b8] text-5xl mb-5"
+              >
+                <h1 class="hero__title-main inline-flex flex-col w-max leading-loose font-bold h-max">
+                  {translations.title.main}
+                  <span class="block w-full h-2.5 bg-blue-700/20 -mt-10"></span>
+                </h1>
+                <h2 class="hero__title-sub inline-flex flex-col w-max leading-loose font-bold h-max pb-4">
+                  {translations.title.sub}
+                  <span class="block w-full h-2.5 bg-blue-700/20 -mt-[36px]"></span>
+                </h2>
+              </div>
 
-            <!-- descriptions -->
-            <div class="hero__description">
-              {
-                translations.description.map((text) => (
-                  <p class="hero__description-item text-start text-slate-700 text-xl font-normal">{text}</p>
-                ))
-              }
+              <!-- descriptions -->
+              <div class="hero__description">
+                {
+                  (Array.isArray(translations.description) ? translations.description : []).map((text) => (
+                    <p class="hero__description-item text-start text-slate-700 text-xl font-normal">{text}</p>
+                  ))
+                }
+              </div>
             </div>
 
             <!-- socials -->
@@ -156,7 +158,7 @@ const portraitImages = [
               <!-- telegram card -->
               <div class="flex flex-col sm:flex-row gap-3">
                 <div
-                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center"
+                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
                 >
                   <div class="social-card__users flex flex-row-reverse justify-end items-center -gap-4">
                     {
@@ -175,7 +177,9 @@ const portraitImages = [
                         ))
                     }
                   </div>
-                  <div class="social-card__id flex flex-col justify-start align-top">
+                  <div
+                    class="social-card__id flex flex-col justify-start align-top max-xl:justify-center max-xl:items-center"
+                  >
                     <span class="rtl:text-end text-slate-800 text-sm font-medium h-5 ltr:text-start" dir="ltr"
                       >+1.7K</span
                     >
@@ -184,8 +188,11 @@ const portraitImages = [
                     >
                   </div>
                 </div>
+
                 <!-- link to telegram -->
-                <div class="social-card social-card--telegram relative">
+                <div
+                  class="social-card social-card--telegram relative max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
+                >
                   <div id="highlight-telegram" class="absolute end-[-10px] top-[-10px] z-10">
                     <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -208,10 +215,14 @@ const portraitImages = [
 
                   <div class="social-card__logo relative">
                     <a href={telegramLink} target="_blank">
-                      <div class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden">
+                      <div
+                        class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl"
+                      >
                         <Image src={telegramSkyImg} class="parallax-image-telegram -mt-14" alt="telegram bg image" />
                       </div>
-                      <div class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px]">
+                      <div
+                        class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px] max-xl:flex-col max-xl:items-center"
+                      >
                         <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
                         <h3 class="text-start text-white text-sm font-bold">
                           {translations.socials.telegram.joinButton}
@@ -227,7 +238,10 @@ const portraitImages = [
                 <div class="social-card social-card--telegram relative">
                   <div class="social-card__logo relative">
                     <a href={youtubeLink} target="_blank">
-                      <div class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden"></div>
+                      <div
+                        class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
+                      >
+                      </div>
                       <div
                         class="w-[155px] h-[70px] rounded-full overflow-hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                       >
@@ -244,7 +258,7 @@ const portraitImages = [
                   </div>
                 </div>
                 <div
-                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center"
+                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
                 >
                   <div class="flex flex-row justify-center align-center gap-4">
                     <span class="text-start text-slate-700 text-sm font-medium justify-center items-center inline-flex"
