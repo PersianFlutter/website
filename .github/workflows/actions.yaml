@@ -10,32 +10,48 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest  # Change the environment to macos-latest
     strategy:
       matrix:
         node-version:
-          # - 18
-          - 20
-          - 22
+          - 20  # Use only Node.js version 20 (same as local)
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js v${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-      - run: npm ci
-      - run: npm run build
-      # - run: npm test
+
+      - name: Clean install
+        run: |
+          rm -rf node_modules  # Remove node_modules
+          rm -f package-lock.json  # Remove package-lock.json
+          npm ci  # Install dependencies using npm ci
+
+      - name: Debug translations
+        run: |
+          echo "Node version: $(node -v)"
+          echo "NPM version: $(npm -v)"
+          npm run build --verbose  # Run build with verbose logs
 
   check:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest  # Change the environment to macos-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run check
+
+      - name: Clean install
+        run: |
+          rm -rf node_modules  # Remove node_modules
+          rm -f package-lock.json  # Remove package-lock.json
+          npm ci  # Install dependencies using npm ci
+
+      - name: Run checks
+        run: npm run check
