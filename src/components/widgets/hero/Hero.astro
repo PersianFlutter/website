@@ -49,7 +49,7 @@ export interface Props extends Widget {
   youtubeLink?: string;
 }
 
-type HeroTranslations = {
+interface HeroTranslations {
   title: {
     main: string;
     sub: string;
@@ -67,20 +67,22 @@ type HeroTranslations = {
       button: string;
     };
   };
-};
+}
 
 const translations = {
-  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'],
-  description: t('home.hero.description', { returnObjects: true }) as string[],
-  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'],
+  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'] || { main: 'Default Title', sub: 'Default Subtitle' },
+  description: t('home.hero.description', { returnObjects: true }) as string[] || ['Default Description'],
+  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'] || {
+    telegram: { members: { text: 'Default Members' }, joinButton: 'Default Join Button' },
+    youtube: { description: 'Default YouTube Description', button: 'Default Button' },
+  },
 };
 
-// اضافه کردن مقادیر پیش‌فرض
 const socialTranslations = {
-  telegramMembers: translations?.socials?.telegram?.members?.text ?? 'Active Members',
-  telegramJoinButton: translations?.socials?.telegram?.joinButton ?? 'Join Telegram Channel',
-  youtubeDescription: translations?.socials?.youtube?.description ?? 'Access to latest videos and tutorials',
-  youtubeButton: translations?.socials?.youtube?.button ?? 'Subscribe',
+  telegramMembers: translations.socials.telegram.members.text || 'Active Members',
+  telegramJoinButton: translations.socials.telegram.joinButton || 'Join Telegram Channel',
+  youtubeDescription: translations.socials.youtube.description || 'Access to latest videos and tutorials',
+  youtubeButton: translations.socials.youtube.button || 'Subscribe',
 };
 
 const {
