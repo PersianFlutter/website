@@ -73,8 +73,14 @@ const translations = {
   title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'] || { main: 'Default Title', sub: 'Default Subtitle' },
   description: t('home.hero.description', { returnObjects: true }) as string[] || ['Default Description'],
   socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'] || {
-    telegram: { members: { text: 'Default Members' }, joinButton: 'Default Join Button' },
-    youtube: { description: 'Default YouTube Description', button: 'Default Button' },
+    telegram: {
+      members: { text: 'Default Members' }, // Fallback members
+      joinButton: 'Default Join Button',
+    },
+    youtube: {
+      description: 'Default YouTube Description',
+      button: 'Default Button',
+    },
   },
 };
 
@@ -194,7 +200,7 @@ const portraitImages = [
                       >+1.7K</span
                     >
                     <span class="text-start text-slate-800 text-sm font-medium h-5"
-                      >{socialTranslations.telegramMembers}</span
+                      >{translations.socials.telegram.members?.text || 'Default Members'}</span
                     >
                   </div>
                 </div>
