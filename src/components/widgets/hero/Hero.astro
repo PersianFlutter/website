@@ -70,9 +70,12 @@ interface HeroTranslations {
 }
 
 const translations = {
-  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'] || { main: 'Default Title', sub: 'Default Subtitle' },
-  description: t('home.hero.description', { returnObjects: true }) as string[] || ['Default Description'],
-  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'] || {
+  title: (t('home.hero.title', { returnObjects: true }) as HeroTranslations['title']) || {
+    main: 'Default Title',
+    sub: 'Default Subtitle',
+  },
+  description: (t('home.hero.description', { returnObjects: true }) as string[]) || ['Default Description'],
+  socials: (t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials']) || {
     telegram: {
       members: { text: 'Default Members' }, // Fallback members
       joinButton: 'Default Join Button',
