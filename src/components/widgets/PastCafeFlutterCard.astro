@@ -26,7 +26,7 @@ const getEventStatus = (eventDateTime: Date) => {
 
 // Helper function to format date
 const formatDate = (date: Date) => {
-  // تنظیم آپشن‌های فرمت تاریخ
+  // Set date format options
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',
@@ -34,17 +34,17 @@ const formatDate = (date: Date) => {
     day: 'numeric',
   };
 
-  // گرفتن اجزای تاریخ به صورت جداگانه
+  // Taking date components separately
   const formatter = new Intl.DateTimeFormat('fa-IR', options);
   const parts = formatter.formatToParts(date);
 
-  // پیدا کردن هر جزء تاریخ
+  // Find any date component
   const weekday = parts.find((part) => part.type === 'weekday')?.value || '';
   const day = parts.find((part) => part.type === 'day')?.value || '';
   const month = parts.find((part) => part.type === 'month')?.value || '';
   const year = parts.find((part) => part.type === 'year')?.value || '';
 
-  // ترکیب اجزا با فرمت دلخواه
+  // Combination of components with desired format
   return `${weekday} ${day} ${month} ${year}`;
 };
 
