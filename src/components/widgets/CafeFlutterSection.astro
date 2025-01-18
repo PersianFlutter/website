@@ -13,7 +13,7 @@ interface Props extends Widget {
 
 const { id, isDark = false, classes = {} } = Astro.props;
 
-// فیلتر کردن رویدادهای گذشته
+// Filter past events
 const now = new Date();
 const pastEvents = cafeFlutterEvents
   .filter((event) => {
@@ -23,34 +23,34 @@ const pastEvents = cafeFlutterEvents
   })
   .sort((a, b) => new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime());
 
-// اضافه کردن endpoint برای زمان سرور
+// Add endpoint for server time
 const getServerTime = async () => {
   return new Date();
 };
 
 const serverTime = await getServerTime();
 
-// پیدا کردن رویداد آینده
+// Find an upcoming event
 const upcomingEvent = cafeFlutterEvents
   .filter((event) => {
     const eventDate = new Date(event.dateTime);
     const serverTimeLocal = new Date(serverTime);
 
-    // اجازه دهید رویداد تا 3 ساعت بعد از زمان شروع هم قابل نمایش باشد
+    // Allow the event to be visible up to 3 hours after the start time
     const eventEndTime = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000);
 
     return serverTimeLocal <= eventEndTime;
   })
   .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())[0];
 
-// محاسبه زمان پایان (3 ساعت بعد از شروع)
+// Calculation of the end time (3 hours after the start)
 const eventStartTime = upcomingEvent ? new Date(upcomingEvent.dateTime) : null;
 const eventEndTime = eventStartTime ? new Date(eventStartTime.getTime() + 3 * 60 * 60 * 1000) : null;
 
-// تصمیم‌گیری برای نمایش CafeFlutterCountdown
+// Deciding to show CafeFlutterCountdown
 const shouldShowCountdown = Boolean(
-  (eventStartTime && now < eventStartTime) || // قبل از شروع رویداد
-    (eventStartTime && eventEndTime && now < eventEndTime) // در طول رویداد تا 3 ساعت بعد
+  (eventStartTime && now < eventStartTime) || // Before the start of the event
+    (eventStartTime && eventEndTime && now < eventEndTime) // During the event until 3 hours later
 );
 ---
 
