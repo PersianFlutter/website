@@ -3,6 +3,8 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,
+    "checkJs": false,
+    "types": ["gsap"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]

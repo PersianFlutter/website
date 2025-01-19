@@ -1,0 +1,111 @@
+---
+import type { CafeFlutterItem, Widget } from '~/types';
+import WidgetWrapper from '../ui/WidgetWrapper.astro';
+import { cafeFlutterEvents } from '~/data/mockCafeFlutter';
+import PastCafeFlutterCard from './PastCafeFlutterCard.astro';
+import CafeFlutterCountdown from '~/components/widgets/cafeFlutterCountdown/CafeFlutterCountdown.astro';
+import SectionTitle from '../widgets/SectionTitleTwo.astro';
+
+interface Props extends Widget {
+  upcomingEvent?: CafeFlutterItem;
+  pastEvents?: CafeFlutterItem[];
+}
+
+const { id, isDark = false, classes = {} } = Astro.props;
+
+// Filter past events
+const now = new Date();
+const pastEvents = cafeFlutterEvents
+  .filter((event) => {
+    const eventDate = new Date(event.dateTime);
+    const eventEndTime = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000);
+    return now >= eventEndTime;
+  })
+  .sort((a, b) => new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime());
+
+// Add endpoint for server time
+const getServerTime = async () => {
+  return new Date();
+};
+
+const serverTime = await getServerTime();
+
+// Find an upcoming event
+const upcomingEvent = cafeFlutterEvents
+  .filter((event) => {
+    const eventDate = new Date(event.dateTime);
+    const serverTimeLocal = new Date(serverTime);
+
+    // Allow the event to be visible up to 3 hours after the start time
+    const eventEndTime = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000);
+
+    return serverTimeLocal <= eventEndTime;
+  })
+  .sort((a, b) => new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime())[0];
+
+// Calculation of the end time (3 hours after the start)
+const eventStartTime = upcomingEvent ? new Date(upcomingEvent.dateTime) : null;
+const eventEndTime = eventStartTime ? new Date(eventStartTime.getTime() + 3 * 60 * 60 * 1000) : null;
+
+// Deciding to show CafeFlutterCountdown
+const shouldShowCountdown = Boolean(
+  (eventStartTime && now < eventStartTime) || // Before the start of the event
+    (eventStartTime && eventEndTime && now < eventEndTime) // During the event until 3 hours later
+);
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-full w-full px-0 md:px-0 py-0 md:py-0 lg:py-0 relative h-max overflow-hidden ${classes?.container ?? ''}`}
+>
+  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+    <!-- section title -->
+    <div class="flex flex-col lg:flex-row justify-between mb-8">
+      <SectionTitle
+        sectionInfo={{
+          title: {
+            firstPart: 'کافه فلاتر:',
+            secondPart: 'گردهمایی ماهانه متخصصان',
+          },
+          description:
+            'هر ماه، در آخرین جمعه، جامعه فلاتر فارسی در فضای مجازی گرد هم می‌آیند. کافه فلاتر، محلی برای یادگیری، اشتراک دانش و تبادل ایده‌هاست. از ارائه‌های تخصصی تا بحث‌های آزاد، این رویداد فرصتی منحصر به فرد برای رشد و شبکه‌سازی در دنیای فلاتر فراهم می‌کند.',
+        }}
+      />
+
+      <!-- down arrow -->
+      <div id="downArrowSvg" class="me-20 hidden lg:block">
+        <svg width="152" height="120" viewBox="0 0 152 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15.7088 166.423C14.9312 163.429 14.4646 160.279 14.3479 157.091L18.2752 156.935C18.3918 159.851 18.8195 162.69 19.5195 165.451L15.7088 166.423ZM18.8195 148.342L14.9312 147.72C15.4367 144.648 16.2532 141.615 17.342 138.66L21.0359 140.021C20.0249 142.742 19.2861 145.542 18.8195 148.381V148.342ZM24.7688 132.166L21.3859 130.144C23.019 127.422 24.8854 124.895 26.9462 122.562L29.8625 125.167C27.9572 127.267 26.2463 129.639 24.7299 132.127L24.7688 132.166ZM36.2395 119.451L33.9064 116.263C36.4728 114.357 39.2335 112.802 42.1109 111.558L43.6663 115.174C41.0611 116.263 38.5725 117.701 36.2395 119.412V119.451ZM105.569 113.23V109.302C108.68 109.263 111.557 109.069 114.318 108.719L114.824 112.607C111.946 112.957 108.913 113.152 105.608 113.191L105.569 113.23ZM96.3927 112.996C93.3598 112.841 90.3269 112.569 87.3328 112.296L87.6828 108.369C90.6379 108.641 93.632 108.875 96.626 109.069L96.3927 112.996ZM51.9485 112.569L51.0931 108.719C54.0094 108.058 57.0034 107.63 60.3086 107.397L60.6196 111.324C57.5089 111.558 54.6704 111.985 51.9485 112.569ZM78.3506 111.519C75.3955 111.285 72.4014 111.13 69.4462 111.091L69.524 107.164C72.557 107.242 75.6288 107.397 78.6617 107.63L78.3895 111.558L78.3506 111.519ZM123.922 110.741L122.834 106.969C124.856 106.386 126.8 105.647 128.627 104.831C129.366 104.52 130.066 104.131 130.805 103.742L132.71 107.164C131.894 107.591 131.116 108.019 130.261 108.369C128.277 109.263 126.139 110.041 123.961 110.702L123.922 110.741ZM140.37 101.603L137.687 98.7649C139.787 96.7818 141.615 94.5654 143.092 92.1935L146.436 94.2543C144.764 96.8984 142.742 99.387 140.409 101.603H140.37ZM150.247 85.4666L146.436 84.4945C146.903 82.6669 147.136 80.8005 147.136 79.0119C147.136 78.1176 147.058 77.1844 146.942 76.29L150.83 75.7456C150.986 76.8344 151.063 77.9231 151.063 79.0119C151.063 81.1505 150.791 83.2891 150.208 85.4666H150.247ZM144.142 68.591C142.859 66.4135 141.148 64.3527 138.737 61.9808L141.498 59.1812C144.103 61.7475 146.008 64.1194 147.486 66.5302L144.142 68.5521V68.591ZM132.166 56.0704C129.833 54.0485 127.539 52.0265 125.4 49.7713L128.239 47.0494C130.222 49.1491 132.438 51.0933 134.693 53.0764L132.127 56.0315L132.166 56.0704ZM119.723 42.1112C118.245 39.3115 117.234 36.2397 116.69 32.9734L120.578 32.3124C121.045 35.1509 121.939 37.8339 123.223 40.2447L119.762 42.0723L119.723 42.1112ZM120.384 23.8747L116.496 23.408C116.846 20.2196 117.662 17.1089 118.868 14.1537L122.484 15.6313C121.434 18.2365 120.695 20.9972 120.384 23.8358V23.8747ZM126.722 8.39889L123.689 5.91033C125.594 3.5773 127.772 1.59424 130.183 0L132.36 3.26623C130.261 4.66604 128.394 6.37693 126.761 8.39889H126.722Z"
+            fill="#94A3B8"></path>
+          <path
+            d="M31.5736 150.13L28.2685 148.031L17.8477 164.323L2.33302 152.736L0 155.924L18.8975 170L31.5736 150.13Z"
+            fill="#94A3B8"></path>
+        </svg>
+      </div>
+    </div>
+
+    {
+      shouldShowCountdown && (
+        <>
+          <CafeFlutterCountdown upcomingEvent={upcomingEvent} />
+        </>
+      )
+    }
+
+    <div class="flex flex-col gap-8 md:gap-12 lg:gap-16">
+      {
+        pastEvents && pastEvents.length > 0 && (
+          <div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:justify-items-stretch sm:justify-items-center gap-4 sm:gap-6 lg:gap-8 auto-rows-fr">
+              {pastEvents.slice(0, 3).map((event) => (
+                <PastCafeFlutterCard item={event} />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</WidgetWrapper>
