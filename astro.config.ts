@@ -25,7 +25,7 @@ export default defineConfig({
   output: 'static',
 
   i18n: {
-    locales: ['fa', 'en' ],
+    locales: ['fa', 'en'],
     defaultLocale: 'fa',
   },
 

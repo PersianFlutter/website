@@ -1,7 +1,6 @@
+import type { TranslationValues } from './utils/i18n';
 import { getPermalink, getAsset } from './utils/permalinks';
 import type { CallToAction } from '~/types';
-import type { TranslationValues } from './utils/translation';
-
 
 export const socialData = {
   links: [
