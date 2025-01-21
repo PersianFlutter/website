@@ -1,8 +1,8 @@
 ---
-import { t } from 'i18next';
 import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
 import Logo from '~/components/widgets/header/Logo.astro';
+import i18n from '~/utils/i18n';
 
 interface SocialLink {
   ariaLabel?: string;
@@ -16,6 +16,9 @@ export interface Props {
   theme?: string;
 }
 
+const translations = i18n.t().footer;
+
+
 const { socialLinks = [] } = Astro.props;
 ---
 
@@ -26,8 +29,8 @@ const { socialLinks = [] } = Astro.props;
         <a class="footer-logo flex-none" href={getHomePermalink()}>
           <Logo />
         </a>
-        <span class="text-white text-base font-medium w-[210px] text-right">
-          {t('footer.description')}
+        <span class="text-white text-base font-medium w-[210px] text-start">
+          {translations.description}
         </span>
       </div>
 

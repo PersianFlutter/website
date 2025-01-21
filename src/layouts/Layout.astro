@@ -1,7 +1,6 @@
 ---
 import '~/assets/styles/tailwind.css';
 
-import i18next from 'i18next';
 import CommonMeta from '~/components/common/CommonMeta.astro';
 import Favicons from '~/components/Favicons.astro';
 import CustomStyles from '~/components/CustomStyles.astro';
@@ -16,6 +15,7 @@ import Scripts from '~/components/common/Scripts.astro';
 import { ViewTransitions } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
+import i18n from '~/utils/i18n';
 
 export interface Props {
   metadata?: MetaDataType;
@@ -25,7 +25,7 @@ const { metadata = {} } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={i18next.language} dir={i18next.dir(i18next.language)} class="">
+<html lang={i18n.getLang()} dir={i18n.dir()} class="">
   <head>
     <CommonMeta />
     <Favicons />
