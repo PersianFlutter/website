@@ -25,7 +25,7 @@ const { socialLinks = [] } = Astro.props;
   <div class="mx-auto max-w-[1320px] px-4">
     <div class="flex flex-col sm:flex-row justify-between items-center">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-8">
-        <a class="footer-logo flex-none" href={getHomePermalink()}>
+        <a class="footer-logo flex-none [&_img]:brightness-0 [&_img]:invert" href={getHomePermalink()}>
           <Logo />
         </a>
         <span class="text-white text-base font-medium w-[210px] text-start">

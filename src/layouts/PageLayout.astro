@@ -16,13 +16,15 @@ const { metadata } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
-  <slot name="header">
-    <Header {...headerData(translations)} socialLinks={socialData.links} isSticky showToggleTheme />
-  </slot>
-  <main>
-    <slot />
-  </main>
-  <slot name="footer">
-    <Footer {...footerData} socialLinks={socialData.links} />
-  </slot>
+  <div class="flex flex-col min-h-screen">
+    <slot name="header">
+      <Header {...headerData(translations)} socialLinks={socialData.links} isSticky showToggleTheme />
+    </slot>
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <slot name="footer">
+      <Footer {...footerData} socialLinks={socialData.links} />
+    </slot>
+  </div>
 </Layout>
