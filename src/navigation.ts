@@ -1,10 +1,6 @@
+import type { TranslationValues } from './utils/i18n';
 import { getPermalink, getAsset } from './utils/permalinks';
 import type { CallToAction } from '~/types';
-
-// تعریف interface برای تابع ترجمه
-interface TranslationFunction {
-  (key: string): string;
-}
 
 export const socialData = {
   links: [
@@ -38,23 +34,23 @@ export const socialData = {
 
 // We need to pass translation function to this function
 
-export function headerData(translation: TranslationFunction) {
+export function headerData(translation: TranslationValues) {
   return {
     links: [
       {
-        text: translation('header.menu.about'),
+        text: translation.header.menu.about,
         href: '#',
       },
       {
-        text: translation('header.menu.cafeFlutter'),
+        text: translation.header.menu.cafeFlutter,
         href: '#',
       },
       {
-        text: translation('header.menu.community'),
+        text: translation.header.menu.community,
         href: '#',
       },
       {
-        text: translation('header.menu.team'),
+        text: translation.header.menu.team,
         href: '#',
       },
     ],

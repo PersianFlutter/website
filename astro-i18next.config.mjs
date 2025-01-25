@@ -2,5 +2,5 @@
 export default {
   defaultLocale: 'fa',
   locales: ['fa', 'en'],
-  returnObjects: true,
+  returnObjects: false,
 };
