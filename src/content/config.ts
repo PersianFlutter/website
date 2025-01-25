@@ -45,24 +45,16 @@ const metadataDefinition = () =>
     })
     .optional();
 
-const postCollection = defineCollection({
+const topicCollection = defineCollection({
+  type: 'content',
   schema: z.object({
-    publishDate: z.date().optional(),
-    updateDate: z.date().optional(),
-    draft: z.boolean().optional(),
-
     title: z.string(),
-    excerpt: z.string().optional(),
-    image: z.string().optional(),
-
-    category: z.string().optional(),
+    description: z.string().max(160, { message: 'Description must be 160 characters or less' }),
     tags: z.array(z.string()).optional(),
-    author: z.string().optional(),
-
     metadata: metadataDefinition(),
   }),
 });
 
 export const collections = {
-  post: postCollection,
+  topic: topicCollection,
 };
