@@ -14,7 +14,7 @@ import type { AstroIntegration } from 'astro';
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
-import { defaultLocale, supportedLocales } from '~/i18n/config';
+import { defaultLocale, supportedLocales } from './src/i18n/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
