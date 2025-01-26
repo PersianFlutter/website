@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection, reference } from 'astro:content';
 
 const metadataDefinition = () =>
   z
@@ -55,6 +55,32 @@ const topicCollection = defineCollection({
   }),
 });
 
+const memberCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string().min(1, { message: 'Name is required' }),
+    family: z.string().min(1, { message: 'Family name is required' }),
+    title: z.string().min(1, { message: 'Title is required' }),
+    image: z.string().min(1, { message: 'Image path is required' }),
+    description: z
+      .string()
+      .min(10, { message: 'Description must be at least 10 characters' })
+      .max(500, { message: 'Description must not exceed 500 characters' }),
+    topics: z.array(reference('topic')).min(1, { message: 'Member must have at least one topic' }),
+    social: z
+      .object({
+        twitter: z.string().url().optional(),
+        linkedin: z.string().url().optional(),
+        github: z.string().url().optional(),
+        instagram: z.string().url().optional(),
+        website: z.string().url().optional(),
+      })
+      .optional(),
+    metadata: metadataDefinition(),
+  }),
+});
+
 export const collections = {
   topic: topicCollection,
+  member: memberCollection,
 };
