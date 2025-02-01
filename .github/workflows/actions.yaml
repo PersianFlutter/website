@@ -35,7 +35,11 @@ jobs:
         node-version:
           # - 18
           - 20
+<<<<<<< HEAD
           # - 22
+=======
+          - 22
+>>>>>>> origin/main
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js v${{ matrix.node-version }}

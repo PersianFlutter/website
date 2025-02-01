@@ -1,11 +1,11 @@
 ---
-import { t } from 'i18next';
 import type { ImageMetadata } from 'astro';
 import type { Widget } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import AnimatedCrownSVG from '~/components/widgets/AnimatedCrownSVG.astro';
 import ParallaxSection from '~/components/widgets/ParallaxSection.astro';
 import donationBgImage from '~/assets/images/donation-bg.jpg';
+import i18n from '~/utils/i18n';
 
 export interface Donation extends Widget {
   donationLink?: string;
@@ -21,26 +21,7 @@ const {
   imageSrc = donationBgImage,
 } = Astro.props;
 
-type DonationTranslations = {
-  title: {
-    firstPart: string;
-    secondPart: string;
-  };
-  subtitle: string;
-  donationText: string;
-  donationButtonText: string;
-  features: string[];
-  altText: string;
-};
-
-const translations = {
-  title: t('home.donation.title', { returnObjects: true }) as DonationTranslations['title'],
-  subtitle: t('home.donation.subtitle'),
-  donationText: t('home.donation.donationText'),
-  donationButtonText: t('home.donation.donationButtonText'),
-  features: t('home.donation.features', { returnObjects: true }) as string[],
-  altText: t('home.donation.altText'),
-};
+const translations = i18n.t().home.donation;
 
 const rotationClasses = [
   'rotate-0', // index 0

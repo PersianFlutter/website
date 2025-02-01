@@ -1,18 +1,23 @@
 ---
-import { changeLanguage } from 'i18next';
 import Layout from '~/layouts/PageLayout.astro';
 import '~/assets/styles/custom.css';
 import Donation from '~/components/widgets/Donation.astro';
 import StaffSection from '~/components/widgets/StaffSection.astro';
 import CafeFlutterSection from '~/components/widgets/CafeFlutterSection.astro';
 import HeroSection from '~/components/widgets/hero/Hero.astro';
+<<<<<<< HEAD
 
 changeLanguage('en');
+=======
+import i18n from '~/utils/i18n';
+>>>>>>> origin/main
 
 const metadata = {
   title: 'Persin Flutter',
   ignoreTitleTemplate: true,
 };
+
+i18n.setLang(Astro.currentLocale);
 ---
 
 <Layout metadata={metadata}>
