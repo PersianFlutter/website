@@ -56,13 +56,12 @@ export function headerData(translation: TranslationValues) {
     ],
     actions: [
       {
-        text: 'en',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
+        text: translation.header.menu.language,
+        target: '_self',
         position: 'primary',
       } as CallToAction,
       {
-        text: 'حمایت مالی',
+        text: translation.header.menu.donation,
         href: '/donate',
         target: '_blank',
         position: 'secondary',
