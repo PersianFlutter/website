@@ -57,8 +57,12 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 const callToActionPrimaryPosition = actions.filter((action) => action.position === 'primary');
 const callToActionSecondaryPosition = actions.filter((action) => action.position === 'secondary');
 
-const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'fa';
-const toggleLang = currentLang === 'fa' ? getRelativeLocaleUrl('en') : '/';
+const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '/en';
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'fa';
+const toggleLang = getRelativeLocaleUrl(
+  currentLang === 'fa' ? 'en' : 'fa',
+  currentLang === 'en' ? currentPath.slice(3) : isHomepage ? undefined : currentPath
+);
 ---
 
 <header
