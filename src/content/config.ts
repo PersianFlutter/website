@@ -49,8 +49,7 @@ const topicCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    description: z.string().max(160, { message: 'Description must be 160 characters or less' }),
-    tags: z.array(z.string()).optional(),
+    description: z.string().max(500, { message: 'Description must be 500 characters or less' }),
     metadata: metadataDefinition(),
   }),
 });
@@ -65,14 +64,14 @@ const memberCollection = defineCollection({
     description: z
       .string()
       .min(10, { message: 'Description must be at least 10 characters' })
-      .max(500, { message: 'Description must not exceed 500 characters' }),
+      .max(200, { message: 'Description must not exceed 200 characters' }),
     topics: z.array(reference('topic')).min(1, { message: 'Member must have at least one topic' }),
     social: z
       .object({
         twitter: z.string().url().optional(),
         linkedin: z.string().url().optional(),
         github: z.string().url().optional(),
-        instagram: z.string().url().optional(),
+        telegram: z.string().url().optional(),
         website: z.string().url().optional(),
       })
       .optional(),
