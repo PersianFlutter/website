@@ -4,7 +4,7 @@ import Logo from '~/components/widgets/header/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
-
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getHomePermalink } from '~/utils/permalinks';
 import { trimSlash } from '~/utils/permalinks';
 import type { CallToAction } from '~/types';
@@ -56,6 +56,9 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
 // header actions base position
 const callToActionPrimaryPosition = actions.filter((action) => action.position === 'primary');
 const callToActionSecondaryPosition = actions.filter((action) => action.position === 'secondary');
+
+const currentLang = Astro.url.pathname.startsWith('/en') ? 'en' : 'fa';
+const toggleLang = currentLang === 'fa' ? getRelativeLocaleUrl('en') : '/';
 ---
 
 <header
@@ -170,6 +173,7 @@ const callToActionSecondaryPosition = actions.filter((action) => action.position
                 {callToActionPrimaryPosition.map((btnProps) => (
                   <Button
                     {...btnProps}
+                    href={toggleLang}
                     class="border-gray-300 text-gray-400 text-lg font-medium uppercase h-10 px-3 inline-flex justify-center items-center py-0 shadow-none w-auto"
                   />
                 ))}
