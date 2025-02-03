@@ -63,8 +63,8 @@ export interface CafeFlutterItem {
 export interface StaffMember {
   name: string;
   title: string;
-  image: Image;
-  socials: Array<Social>;
+  image: ImageMetadata;
+  socials?: Array<Social>; // after all socials will be added, the "?" should removed.
   description: string;
 }
 

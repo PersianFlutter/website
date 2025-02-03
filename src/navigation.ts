@@ -51,7 +51,7 @@ export function headerData(translation: TranslationValues) {
       },
       {
         text: translation.header.menu.team,
-        href: '#',
+        href: '/members',
       },
     ],
     actions: [
@@ -77,7 +77,7 @@ export const footerData = {
       links: [
         { text: 'Features', href: '#' },
         { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
+        { text: 'Team', href: '/members' },
         { text: 'Enterprise', href: '#' },
         { text: 'Customer stories', href: '#' },
         { text: 'Pricing', href: '#' },

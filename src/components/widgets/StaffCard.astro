@@ -5,14 +5,13 @@ import type { StaffMember } from '~/types';
 
 interface Props {
   staffMember: StaffMember;
+  bg: string;
 }
 
-const { staffMember } = Astro.props;
+const { staffMember, bg } = Astro.props;
 ---
 
-<div
-  class="h-[386px] p-8 bg-white rounded-3xl justify-center items-center place-items-center gap-2.5 dark:bg-slate-800"
->
+<div class={'h-[386px] p-8 rounded-3xl justify-center items-center place-items-center gap-2.5 dark:bg-slate-800 ' + bg}>
   <div class="flex-col justify-start items-center gap-4 flex">
     <div class="self-stretch flex-col justify-start items-center gap-6 flex">
       <Image

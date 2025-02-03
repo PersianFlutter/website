@@ -1,0 +1,35 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import '~/assets/styles/custom.css';
+import background from '~/assets/images/membersPage-header.png';
+import i18n from '~/utils/i18n';
+import { staffMembers } from '~/data/mockStaffMembers';
+import StaffCard from '~/components/widgets/StaffCard.astro';
+import PageTitle from '~/components/widgets/PageTitle.astro';
+import { Image } from 'astro:assets';
+
+const metadata = {
+  title: 'Persian Flutter | Members',
+  ignoreTitleTemplate: true,
+};
+
+i18n.setLang(Astro.currentLocale);
+const translations = i18n.t();
+---
+
+<Layout metadata={metadata}>
+  <div class="flex flex-col items-center w-full">
+    <div class="relative w-full flex flex-col items-center justify-center">
+      <Image class="absolute w-full h-full object-cover opacity-15 -z-[1]" src={background} alt="background" />
+      <PageTitle
+        title={translations.home.staffSection.title}
+        description={translations.home.staffSection.descriptionShort}
+      />
+    </div>
+    <div
+      class="w-[90vw] max-w-[450px] md:max-w-[800px] lg:max-w-full xl:w-[80vw] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-8 py-12"
+    >
+      {staffMembers.map((member) => <StaffCard bg="bg-slate-100" staffMember={member} />)}
+    </div>
+  </div>
+</Layout>
