@@ -1,9 +1,4 @@
 ---
-<<<<<<< HEAD
-import { t } from 'i18next';
-
-=======
->>>>>>> origin/main
 import { Image } from 'astro:assets';
 import type { Widget } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
@@ -43,10 +38,7 @@ import portraitImage14 from '~/assets/images/portraits/portrait-img-14.jpg';
 import portraitImage15 from '~/assets/images/portraits/portrait-img-15.jpg';
 import portraitImage16 from '~/assets/images/portraits/portrait-img-16.jpg';
 import portraitImage17 from '~/assets/images/portraits/portrait-img-17.jpg';
-<<<<<<< HEAD
-=======
 import i18n from '~/utils/i18n';
->>>>>>> origin/main
 
 export interface Props extends Widget {
   telegramIconImg?: ImageMetadata;
@@ -56,47 +48,7 @@ export interface Props extends Widget {
   youtubeLink?: string;
 }
 
-<<<<<<< HEAD
-interface HeroTranslations {
-  title: {
-    main: string;
-    sub: string;
-  };
-  description: string[];
-  socials: {
-    telegram: {
-      members: {
-        text: string;
-      };
-      joinButton: string;
-    };
-    youtube: {
-      description: string;
-      button: string;
-    };
-  };
-}
-
-const translations = {
-  title: (t('home.hero.title', { returnObjects: true }) as HeroTranslations['title']) || {
-    main: 'Default Title',
-    sub: 'Default Subtitle',
-  },
-  description: (t('home.hero.description', { returnObjects: true }) as string[]) || ['Default Description'],
-  socials: (t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials']) || {
-    telegram: {
-      members: { text: 'Default Members' }, // Fallback members
-      joinButton: 'Default Join Button',
-    },
-    youtube: {
-      description: 'Default YouTube Description',
-      button: 'Default Button',
-    },
-  },
-};
-=======
 const translations = i18n.t().home.hero;
->>>>>>> origin/main
 
 const socialTranslations = {
   telegramMembers: translations.socials.telegram.members?.text || 'Active Members',
