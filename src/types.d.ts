@@ -61,11 +61,19 @@ export interface CafeFlutterItem {
 }
 
 export interface StaffMember {
-  name: string;
-  title: string;
+  slug: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  pfTitle: string;
   image: ImageMetadata;
-  socials?: Array<Social>; // after all socials will be added, the "?" should removed.
+  bigImage: ImageMetadata;
+  socials?: Social[]; // after all socials will be added, the "?" should removed.
   description: string;
+  aboutMe: string;
+  skills: string[];
+  favorites: string;
+  contact: string;
 }
 
 export interface Taxonomy {
