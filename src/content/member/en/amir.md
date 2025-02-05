@@ -24,4 +24,4 @@ Amir is an experienced developer in mobile application development. He has over 
 
 - Designed and developed an e-commerce app with over 100,000 active users
 - Implemented in-app payment systems
-- Developed SDK for mobile developers 
+- Developed SDK for mobile developers

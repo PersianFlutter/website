@@ -1,6 +1,6 @@
 ---
-title: "Open Source Projects"
-description: "At Persian Flutter, we wholeheartedly believe in open source! Open source projects aren’t just lines of code—they’re a driving force for community growth and recognition. Here, we come together to build high-quality projects that benefit everyone. That means learning, collaboration, and progress—all in one place!"
+title: 'Open Source Projects'
+description: 'At Persian Flutter, we wholeheartedly believe in open source! Open source projects aren’t just lines of code—they’re a driving force for community growth and recognition. Here, we come together to build high-quality projects that benefit everyone. That means learning, collaboration, and progress—all in one place!'
 ---
 
 ## What We’ve Gained, What We Can Share
