@@ -6,17 +6,26 @@ import i18n from '~/utils/i18n';
 export async function getStaticPaths() {
   const pages = await getCollection('topic');
 
-  const paths = pages.map((page) => {
-    const [lang, ...slug] = page.slug.split('/');
+  return pages
+    .filter(({ slug }) => slug.startsWith('en'))
+    .filter(({ slug }) => slug.split('/').length === 2)
+    .map((page) => {
+      const [, ...slugParts] = page.slug.split('/');
+      const baseSlug = slugParts.join('/');
 
-    return { params: { lang, slug: slug.join('/') || undefined }, props: page };
-  });
-
-  return paths;
+      return {
+        params: {
+          slug: baseSlug,
+        },
+        props: {
+          page,
+        },
+      };
+    });
 }
 
-const { lang = 'fa', slug } = Astro.params;
-const page = Astro.props;
+const { slug } = Astro.params;
+const { page } = Astro.props;
 const pageData = page.data;
 
 const { Content } = await page.render();
@@ -26,11 +35,11 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-i18n.setLang(lang);
+i18n.setLang(Astro.currentLocale);
 ---
 
 <Layout metadata={metadata}>
-  <h1>Language: {lang}</h1>
+  <h1>Language: {Astro.currentLocale}</h1>
   <h2>Slug: {slug}</h2>
   <p>Name: {slug}</p>
   <p>Page Data: {JSON.stringify(pageData)}</p>

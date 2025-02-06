@@ -6,8 +6,9 @@ import i18n from '~/utils/i18n';
 export async function getStaticPaths() {
   const pages = await getCollection('topic');
 
-  const paths = pages
+  return pages
     .filter(({ slug }) => slug.startsWith('fa'))
+    .filter(({ slug }) => slug.split('/').length === 2)
     .map((page) => {
       const [, ...slugParts] = page.slug.split('/');
       const baseSlug = slugParts.join('/');
@@ -21,8 +22,6 @@ export async function getStaticPaths() {
         },
       };
     });
-
-  return paths;
 }
 
 const { slug } = Astro.params;
