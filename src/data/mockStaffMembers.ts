@@ -1,11 +1,11 @@
-import type { StaffMember } from '~/types';
+import type { Member } from '~/types';
 import avatar1 from '~/assets/images/avatar/sample-avatar-1.png';
 import avatar2 from '~/assets/images/avatar/sample-avatar-2.png';
 import avatar3 from '~/assets/images/avatar/sample-avatar-3.png';
 import avatar4 from '~/assets/images/avatar/sample-avatar-4.png';
 import bigImage from '~/assets/images/bigImage.png';
 
-export const staffMembers: StaffMember[] = [
+export const staffMembers: Member[] = [
   // lastNames, jobTitles, aboutMe, bigImage, skills, favorites, contact should be edited.
   // socials should be added.
   {

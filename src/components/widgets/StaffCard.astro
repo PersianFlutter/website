@@ -1,11 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
-import type { StaffMember } from '~/types';
+import type { Member } from '~/types';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
-  staffMember: StaffMember;
+  staffMember: Member;
   bg: string;
 }
 
@@ -15,7 +15,7 @@ const { staffMember, bg } = Astro.props;
 <a
   class={'h-[386px] p-8 rounded-3xl justify-center items-center place-items-center gap-2.5 dark:bg-slate-800 transition-transform hover:scale-[1.02] ' +
     bg}
-  href={getRelativeLocaleUrl(Astro.url.pathname.startsWith('/en') ? 'en' : 'fa') + '/members/' + staffMember.slug}
+  href={getRelativeLocaleUrl(Astro.currentLocale!) + '/members/' + staffMember.slug}
 >
   <div class="flex-col justify-start items-center gap-4 flex">
     <div class="self-stretch flex-col justify-start items-center gap-6 flex">

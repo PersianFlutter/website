@@ -60,7 +60,7 @@ export interface CafeFlutterItem {
   googleCalendarLink?: string;
 }
 
-export interface StaffMember {
+export interface Member {
   slug: string;
   firstName: string;
   lastName: string;
