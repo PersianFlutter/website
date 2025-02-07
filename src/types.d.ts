@@ -60,12 +60,20 @@ export interface CafeFlutterItem {
   googleCalendarLink?: string;
 }
 
-export interface StaffMember {
-  name: string;
-  title: string;
-  image: Image;
-  socials: Array<Social>;
+export interface Member {
+  slug: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  pfTitle: string;
+  image: ImageMetadata;
+  bigImage: ImageMetadata;
+  socials?: Social[]; // after all socials will be added, the "?" should removed.
   description: string;
+  aboutMe: string;
+  skills: string[];
+  favorites: string;
+  contact: string;
 }
 
 export interface Taxonomy {
