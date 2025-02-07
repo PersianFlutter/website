@@ -32,7 +32,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
           site: SITE.site,
           base: SITE.base,
 
-          trailingSlash: SITE.trailingSlash ? 'always' : 'never',
+          trailingSlash: SITE.trailingSlash ? 'always' : 'ignore',
 
           vite: {
             plugins: [
