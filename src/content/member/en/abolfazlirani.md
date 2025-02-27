@@ -1,5 +1,4 @@
 ---
-locale: en
 name: 'Abolfazl'
 family: 'Irani'
 title: 'Programmer and Designer'

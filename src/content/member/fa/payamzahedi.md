@@ -1,5 +1,4 @@
 ---
-locale: fa
 name: پیام
 family: زاهدی
 title: مهندس نرم افزار

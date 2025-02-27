@@ -1,5 +1,4 @@
 ---
-locale: en
 name: Payam
 family: Zahedi
 title: Software Engineer
