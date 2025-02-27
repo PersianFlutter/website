@@ -2,9 +2,11 @@
 name: پیام
 family: زاهدی
 title: مهندس نرم افزار
-image: /images/members/amir.jpg
+image: '/src/assets/images/avatar/sample-avatar-4.png' #/images/members/amir.jpg
 description: پیام، یکی از پایه‌گذارای فلاتر فارسیه و الان تو بخش پروژه‌های متن‌باز بهمون کمک می‌کنه و مدیریت کارا رو بر عهده داره. کلی حمایت می‌کنه که کارا بهتر و قوی‌تر پیش برن! 🚀
-topics: ['fa/open-source']
+topics:
+  - collection: 'topic'
+    slug: 'fa/open-source'
 social:
   website: https://payamzahedi.com/
   github: https://github.com/payam-zahedi/

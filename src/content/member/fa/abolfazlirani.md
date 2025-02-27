@@ -2,9 +2,11 @@
 name: 'ابوالفضل'
 family: 'ایرانی'
 title: 'برنامه‌نویس و طراح'
-image: '/images/members/amir.jpg'
+image: '/src/assets/images/avatar/sample-avatar-1.png' #'/images/members/amir.jpg'
 description: 'ابوالفضل یه برنامه‌نویس موبایله که در گذشتش طراح رابط کاربریم بوده و همیشه سعی کرده اپلیکیشن‌های خوبی رو منتشر کنه.'
-topics: ['fa/open-source']
+topics:
+  - collection: 'topic'
+    slug: 'fa/open-source'
 social:
   website: 'https://flutterfarsi.com'
   github: 'https://github.com/abolfazlirani/'
