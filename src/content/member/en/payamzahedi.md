@@ -1,10 +1,13 @@
 ---
+locale: en
 name: Payam
 family: Zahedi
 title: Software Engineer
-image: /images/members/amir.jpg
+image: '/src/assets/images/avatar/sample-avatar-4.png' #/images/members/amir.jpg
 description: Payam is one of the co-founders of Flutter Persian and actively contributes to our open-source projects. He plays a key role in managing tasks and ensuring everything runs smoothly and efficiently! 🚀
-topics: ['en/open-source']
+topics:
+  - collection: 'topic'
+    slug: 'en/open-source'
 social:
   website: https://payamzahedi.com/
   github: https://github.com/payam-zahedi/

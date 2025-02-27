@@ -5,11 +5,15 @@ import background from '~/assets/images/members-background.jpg';
 import SectionTitle from './SectionTitle.astro';
 import StaffCard from './StaffCard.astro';
 import i18n from '~/utils/i18n';
-import { staffMembers } from '~/data/mockStaffMembers';
-
-const translations = i18n.t();
+import { getCollection } from 'astro:content';
 
 const { id, isDark = false, classes = {} } = Astro.props;
+const currentLocale = Astro.currentLocale!;
+const members = await getCollection('member');
+const effectiveMembers = members.filter(({ slug }) => slug.startsWith(currentLocale));
+
+i18n.setLang(currentLocale);
+const translations = i18n.t();
 ---
 
 <WidgetWrapper
@@ -30,7 +34,7 @@ const { id, isDark = false, classes = {} } = Astro.props;
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
-        {staffMembers.map((member) => <StaffCard bg="bg-white" staffMember={member} />)}
+        {effectiveMembers.map((member) => <StaffCard bg="bg-white" member={member} />)}
       </div>
     </div>
   </div>

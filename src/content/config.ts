@@ -83,6 +83,7 @@ const memberCollection = defineCollection({
       .min(10, { message: 'Description must be at least 10 characters' })
       .max(200, { message: 'Description must not exceed 200 characters' }),
     topics: z.array(reference('topic')).min(1, { message: 'Member must have at least one topic' }),
+    locale: z.enum(['en', 'fa']),
     social: z
       .object({
         twitter: z.string().url().optional(),
