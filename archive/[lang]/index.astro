@@ -1,30 +1,44 @@
 ---
+import { changeLanguage } from 'i18next';
+import { getCollection } from 'astro:content';
 import Layout from '~/layouts/PageLayout.astro';
-import '~/assets/styles/custom.css';
-import Donation from '~/components/widgets/Donation.astro';
-import StaffSection from '~/components/widgets/StaffSection.astro';
-<<<<<<< HEAD
-import HeroSection from '~/components/widgets/hero/Hero.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Content from '~/components/widgets/Content.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
-changeLanguage('en');
-=======
-import CafeFlutterSection from '~/components/widgets/CafeFlutterSection.astro';
-import HeroSection from '~/components/widgets/hero/Hero.astro';
-import i18n from '~/utils/i18n';
->>>>>>> main
+changeLanguage('fa');
 
 const metadata = {
-  title: 'Persian Flutter',
+  title: 'AstroWind \u2014 Free template for creating websites with Astro + Tailwind CSS',
   ignoreTitleTemplate: true,
 };
-
-i18n.setLang(Astro.currentLocale);
+export async function getStaticPaths() {
+  const posts = await getCollection('post');
+  const langs = ['fa', 'en'];
+  return langs.flatMap((lang) =>
+    posts
+      .filter((post) => post.id.startsWith(`${lang}/`))
+      .map((post) => ({
+        params: {
+          lang,
+          slug: post.slug.split('/').slice(1).join('/'),
+        },
+        props: { post },
+      }))
+  );
+}
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
-<<<<<<< HEAD
-  <HeroSection />
+
   <Hero
     actions={[
       {
@@ -253,7 +267,7 @@ i18n.setLang(Astro.currentLocale);
   />
 
   <!-- Features2 Widget ************** -->
-  <!-- 
+
   <Features2
     title="Most used widgets"
     subtitle="Provides frequently used components for building websites using Tailwind CSS"
@@ -314,20 +328,20 @@ i18n.setLang(Astro.currentLocale);
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Features2> -->
+  </Features2>
 
   <!-- HighlightedPosts Widget ******* -->
-  <!-- 
+
   <BlogLatestPosts
     title="Find out more content in our Blog"
     information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
                         Astro is a very interesting technology. Thanks.
                 `}
-  /> -->
+  />
 
   <!-- FAQs Widget ******************* -->
-  <!-- 
+
   <FAQs
     title="Frequently Asked Questions"
     subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
@@ -365,11 +379,10 @@ i18n.setLang(Astro.currentLocale);
           "This is not about revenge. This is about justice. A lot of things can change in twelve years, Admiral. Well, that's certainly good to know. About four years. I got tired of hearing how young I looked.",
       },
     ]}
-  /> 
-  -->
+  />
 
   <!-- Stats Widget ****************** -->
-  <!-- 
+
   <Stats
     stats={[
       { title: 'Downloads', amount: '132K' },
@@ -377,10 +390,10 @@ i18n.setLang(Astro.currentLocale);
       { title: 'Forks', amount: '10.3K' },
       { title: 'Users', amount: '48.4K' },
     ]}
-  /> -->
+  />
 
   <!-- CallToAction Widget *********** -->
-  <!-- 
+
   <CallToAction
     actions={[
       {
@@ -401,14 +414,4 @@ i18n.setLang(Astro.currentLocale);
       waste more time! :P
     </Fragment>
   </CallToAction>
-   -->
-=======
-  <HeroSection telegramLink="https://t.me/persian_flutter" youtubeLink="https://www.youtube.com/@PersianFlutter" />
-
-  <CafeFlutterSection />
->>>>>>> main
-
-  <StaffSection />
-
-  <Donation donationLink="/" />
 </Layout>
