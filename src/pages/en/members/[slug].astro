@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import MembersLayout from '~/layouts/MembersLayout.astro';
+import i18n from '~/utils/i18n';
+import bigImage from '~/assets/images/bigImage.png';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import MemberProse from '~/components/widgets/MemberProse.astro';
+
+const { member } = Astro.props;
+const data = member.data;
+const { Content } = await member.render();
+
+export async function getStaticPaths() {
+  const members = await getCollection('member');
+
+  return members
+    .filter(({ slug }) => slug.startsWith('en'))
+    .filter(({ slug }) => slug.split('/').length === 2)
+    .map((member) => {
+      const [, ...slugParts] = member.slug.split('/');
+      const baseSlug = slugParts.join('/');
+
+      return {
+        params: {
+          slug: baseSlug,
+        },
+        props: {
+          member,
+        },
+      };
+    });
+}
+
+const socialIcons = {
+  website: 'tabler:world',
+  github: 'tabler:brand-github',
+  linkedin: 'tabler:brand-linkedin',
+  twitter: 'tabler:brand-x',
+  telegram: 'tabler:brand-telegram',
+};
+
+const metadata = {
+  title: `Persian Flutter | ${data.name}`,
+  ignoreTitleTemplate: true,
+};
+
+i18n.setLang(Astro.currentLocale);
+---
+
+<MembersLayout metadata={metadata}>
+  <div class="h-fit w-full relative flex flex-col items-center text-center mt-16 mb-[3rem] sm:mb-[10rem]">
+    <Image
+      src={bigImage}
+      alt="picture"
+      class="w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw] object-contain rounded-t-3xl sm:rounded-3xl sm:border-4 border-white sm:shadow-2xl shadow-black/25"
+    />
+    <div
+      class="sm:absolute sm:bottom-0 h-fit w-[90vw] sm:w-[50vw] md:w-[40vw] xl:max-w-fit bg-white/80 flex flex-col items-center gap-2 rounded-b-3xl sm:rounded-3xl text-lg p-8 shadow-xl shadow-black/5 backdrop-blur-xl border border-slate-300 sm:border-white sm:translate-y-1/2 z-[2]"
+    >
+      <h2 class="text-pfColorFirst font-bold text-xl">{`${data.name} ${data.family}`}</h2>
+      <p class="text-pfColorSecond font-medium">{data.title}</p>
+      <p class="text-black font-normal text-wrap mt-2">{data.description}</p>
+      <div class="flex justify-center items-center gap-3 mt-4 *:size-6 *:text-slate-500 dark:*:text-slate-500">
+        {
+          data.social &&
+            Object.entries(data.social).map(([key, link]) =>
+              link ? (
+                <a href={link} target="_blank" class="hover:text-pfColorFirst transition">
+                  <Icon name={socialIcons[key]} class="size-full" />
+                </a>
+              ) : null
+            )
+        }
+      </div>
+    </div>
+  </div>
+  <MemberProse>
+    <Content />
+  </MemberProse>
+</MembersLayout>

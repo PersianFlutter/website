@@ -30,9 +30,12 @@
     "@fontsource-variable/inter": "^5.0.20",
     "astro": "^4.15.1",
     "astro-embed": "^0.7.2",
-    "astro-i18next": "^1.0.0-beta.21",
     "astro-icon": "^1.1.1",
     "gsap": "^3.12.5",
+<<<<<<< HEAD
+=======
+    "i18next": "^24.2.0",
+>>>>>>> main
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "simple-parallax-js": "^6.0.1",
@@ -46,7 +49,7 @@
     "@eslint/js": "^9.9.1",
     "@iconify-json/flat-color-icons": "^1.1.11",
     "@iconify-json/tabler": "^1.1.121",
-    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/eslint__js": "^8.42.3",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.merge": "^4.6.9",

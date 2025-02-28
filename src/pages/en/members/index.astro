@@ -1,0 +1,26 @@
+---
+import MembersLayout from '~/layouts/MembersLayout.astro';
+import '~/assets/styles/custom.css';
+import StaffCard from '~/components/widgets/StaffCard.astro';
+import { getCollection } from 'astro:content';
+import i18n from '~/utils/i18n';
+
+const currentLocale = Astro.currentLocale!;
+const members = await getCollection('member');
+const effectiveMembers = members.filter(({ slug }) => slug.startsWith(currentLocale));
+
+i18n.setLang(currentLocale);
+
+const metadata = {
+  title: 'Persian Flutter | Members',
+  ignoreTitleTemplate: true,
+};
+---
+
+<MembersLayout metadata={metadata}>
+  <div
+    class="w-[90vw] max-w-[450px] md:max-w-[800px] lg:max-w-full xl:w-[80vw] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-8 py-12"
+  >
+    {effectiveMembers.map((member) => <StaffCard bg="bg-slate-100" member={member} />)}
+  </div>
+</MembersLayout>

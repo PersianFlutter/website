@@ -1,0 +1,28 @@
+---
+import type { MetaData } from '~/types';
+import PageLayout from './PageLayout.astro';
+import { Image } from 'astro:assets';
+import MembersHeader from '~/components/widgets/MembersHeader.astro';
+import background from '~/assets/images/membersPage-header.png';
+import i18n from '~/utils/i18n';
+
+export interface Props {
+  metadata?: MetaData;
+}
+i18n.setLang(Astro.currentLocale);
+const translations = i18n.t();
+const { metadata } = Astro.props;
+---
+
+<PageLayout metadata={metadata}>
+  <div class="flex flex-col items-center w-full">
+    <div class="relative w-full flex flex-col items-center justify-center">
+      <Image class="absolute size-full object-cover opacity-15 -z-[1]" src={background} alt="background" />
+      <MembersHeader
+        title={translations.home.staffSection.title}
+        description={translations.home.staffSection.descriptionShort}
+      />
+    </div>
+    <slot />
+  </div>
+</PageLayout>

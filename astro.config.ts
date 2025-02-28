@@ -12,9 +12,9 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
-import astroI18next from 'astro-i18next';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
+import { defaultLocale, supportedLocales } from './src/i18n/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,8 +25,12 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
 
+  i18n: {
+    locales: supportedLocales,
+    defaultLocale: defaultLocale,
+  },
+
   integrations: [
-    astroI18next(),
     tailwind({
       applyBaseStyles: false,
     }),

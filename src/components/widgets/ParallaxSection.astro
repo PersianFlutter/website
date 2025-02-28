@@ -5,13 +5,14 @@ import { Image } from 'astro:assets';
 interface Props {
   imageSrc: ImageMetadata;
   altText: string;
+  class?: string;
 }
 
-const { imageSrc, altText = '' } = Astro.props;
+const { imageSrc, altText = '', class: className } = Astro.props;
 ---
 
 <div class="parallax-container relative">
-  <Image class="parallax-image opacity-15" src={imageSrc} alt={altText} format="webp" />
+  <Image class:list={['parallax-image', 'opacity-15', className]} src={imageSrc} alt={altText} format="webp" />
 </div>
 
 <script>

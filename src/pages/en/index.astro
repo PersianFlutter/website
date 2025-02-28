@@ -1,26 +1,29 @@
 ---
-import { changeLanguage } from 'i18next';
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
 import '~/assets/styles/custom.css';
 import Donation from '~/components/widgets/Donation.astro';
 import StaffSection from '~/components/widgets/StaffSection.astro';
+<<<<<<< HEAD
 import HeroSection from '~/components/widgets/hero/Hero.astro';
 
 changeLanguage('en');
+=======
+import CafeFlutterSection from '~/components/widgets/CafeFlutterSection.astro';
+import HeroSection from '~/components/widgets/hero/Hero.astro';
+import i18n from '~/utils/i18n';
+>>>>>>> main
 
 const metadata = {
-  title: 'Persin Flutter',
+  title: 'Persian Flutter',
   ignoreTitleTemplate: true,
 };
+
+i18n.setLang(Astro.currentLocale);
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
+<<<<<<< HEAD
   <HeroSection />
   <Hero
     actions={[
@@ -399,6 +402,11 @@ const metadata = {
     </Fragment>
   </CallToAction>
    -->
+=======
+  <HeroSection telegramLink="https://t.me/persian_flutter" youtubeLink="https://www.youtube.com/@PersianFlutter" />
+
+  <CafeFlutterSection />
+>>>>>>> main
 
   <StaffSection />
 

@@ -44,12 +44,20 @@ export interface Post {
   readingTime?: number;
 }
 
-export interface StaffMember {
+export interface Speaker {
   name: string;
   title: string;
   image: Image;
-  socials: Array<Social>;
-  description: string;
+}
+
+export interface CafeFlutterItem {
+  number: number;
+  image: Image;
+  speakers: Speaker[];
+  dateTime: Date;
+  youtubeLink?: string;
+  googleMeetLink?: string;
+  googleCalendarLink?: string;
 }
 
 export interface Taxonomy {
