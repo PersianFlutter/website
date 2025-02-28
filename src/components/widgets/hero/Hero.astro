@@ -103,6 +103,19 @@ const portraitImages = [
 // get the members count's of telegram channel
 const channelName = "persian_flutter";
 const membersCount = await telegramChannelMembers(channelName);
+
+function formatMemberCount(num: number): string {
+  if (num < 1000) {
+    return num.toString();
+  } else if (num < 10000) {
+    const truncated = Math.floor((num / 1000) * 10) / 10;
+    return truncated + 'k';
+  } else {
+    return Math.floor(num / 1000) + 'k';
+  }
+}
+
+const formattedMembers = formatMemberCount(membersCount);
 ---
 
 <WidgetWrapper
@@ -170,7 +183,7 @@ const membersCount = await telegramChannelMembers(channelName);
                     class="social-card__id flex flex-col justify-start align-top max-xl:justify-center max-xl:items-center"
                   >
                     <span class="rtl:text-end text-slate-800 text-sm font-medium h-5 ltr:text-start" dir="ltr"
-                      >{membersCount}</span
+                      >{formattedMembers}</span
                     >
                     <span class="text-start text-slate-800 text-sm font-medium h-5"
                       >{translations.socials.telegram.members?.text || 'Default Members'}</span
