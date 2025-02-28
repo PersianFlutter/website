@@ -1,9 +1,4 @@
 ---
-<<<<<<< HEAD
-import { t } from 'i18next';
-
-=======
->>>>>>> main
 import { Image } from 'astro:assets';
 import type { Widget } from '~/types';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
@@ -43,10 +38,7 @@ import portraitImage14 from '~/assets/images/portraits/portrait-img-14.jpg';
 import portraitImage15 from '~/assets/images/portraits/portrait-img-15.jpg';
 import portraitImage16 from '~/assets/images/portraits/portrait-img-16.jpg';
 import portraitImage17 from '~/assets/images/portraits/portrait-img-17.jpg';
-<<<<<<< HEAD
-=======
 import i18n from '~/utils/i18n';
->>>>>>> main
 
 export interface Props extends Widget {
   telegramIconImg?: ImageMetadata;
@@ -56,32 +48,6 @@ export interface Props extends Widget {
   youtubeLink?: string;
 }
 
-<<<<<<< HEAD
-type HeroTranslations = {
-  title: {
-    main: string;
-    sub: string;
-  };
-  description: string[];
-  socials: {
-    telegram: {
-      members: {
-        text: string;
-      };
-      joinButton: string;
-    };
-    youtube: {
-      description: string;
-      button: string;
-    };
-  };
-};
-
-const translations = {
-  title: t('home.hero.title', { returnObjects: true }) as HeroTranslations['title'],
-  description: t('home.hero.description', { returnObjects: true }) as string[],
-  socials: t('home.hero.socials', { returnObjects: true }) as HeroTranslations['socials'],
-=======
 const translations = i18n.t().home.hero;
 
 const socialTranslations = {
@@ -89,7 +55,6 @@ const socialTranslations = {
   telegramJoinButton: translations.socials.telegram.joinButton || 'Join Telegram Channel',
   youtubeDescription: translations.socials.youtube.description || 'Access to latest videos and tutorials',
   youtubeButton: translations.socials.youtube.button || 'Subscribe',
->>>>>>> main
 };
 
 const {
@@ -140,34 +105,6 @@ const portraitImages = [
   bg={bg}
 >
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
-<<<<<<< HEAD
-    <div class="flex flex-row justify-between">
-      <!-- titles - socials -->
-      <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
-        <div class="hero">
-          <div class="hero__content">
-            <!-- main title -->
-            <div
-              class="hero__title inline-flex flex-col bg-gradient-to-b from-pfColorFirst to-pfColorThird text-transparent bg-clip-text text-start text-[#1733b8] text-5xl mb-5"
-            >
-              <h1 class="hero__title-main inline-flex flex-col w-max leading-loose font-bold h-max">
-                {translations.title.main}
-                <span class="block w-full h-2.5 bg-blue-700/20 -mt-10"></span>
-              </h1>
-              <h2 class="hero__title-sub inline-flex flex-col w-max leading-loose font-bold h-max pb-4">
-                {translations.title.sub}
-                <span class="block w-full h-2.5 bg-blue-700/20 -mt-[36px]"></span>
-              </h2>
-            </div>
-
-            <!-- descriptions -->
-            <div class="hero__description">
-              {
-                translations.description.map((text) => (
-                  <p class="hero__description-item text-start text-slate-700 text-xl font-normal">{text}</p>
-                ))
-              }
-=======
     <div class="flex flex-col gap-16 xl:flex-row xl:justify-between lg:gap-0">
       <!-- titles - socials -->
       <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
@@ -196,7 +133,6 @@ const portraitImages = [
                   ))
                 }
               </div>
->>>>>>> main
             </div>
 
             <!-- socials -->
@@ -204,11 +140,7 @@ const portraitImages = [
               <!-- telegram card -->
               <div class="flex flex-col sm:flex-row gap-3">
                 <div
-<<<<<<< HEAD
-                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center"
-=======
                   class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
->>>>>>> main
                 >
                   <div class="social-card__users flex flex-row-reverse justify-end items-center -gap-4">
                     {
@@ -227,25 +159,13 @@ const portraitImages = [
                         ))
                     }
                   </div>
-<<<<<<< HEAD
-                  <div class="social-card__id flex flex-col justify-start align-top">
-=======
                   <div
                     class="social-card__id flex flex-col justify-start align-top max-xl:justify-center max-xl:items-center"
                   >
->>>>>>> main
                     <span class="rtl:text-end text-slate-800 text-sm font-medium h-5 ltr:text-start" dir="ltr"
                       >+1.7K</span
                     >
                     <span class="text-start text-slate-800 text-sm font-medium h-5"
-<<<<<<< HEAD
-                      >{translations.socials.telegram.members.text}</span
-                    >
-                  </div>
-                </div>
-                <!-- link to telegram -->
-                <div class="social-card social-card--telegram relative">
-=======
                       >{translations.socials.telegram.members?.text || 'Default Members'}</span
                     >
                   </div>
@@ -255,7 +175,6 @@ const portraitImages = [
                 <div
                   class="social-card social-card--telegram relative max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
                 >
->>>>>>> main
                   <div id="highlight-telegram" class="absolute end-[-10px] top-[-10px] z-10">
                     <svg width="22" height="24" viewBox="0 0 22 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
@@ -278,15 +197,6 @@ const portraitImages = [
 
                   <div class="social-card__logo relative">
                     <a href={telegramLink} target="_blank">
-<<<<<<< HEAD
-                      <div class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden">
-                        <Image src={telegramSkyImg} class="parallax-image-telegram -mt-14" alt="telegram bg image" />
-                      </div>
-                      <div class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px]">
-                        <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
-                        <h3 class="text-start text-white text-sm font-bold">
-                          {translations.socials.telegram.joinButton}
-=======
                       <div
                         class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl"
                       >
@@ -298,7 +208,6 @@ const portraitImages = [
                         <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
                         <h3 class="text-start text-white text-sm font-bold">
                           {socialTranslations.telegramJoinButton}
->>>>>>> main
                         </h3>
                       </div>
                     </a>
@@ -311,14 +220,10 @@ const portraitImages = [
                 <div class="social-card social-card--telegram relative">
                   <div class="social-card__logo relative">
                     <a href={youtubeLink} target="_blank">
-<<<<<<< HEAD
-                      <div class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden"></div>
-=======
                       <div
                         class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
                       >
                       </div>
->>>>>>> main
                       <div
                         class="w-[155px] h-[70px] rounded-full overflow-hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                       >
@@ -335,11 +240,7 @@ const portraitImages = [
                   </div>
                 </div>
                 <div
-<<<<<<< HEAD
-                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center"
-=======
                   class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
->>>>>>> main
                 >
                   <div class="flex flex-row justify-center align-center gap-4">
                     <span class="text-start text-slate-700 text-sm font-medium justify-center items-center inline-flex"
