@@ -2,9 +2,11 @@
 name: 'Abolfazl'
 family: 'Irani'
 title: 'Programmer and Designer'
-image: '/images/members/amir.jpg'
+image: '/src/assets/images/avatar/sample-avatar-1.png' #'/images/members/amir.jpg'
 description: 'Abolfazl is a mobile programmer who used to be a UI designer and has always tried to publish great apps.'
-topics: ['fa/open-source']
+topics:
+  - collection: 'topic'
+    slug: 'en/open-source'
 social:
   website: 'https://flutterfarsi.com'
   github: 'https://github.com/abolfazlirani/'
