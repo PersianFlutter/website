@@ -32,10 +32,7 @@
     "astro-embed": "^0.7.2",
     "astro-icon": "^1.1.1",
     "gsap": "^3.12.5",
-<<<<<<< HEAD
-=======
     "i18next": "^24.2.0",
->>>>>>> main
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "simple-parallax-js": "^6.0.1",
