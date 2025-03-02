@@ -2,7 +2,7 @@
 name: 'Abolfazl'
 family: 'Irani'
 title: 'Programmer and Designer'
-image: "./../images/abolfazlirani.jpg"
+image: './../images/abolfazlirani.jpg'
 description: 'Abolfazl is a mobile programmer who used to be a UI designer and has always tried to publish great apps.'
 topics:
   - collection: 'topic'

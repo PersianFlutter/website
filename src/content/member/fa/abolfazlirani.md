@@ -2,7 +2,7 @@
 name: 'ابوالفضل'
 family: 'ایرانی'
 title: 'برنامه‌نویس و طراح'
-image: "./../images/abolfazlirani.jpg"
+image: './../images/abolfazlirani.jpg'
 description: 'ابوالفضل یه برنامه‌نویس موبایله که در گذشتش طراح رابط کاربریم بوده و همیشه سعی کرده اپلیکیشن‌های خوبی رو منتشر کنه.'
 topics:
   - collection: 'topic'

@@ -36,7 +36,6 @@ export const socialData = {
 // We need to pass translation function to this function
 
 export function headerData(locale: string, translation: TranslationValues) {
-
   return {
     links: [
       {
