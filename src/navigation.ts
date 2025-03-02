@@ -1,3 +1,4 @@
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { TranslationValues } from './utils/i18n';
 import { getPermalink, getAsset } from './utils/permalinks';
 import type { CallToAction } from '~/types';
@@ -34,7 +35,8 @@ export const socialData = {
 
 // We need to pass translation function to this function
 
-export function headerData(translation: TranslationValues) {
+export function headerData(locale: string, translation: TranslationValues) {
+
   return {
     links: [
       {
@@ -51,7 +53,7 @@ export function headerData(translation: TranslationValues) {
       },
       {
         text: translation.header.menu.team,
-        href: '/members',
+        href: getRelativeLocaleUrl(locale, '/members'),
       },
     ],
     actions: [
