@@ -2,14 +2,9 @@
 import { Image } from 'astro:assets';
 import MembersLayout from '~/layouts/MembersLayout.astro';
 import i18n from '~/utils/i18n';
-import bigImage from '~/assets/images/bigImage.png';
 import { Icon } from 'astro-icon/components';
 import { getCollection } from 'astro:content';
 import MemberProse from '~/components/widgets/MemberProse.astro';
-
-const { member } = Astro.props;
-const data = member.data;
-const { Content } = await member.render();
 
 export async function getStaticPaths() {
   const members = await getCollection('member');
@@ -32,6 +27,10 @@ export async function getStaticPaths() {
     });
 }
 
+const { member } = Astro.props;
+const data = member.data;
+const { Content } = await member.render();
+
 const socialIcons = {
   website: 'tabler:world',
   github: 'tabler:brand-github',
@@ -51,8 +50,9 @@ i18n.setLang(Astro.currentLocale);
 <MembersLayout metadata={metadata}>
   <div class="h-fit w-full relative flex flex-col items-center text-center mt-16 mb-[3rem] sm:mb-[10rem]">
     <Image
-      src={bigImage}
-      alt="picture"
+      src={data.image}
+      alt={data.name + ' ' + data.family}
+      quality='max'
       class="w-[90vw] sm:w-[70vw] md:w-[60vw] lg:w-[50vw] object-contain rounded-t-3xl sm:rounded-3xl sm:border-4 border-white sm:shadow-2xl shadow-black/25"
     />
     <div
