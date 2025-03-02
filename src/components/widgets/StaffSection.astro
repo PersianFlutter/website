@@ -36,6 +36,21 @@ const translations = i18n.t();
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
         {effectiveMembers.map((member) => <StaffCard bg="bg-white" member={member} />)}
       </div>
+
+      <a
+        href="/team"
+        class="inline-flex items-center justify-center px-10 py-3 text-lg font-normal
+        transition-colors duration-200 rounded-full
+        border border-pfColorThird text-pfColorThird
+        hover:bg-pfColorThird hover:text-white
+        dark:border-pfColorFourth dark:text-pfColorFourth
+        dark:hover:bg-pfColorFourth dark:hover:text-white
+        cursor-pointer"
+        rel="noopener"
+        aria-label="View All"
+      >
+        {translations.home.staffSection.viewButton}
+      </a>
     </div>
   </div>
 </WidgetWrapper>
