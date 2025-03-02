@@ -25,14 +25,16 @@ const data = member.data;
 >
   <div class="flex-col justify-start items-center gap-4 flex">
     <div class="self-stretch flex-col justify-start items-center gap-6 flex">
-      <Image
-        class="rounded-full shadow-2xl"
-        src={data.image}
-        alt={data.name + ' ' + data.family}
-        width={150}
-        height={150}
-        format="webp"
-      />
+      <div class="w-[150px] h-[150px] rounded-full overflow-hidden">
+        <Image
+          class="w-full h-full object-cover"
+          src={data.image}
+          alt={data.name + ' ' + data.family}
+          width={400}
+          height={400}
+          format="webp"
+        />
+      </div>
 
       <div class="self-stretch h-[108px] flex-col justify-start items-start gap-2.5 flex">
         <div class="self-stretch h-14 flex-col justify-start items-center gap-1.5 flex">
