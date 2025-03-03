@@ -34,13 +34,28 @@
  * - Icon elements with position-specific classes (e.g., .top-left-icon)
  * - Portrait containers with specific IDs (e.g., portrait-top-left)
  */
+
 import portraitImage1 from '~/assets/images/portraits/portrait-img-01.jpg';
+import portraitImage1_02 from '~/assets/images/portraits/portrait-img-01-02.jpg';
+import portraitImage1_03 from '~/assets/images/portraits/portrait-img-01-03.jpg';
 import portraitImage2 from '~/assets/images/portraits/portrait-img-02.jpg';
+import portraitImage2_02 from '~/assets/images/portraits/portrait-img-02-02.jpg';
+import portraitImage2_03 from '~/assets/images/portraits/portrait-img-02-03.jpg';
 import portraitImage3 from '~/assets/images/portraits/portrait-img-03.jpg';
+import portraitImage3_02 from '~/assets/images/portraits/portrait-img-03-02.jpg';
+import portraitImage3_03 from '~/assets/images/portraits/portrait-img-03-03.jpg';
 import portraitImage4 from '~/assets/images/portraits/portrait-img-04.jpg';
+import portraitImage4_02 from '~/assets/images/portraits/portrait-img-04-02.jpg';
+import portraitImage4_03 from '~/assets/images/portraits/portrait-img-04-03.jpg';
 import portraitImage5 from '~/assets/images/portraits/portrait-img-05.jpg';
+import portraitImage5_02 from '~/assets/images/portraits/portrait-img-05-02.jpg';
+import portraitImage5_03 from '~/assets/images/portraits/portrait-img-05-03.jpg';
 import portraitImage6 from '~/assets/images/portraits/portrait-img-06.jpg';
+import portraitImage6_02 from '~/assets/images/portraits/portrait-img-06-02.jpg';
+import portraitImage6_03 from '~/assets/images/portraits/portrait-img-06-03.jpg';
 import portraitImage7 from '~/assets/images/portraits/portrait-img-07.jpg';
+import portraitImage7_02 from '~/assets/images/portraits/portrait-img-07-02.jpg';
+import portraitImage7_03 from '~/assets/images/portraits/portrait-img-07-03.jpg';
 import portraitImage8 from '~/assets/images/portraits/portrait-img-08.jpg';
 import portraitImage9 from '~/assets/images/portraits/portrait-img-09.jpg';
 import portraitImage10 from '~/assets/images/portraits/portrait-img-10.jpg';
@@ -54,12 +69,26 @@ import portraitImage17 from '~/assets/images/portraits/portrait-img-17.jpg';
 
 const portraitPaths = {
   portrait1: portraitImage1.src,
+  portrait1_02: portraitImage1_02.src,
+  portrait1_03: portraitImage1_03.src,
   portrait2: portraitImage2.src,
+  portrait2_02: portraitImage2_02.src,
+  portrait2_03: portraitImage2_03.src,
   portrait3: portraitImage3.src,
+  portrait3_02: portraitImage3_02.src,
+  portrait3_03: portraitImage3_03.src,
   portrait4: portraitImage4.src,
+  portrait4_02: portraitImage4_02.src,
+  portrait4_03: portraitImage4_03.src,
   portrait5: portraitImage5.src,
+  portrait5_02: portraitImage5_02.src,
+  portrait5_03: portraitImage5_03.src,
   portrait6: portraitImage6.src,
+  portrait6_02: portraitImage6_02.src,
+  portrait6_03: portraitImage6_03.src,
   portrait7: portraitImage7.src,
+  portrait7_02: portraitImage7_02.src,
+  portrait7_03: portraitImage7_03.src,
   portrait8: portraitImage8.src,
   portrait9: portraitImage9.src,
   portrait10: portraitImage10.src,
@@ -82,52 +111,56 @@ const portraitPaths = {
   // Define portrait images mapping
   const portraitImagePaths = {
     0: portraitPaths.portrait1,
-    1: portraitPaths.portrait2,
-    2: portraitPaths.portrait3,
-    3: portraitPaths.portrait4,
-    4: portraitPaths.portrait5,
-    5: portraitPaths.portrait6,
-    6: portraitPaths.portrait7,
-    7: portraitPaths.portrait8,
-    8: portraitPaths.portrait9,
-    9: portraitPaths.portrait10,
-    10: portraitPaths.portrait11,
-    11: portraitPaths.portrait12,
-    12: portraitPaths.portrait13,
-    13: portraitPaths.portrait14,
-    14: portraitPaths.portrait15,
-    15: portraitPaths.portrait16,
-    16: portraitPaths.portrait17,
+    1: portraitPaths.portrait1_02,
+    2: portraitPaths.portrait1_03,
+    3: portraitPaths.portrait2,
+    4: portraitPaths.portrait2_02,
+    5: portraitPaths.portrait2_03,
+    6: portraitPaths.portrait3,
+    7: portraitPaths.portrait3_02,
+    8: portraitPaths.portrait3_03,
+    9: portraitPaths.portrait4,
+    10: portraitPaths.portrait4_02,
+    11: portraitPaths.portrait4_03,
+    12: portraitPaths.portrait5,
+    13: portraitPaths.portrait5_02,
+    14: portraitPaths.portrait5_03,
+    15: portraitPaths.portrait6,
+    16: portraitPaths.portrait6_02,
+    17: portraitPaths.portrait6_03,
+    18: portraitPaths.portrait7,
+    19: portraitPaths.portrait7_02,
+    20: portraitPaths.portrait7_03,
   };
 
   const imageMappings = {
     topLeft: {
       containerId: 'portrait-top-left',
-      imageIndices: [0, 4, 8, 12, 16],
+      imageIndices: [3, 4, 5],
     },
     topRight: {
       containerId: 'portrait-top-right',
-      imageIndices: [1, 5, 9, 13, 2],
+      imageIndices: [0, 1, 2],
     },
     middleLeft: {
       containerId: 'portrait-middle-left',
-      imageIndices: [2, 6, 10, 14, 15],
+      imageIndices: [12, 13, 14],
     },
     middleCenter: {
       containerId: 'portrait-middle-center',
-      imageIndices: [3, 7, 11, 15, 16],
+      imageIndices: [9, 10, 11],
     },
     middleRight: {
       containerId: 'portrait-middle-right',
-      imageIndices: [4, 8, 12, 16, 0],
+      imageIndices: [6, 7, 8],
     },
     bottomLeft: {
       containerId: 'portrait-bottom-left',
-      imageIndices: [5, 9, 13, 3, 0],
+      imageIndices: [18, 19, 20],
     },
     bottomRight: {
       containerId: 'portrait-bottom-right',
-      imageIndices: [6, 10, 14, 1, 2],
+      imageIndices: [15, 16, 17],
     },
   };
 
@@ -513,8 +546,11 @@ const portraitPaths = {
         }
       );
     }
+
+    
   }
 
+  
   function createAnimation() {
     const curves = [
       {
@@ -541,7 +577,7 @@ const portraitPaths = {
 
     curves.forEach((curve, index) => {
       if (curve.icon && curve.path) {
-        new CurvedAnimation(curve.icon, curve.path, curve.type, { delay: index * 0.3 });
+        new CurvedAnimation(curve.icon, curve.path, curve.type, { delay: index * 0.01 });
       }
     });
   }

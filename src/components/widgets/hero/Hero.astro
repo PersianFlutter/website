@@ -22,12 +22,26 @@ import youtubeIcon from '~/assets/images/youtube-icon.jpg';
 
 //portrait images
 import portraitImage1 from '~/assets/images/portraits/portrait-img-01.jpg';
+import portraitImage1_02 from '~/assets/images/portraits/portrait-img-01-02.jpg';
+import portraitImage1_03 from '~/assets/images/portraits/portrait-img-01-03.jpg';
 import portraitImage2 from '~/assets/images/portraits/portrait-img-02.jpg';
+import portraitImage2_02 from '~/assets/images/portraits/portrait-img-02-02.jpg';
+import portraitImage2_03 from '~/assets/images/portraits/portrait-img-02-03.jpg';
 import portraitImage3 from '~/assets/images/portraits/portrait-img-03.jpg';
+import portraitImage3_02 from '~/assets/images/portraits/portrait-img-03-02.jpg';
+import portraitImage3_03 from '~/assets/images/portraits/portrait-img-03-03.jpg';
 import portraitImage4 from '~/assets/images/portraits/portrait-img-04.jpg';
+import portraitImage4_02 from '~/assets/images/portraits/portrait-img-04-02.jpg';
+import portraitImage4_03 from '~/assets/images/portraits/portrait-img-04-03.jpg';
 import portraitImage5 from '~/assets/images/portraits/portrait-img-05.jpg';
+import portraitImage5_02 from '~/assets/images/portraits/portrait-img-05-02.jpg';
+import portraitImage5_03 from '~/assets/images/portraits/portrait-img-05-03.jpg';
 import portraitImage6 from '~/assets/images/portraits/portrait-img-06.jpg';
+import portraitImage6_02 from '~/assets/images/portraits/portrait-img-06-02.jpg';
+import portraitImage6_03 from '~/assets/images/portraits/portrait-img-06-03.jpg';
 import portraitImage7 from '~/assets/images/portraits/portrait-img-07.jpg';
+import portraitImage7_02 from '~/assets/images/portraits/portrait-img-07-02.jpg';
+import portraitImage7_03 from '~/assets/images/portraits/portrait-img-07-03.jpg';
 import portraitImage8 from '~/assets/images/portraits/portrait-img-08.jpg';
 import portraitImage9 from '~/assets/images/portraits/portrait-img-09.jpg';
 import portraitImage10 from '~/assets/images/portraits/portrait-img-10.jpg';
@@ -38,6 +52,7 @@ import portraitImage14 from '~/assets/images/portraits/portrait-img-14.jpg';
 import portraitImage15 from '~/assets/images/portraits/portrait-img-15.jpg';
 import portraitImage16 from '~/assets/images/portraits/portrait-img-16.jpg';
 import portraitImage17 from '~/assets/images/portraits/portrait-img-17.jpg';
+import portraitImageDefault from '~/assets/images/portraits/portrait-image-default.jpg';
 import i18n from '~/utils/i18n';
 
 export interface Props extends Widget {
@@ -78,13 +93,28 @@ const telegramMembers = [
 ];
 
 const portraitImages = [
+{ image: { src: portraitImageDefault, alt: 'portraitImageDefault' } },
   { image: { src: portraitImage1, alt: 'portraitImage1' } },
+  { image: { src: portraitImage1_02, alt: 'portraitImage1' } },
+  { image: { src: portraitImage1_03, alt: 'portraitImage1' } },
   { image: { src: portraitImage2, alt: 'portraitImage2' } },
+  { image: { src: portraitImage2_02, alt: 'portraitImage2' } },
+  { image: { src: portraitImage2_03, alt: 'portraitImage2' } },
   { image: { src: portraitImage3, alt: 'portraitImage3' } },
+  { image: { src: portraitImage3_02, alt: 'portraitImage3' } },
+  { image: { src: portraitImage3_03, alt: 'portraitImage3' } },
   { image: { src: portraitImage4, alt: 'portraitImage4' } },
+  { image: { src: portraitImage4_02, alt: 'portraitImage4' } },
+  { image: { src: portraitImage4_03, alt: 'portraitImage4' } },
   { image: { src: portraitImage5, alt: 'portraitImage5' } },
+  { image: { src: portraitImage5_02, alt: 'portraitImage5' } },
+  { image: { src: portraitImage5_03, alt: 'portraitImage5' } },
   { image: { src: portraitImage6, alt: 'portraitImage6' } },
+  { image: { src: portraitImage6_02, alt: 'portraitImage6' } },
+  { image: { src: portraitImage6_03, alt: 'portraitImage6' } },
   { image: { src: portraitImage7, alt: 'portraitImage7' } },
+  { image: { src: portraitImage7_02, alt: 'portraitImage7' } },
+  { image: { src: portraitImage7_03, alt: 'portraitImage7' } },
   { image: { src: portraitImage8, alt: 'portraitImage8' } },
   { image: { src: portraitImage9, alt: 'portraitImage9' } },
   { image: { src: portraitImage10, alt: 'portraitImage10' } },
@@ -290,8 +320,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-top-left" class="w-[200px] h-[150px] rounded-[44px] bg-yellow-300 overflow-hidden">
                 <Image
-                  src={portraitImages[0].image.src}
-                  alt={portraitImages[0].image.alt}
+                  src={portraitImages[5].image.src}
+                  alt={portraitImages[5].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
@@ -318,8 +348,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-middle-left" class="w-[200px] h-[150px] rounded-[44px] bg-gray-100 overflow-hidden">
                 <Image
-                  src={portraitImages[2].image.src}
-                  alt={portraitImages[2].image.alt}
+                  src={portraitImages[15].image.src}
+                  alt={portraitImages[15].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
@@ -330,8 +360,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-middle-center" class="w-[200px] h-[150px] rounded-[44px] bg-blue-500 overflow-hidden">
                 <Image
-                  src={portraitImages[3].image.src}
-                  alt={portraitImages[3].image.alt}
+                  src={portraitImages[11].image.src}
+                  alt={portraitImages[11].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
@@ -342,8 +372,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-middle-right" class="w-[200px] h-[150px] rounded-[44px] bg-red-300 overflow-hidden">
                 <Image
-                  src={portraitImages[4].image.src}
-                  alt={portraitImages[4].image.alt}
+                  src={portraitImages[9].image.src}
+                  alt={portraitImages[9].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
@@ -357,8 +387,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-bottom-left" class="w-[200px] h-[150px] rounded-[44px] bg-cyan-200 overflow-hidden">
                 <Image
-                  src={portraitImages[5].image.src}
-                  alt={portraitImages[5].image.alt}
+                  src={portraitImages[20].image.src}
+                  alt={portraitImages[20].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
@@ -369,8 +399,8 @@ const portraitImages = [
             <div class="relative">
               <div id="portrait-bottom-right" class="w-[200px] h-[150px] rounded-[44px] bg-green-400 overflow-hidden">
                 <Image
-                  src={portraitImages[6].image.src}
-                  alt={portraitImages[6].image.alt}
+                  src={portraitImages[18].image.src}
+                  alt={portraitImages[0].image.alt}
                   class="w-full h-full object-cover"
                   width={200}
                   height={150}
