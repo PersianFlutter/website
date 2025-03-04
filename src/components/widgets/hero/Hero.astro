@@ -19,7 +19,7 @@ import telegramIcon from '~/assets/images/telegram-icon.png';
 import telegramSky from '~/assets/images/telegram-sky.jpg';
 
 // telegram channels members
-import { telegramChannelMembers } from '~/utils/telegram';
+import { telegramChannelMembers, formatMemberCount } from '~/utils/telegram';
 
 import youtubeIcon from '~/assets/images/youtube-icon.jpg';
 
@@ -103,17 +103,6 @@ const portraitImages = [
 // get the members count's of telegram channel
 const channelName = "persian_flutter";
 const membersCount = await telegramChannelMembers(channelName);
-
-function formatMemberCount(num: number): string {
-  if (num < 1000) {
-    return num.toString();
-  } else if (num < 10000) {
-    const truncated = Math.floor((num / 1000) * 10) / 10;
-    return truncated + 'k';
-  } else {
-    return Math.floor(num / 1000) + 'k';
-  }
-}
 
 const formattedMembers = formatMemberCount(membersCount);
 ---
