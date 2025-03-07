@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 
 interface Props {
   topic: CollectionEntry<'topic'>;
@@ -12,23 +13,32 @@ const { topic, class: className = '' } = Astro.props;
 function getTopicUrl(topicSlug: string) {
   const [lang, ...slugParts] = topicSlug.split('/');
   const baseSlug = slugParts.join('/');
-  return getRelativeLocaleUrl(lang, `topic/${baseSlug}`);
+  return getRelativeLocaleUrl(lang, `topics/${baseSlug}`);
 }
 
 const topicUrl = getTopicUrl(topic.slug);
+const data = topic.data;
 ---
 
 <article
   class:list={[
-    'mb-6 transition hover:shadow-lg p-6 rounded-lg border border-gray-200 dark:border-gray-700 cursor-pointer',
+    'flex flex-col w-full gap-5 transition hover:shadow-lg shadow-black dark:shadow-white/10 hover:bg-pfColorFirst/5 rounded-3xl p-6 cursor-pointer group',
     className,
   ]}
   onclick={`window.location.href='${topicUrl}'`}
 >
-  <h3 class="mb-4 text-xl font-bold leading-tight sm:text-2xl">
-    <a href={topicUrl} class="hover:text-primary dark:hover:text-blue-400 block">
-      {topic.data.title}
-    </a>
+  <Image
+    class="w-full h-full object-cover border-4 border-white rounded-3xl overflow-hidden shadow-lg"
+    src={data.image}
+    alt={data.title}
+    width={400}
+    height={400}
+    format="webp"
+  />
+  <h3 class="flex items-center gap-3 my-1 text-pfColorSecond text-xl font-bold leading-tight">
+    <div class="size-2 bg-pfColorSecond dark:bg-slate-400 rounded-full"></div>
+    <a href={topicUrl} class="group-hover:text-primary dark:group-hover:text-blue-400 block">{topic.data.title}</a>
+    <div class="w-[80px] h-1 bg-slate-200 rounded-full dark:bg-slate-500"></div>
   </h3>
-  <p class="text-gray-700 dark:text-gray-300 text-lg mb-4">{topic.data.description}</p>
+  <p class="line-clamp-4 text-gray-700 dark:text-gray-300 text-lg">{topic.data.description}</p>
 </article>

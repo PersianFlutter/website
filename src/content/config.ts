@@ -64,11 +64,13 @@ const postCollection = defineCollection({
 });
 const topicCollection = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string().max(500, { message: 'Description must be 500 characters or less' }),
-    metadata: metadataDefinition(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string().max(500, { message: 'Description must be 500 characters or less' }),
+      image: image(),
+      metadata: metadataDefinition(),
+    }),
 });
 
 const memberCollection = defineCollection({
