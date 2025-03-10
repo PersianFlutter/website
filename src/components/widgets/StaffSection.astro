@@ -6,11 +6,26 @@ import SectionTitle from './SectionTitle.astro';
 import StaffCard from './StaffCard.astro';
 import i18n from '~/utils/i18n';
 import { getCollection } from 'astro:content';
+import { twMerge } from 'tailwind-merge';
 
-const { id, isDark = false, classes = {} } = Astro.props;
+interface Props {
+  id?: string;
+  isDark?: boolean;
+  classes?: { container?: string };
+  inTopics?: boolean;
+}
+const { id, isDark = false, classes = {}, inTopics = false } = Astro.props as Props;
+const { slug } = Astro.params;
 const currentLocale = Astro.currentLocale!;
 const members = await getCollection('member');
-const effectiveMembers = members.filter(({ slug }) => slug.startsWith(currentLocale));
+
+const defaultMembers = members.filter(({ slug }) => slug.startsWith(currentLocale));
+
+const membersInTopics = members
+  .filter(({ slug }) => slug.startsWith(currentLocale))
+  .filter((member) => member.data.topics.some((topic) => topic.slug === `${currentLocale}/${slug}`));
+
+const effectiveMembers = inTopics ? membersInTopics : defaultMembers;
 
 i18n.setLang(currentLocale);
 const translations = i18n.t();
@@ -25,32 +40,41 @@ const translations = i18n.t();
     {background && <ParallaxSection imageSrc={background} altText="Alt" />}
   </div>
 
-  <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
+  <div
+    class={twMerge(
+      'mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16',
+      inTopics && 'px-12 lg:px-32 max-w-full w-full'
+    )}
+  >
     <div class="flex flex-col justify-center items-center gap-8 md:gap-12 lg:gap-12">
       <!-- box content -->
       <SectionTitle
-        title={translations.home.staffSection.title}
-        description={translations.home.staffSection.description}
+        title={inTopics ? translations.home.topicsSection.membersTitle : translations.home.membersSection.title}
+        description={inTopics ? '' : translations.home.membersSection.description}
       />
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center gap-8">
         {effectiveMembers.map((member) => <StaffCard bg="bg-white" member={member} />)}
       </div>
 
-      <a
-        href="/team"
-        class="inline-flex items-center justify-center px-10 py-3 text-lg font-normal
+      {
+        !inTopics && (
+          <a
+            href="/members"
+            class="inline-flex items-center justify-center px-10 py-3 text-lg font-normal
         transition-colors duration-200 rounded-full
         border border-pfColorThird text-pfColorThird
         hover:bg-pfColorThird hover:text-white
         dark:border-pfColorFourth dark:text-pfColorFourth
         dark:hover:bg-pfColorFourth dark:hover:text-white
         cursor-pointer"
-        rel="noopener"
-        aria-label="View All"
-      >
-        {translations.home.staffSection.viewButton}
-      </a>
+            rel="noopener"
+            aria-label="View All"
+          >
+            {translations.home.membersSection.viewButton}
+          </a>
+        )
+      }
     </div>
   </div>
 </WidgetWrapper>
