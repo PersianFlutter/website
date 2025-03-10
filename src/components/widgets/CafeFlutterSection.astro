@@ -5,6 +5,7 @@ import { cafeFlutterEvents } from '~/data/mockCafeFlutter';
 import PastCafeFlutterCard from './PastCafeFlutterCard.astro';
 import CafeFlutterCountdown from '~/components/widgets/cafeFlutterCountdown/CafeFlutterCountdown.astro';
 import SectionTitle from '../widgets/SectionTitleTwo.astro';
+import { getCollection } from 'astro:content';
 
 interface Props extends Widget {
   upcomingEvent?: CafeFlutterItem;
@@ -12,6 +13,10 @@ interface Props extends Widget {
 }
 
 const { id, isDark = false, classes = {} } = Astro.props;
+
+const cafeFlutterCollection = await getCollection('cafeFlutter');
+
+
 
 // Filter past events
 const now = new Date();

@@ -62,6 +62,7 @@ const postCollection = defineCollection({
     metadata: metadataDefinition(),
   }),
 });
+
 const topicCollection = defineCollection({
   type: 'content',
   schema: ({ image }) =>
@@ -73,34 +74,75 @@ const topicCollection = defineCollection({
     }),
 });
 
+// Generic user collection. We can extend this schema for different types of users.
+const userCollection = ({ image }) =>
+  z.object({
+    name: z.string().min(1, { message: 'Name is required' }),
+    family: z.string().min(1, { message: 'Family name is required' }),
+    image: image(),
+    social: z
+      .object({
+        twitter: z.string().url().optional(),
+        linkedin: z.string().url().optional(),
+        github: z.string().url().optional(),
+        telegram: z.string().url().optional(),
+        website: z.string().url().optional(),
+      })
+      .optional(),
+    metadata: metadataDefinition(),
+  });
+
+// Speaker collection extends the user collection with additional fields.
+const speakerCollection = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    userCollection({ image }).extend({
+      otherLinks: z.array(z.string().url()).optional(),
+    }),
+});
+
+// Member collection extends the user collection with additional fields.
 const memberCollection = defineCollection({
   type: 'content',
   schema: ({ image }) =>
-    z.object({
-      name: z.string().min(1, { message: 'Name is required' }),
-      family: z.string().min(1, { message: 'Family name is required' }),
+    userCollection({ image }).extend({
       title: z.string().min(1, { message: 'Title is required' }),
-      image: image(),
       description: z
         .string()
         .min(10, { message: 'Description must be at least 10 characters' })
         .max(200, { message: 'Description must not exceed 200 characters' }),
       topics: z.array(reference('topic')).min(1, { message: 'Member must have at least one topic' }),
-      social: z
-        .object({
-          twitter: z.string().url().optional(),
-          linkedin: z.string().url().optional(),
-          github: z.string().url().optional(),
-          telegram: z.string().url().optional(),
-          website: z.string().url().optional(),
-        })
-        .optional(),
+    }),
+});
+
+const cafeFlutterCollection = defineCollection({
+  type: 'content',
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().min(1, { message: 'Title is required' }),
+      image: image(),
+      dateTime: z.date(),
+      googleMeetLink: z.string().url().optional(),
+      calendarLink: z.string().url().optional(),
+      youtubeLink: z.string().url(),
+      talks: z
+        .array(
+          z.object({
+            // Reference either a member or a guest as speaker
+            speaker: z.union([reference('member'), reference('speaker')]),
+            talkTitle: z.string().min(1, { message: 'Talk title is required' }),
+            description: z.string().min(10, { message: 'Description must be at least 10 characters' }),
+          })
+        )
+        .min(1, { message: 'At least one talk is required' }),
       metadata: metadataDefinition(),
     }),
 });
 
 export const collections = {
-  post: postCollection,
-  topic: topicCollection,
-  member: memberCollection,
+  'post': postCollection,
+  'topic': topicCollection,
+  'member': memberCollection,
+  'speaker': speakerCollection,
+  'cafeFlutter': cafeFlutterCollection,
 };
