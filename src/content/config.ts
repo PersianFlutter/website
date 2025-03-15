@@ -140,9 +140,9 @@ const cafeFlutterCollection = defineCollection({
 });
 
 export const collections = {
-  'post': postCollection,
-  'topic': topicCollection,
-  'member': memberCollection,
-  'speaker': speakerCollection,
-  'cafeFlutter': cafeFlutterCollection,
+  post: postCollection,
+  topic: topicCollection,
+  member: memberCollection,
+  speaker: speakerCollection,
+  cafeFlutter: cafeFlutterCollection,
 };
