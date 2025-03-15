@@ -144,7 +144,7 @@ const formattedMembers = formatMemberCount(membersCount);
   bg={bg}
 >
   <div class="mx-auto max-w-[1320px] px-4 py-8 md:py-12 lg:py-16">
-    <div class="flex flex-col gap-16 xl:flex-row xl:justify-between lg:gap-0">
+    <div class="flex flex-col gap-16 xl:flex-row xl:justify-between max-xl:items-center max-xl:gap-8">
       <!-- titles - socials -->
       <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
         <div class="hero max-lg:w-full">
@@ -179,7 +179,7 @@ const formattedMembers = formatMemberCount(membersCount);
               <!-- telegram card -->
               <div class="flex flex-col sm:flex-row gap-3">
                 <div
-                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center max-lg:w-full"
+                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center max-xl:w-full"
                 >
                   <div class="social-card__users flex flex-row-reverse justify-end items-center -gap-4">
                     {
@@ -242,10 +242,10 @@ const formattedMembers = formatMemberCount(membersCount);
                         <Image src={telegramSkyImg} class="parallax-image-telegram -mt-14" alt="telegram bg image" />
                       </div>
                       <div
-                        class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px] max-xl:flex-col max-xl:items-center max-lg:top-1/2 max-lg:end-1/2 max-lg:-translate-y-1/2 max-lg:-translate-x-1/2"
+                        class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px] max-xl:flex-col max-xl:items-center max-xl:top-1/2 max-xl:end-1/2 max-xl:-translate-y-1/2 max-xl:-translate-x-1/2"
                       >
                         <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
-                        <h3 class="text-start text-white text-sm font-bold">
+                        <h3 class="text-start max-xl:text-center text-white text-sm font-bold">
                           {socialTranslations.telegramJoinButton}
                         </h3>
                       </div>
