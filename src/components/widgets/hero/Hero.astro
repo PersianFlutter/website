@@ -138,8 +138,8 @@ const portraitImages = [
     <div class="flex flex-col gap-16 xl:flex-row xl:justify-between lg:gap-0">
       <!-- titles - socials -->
       <div class="flex flex-col lg:flex-row justify-between items-start gap-8 md:gap-12 lg:gap-20">
-        <div class="hero">
-          <div class="hero__content max-xl:flex">
+        <div class="hero max-lg:w-full">
+          <div class="hero__content max-xl:flex max-lg:flex-col">
             <div>
               <!-- main title -->
               <div
@@ -170,7 +170,7 @@ const portraitImages = [
               <!-- telegram card -->
               <div class="flex flex-col sm:flex-row gap-3">
                 <div
-                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
+                  class="social-card social-card--telegram inline-flex flex-row gap-4 h-[70px] pe-6 ps-2.5 max-xl:ps-6 py-2.5 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center max-lg:w-full"
                 >
                   <div class="social-card__users flex flex-row-reverse justify-end items-center -gap-4">
                     {
@@ -228,12 +228,12 @@ const portraitImages = [
                   <div class="social-card__logo relative">
                     <a href={telegramLink} target="_blank">
                       <div
-                        class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl"
+                        class="parallax-container relative w-[223px] h-[70px] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl max-sm:w-full"
                       >
                         <Image src={telegramSkyImg} class="parallax-image-telegram -mt-14" alt="telegram bg image" />
                       </div>
                       <div
-                        class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px] max-xl:flex-col max-xl:items-center"
+                        class="flex flex-row items-center gap-4 absolute start-[10px] top-[10px] max-xl:flex-col max-xl:items-center max-lg:top-1/2 max-lg:end-1/2 max-lg:-translate-y-1/2 max-lg:-translate-x-1/2"
                       >
                         <Image src={telegramIconImg} alt="telegram icon" width={50} height={50} format="webp" />
                         <h3 class="text-start text-white text-sm font-bold">
@@ -251,7 +251,7 @@ const portraitImages = [
                   <div class="social-card__logo relative">
                     <a href={youtubeLink} target="_blank">
                       <div
-                        class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
+                        class="w-[155px] h-[70px] bg-[#EE1C1B] rounded-full overflow-hidden max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center max-sm:w-full"
                       >
                       </div>
                       <div
@@ -270,7 +270,7 @@ const portraitImages = [
                   </div>
                 </div>
                 <div
-                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center"
+                  class="inline-flex flex-row gap-4 h-[70px] p-4 bg-[#eaeff4] rounded-full justify-center items-center max-xl:h-[150px] max-xl:rounded-3xl max-xl:flex-col max-xl:items-center max-lg:w-full"
                 >
                   <div class="flex flex-row justify-center align-center gap-4">
                     <span class="text-start text-slate-700 text-sm font-medium justify-center items-center inline-flex"
@@ -307,18 +307,19 @@ const portraitImages = [
                 </svg>
               </div>
             </div>
+
           </div>
         </div>
       </div>
 
       <!-- Fancy Images Flex Layout -->
-      <div class="fancy-images w-full max-w-[632px] relative">
+      <div class="fancy-images w-full max-w-[632px] relative max-lg:max-w-full">
         <!-- Container for all rows  -->
         <div class="flex flex-col gap-4">
           <!-- Top Row  -->
           <div class="flex justify-center gap-4">
             <div class="relative">
-              <div id="portrait-top-left" class="w-[200px] h-[150px] rounded-[44px] bg-yellow-300 overflow-hidden">
+              <div id="portrait-top-left" class="w-[200px] h-[150px] rounded-[44px] bg-yellow-300 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[5].image.src}
                   alt={portraitImages[5].image.alt}
@@ -330,7 +331,7 @@ const portraitImages = [
             </div>
 
             <div class="relative">
-              <div id="portrait-top-right" class="w-[200px] h-[150px] rounded-[44px] bg-orange-200 overflow-hidden">
+              <div id="portrait-top-right" class="w-[200px] h-[150px] rounded-[44px] bg-orange-200 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[1].image.src}
                   alt={portraitImages[1].image.alt}
@@ -346,7 +347,7 @@ const portraitImages = [
           <!-- Middle Row  -->
           <div class="flex justify-center gap-4">
             <div class="relative">
-              <div id="portrait-middle-left" class="w-[200px] h-[150px] rounded-[44px] bg-gray-100 overflow-hidden">
+              <div id="portrait-middle-left" class="w-[200px] h-[150px] rounded-[44px] bg-gray-100 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[15].image.src}
                   alt={portraitImages[15].image.alt}
@@ -358,7 +359,7 @@ const portraitImages = [
             </div>
 
             <div class="relative">
-              <div id="portrait-middle-center" class="w-[200px] h-[150px] rounded-[44px] bg-blue-500 overflow-hidden">
+              <div id="portrait-middle-center" class="w-[200px] h-[150px] rounded-[44px] bg-blue-500 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[11].image.src}
                   alt={portraitImages[11].image.alt}
@@ -370,7 +371,7 @@ const portraitImages = [
             </div>
 
             <div class="relative">
-              <div id="portrait-middle-right" class="w-[200px] h-[150px] rounded-[44px] bg-red-300 overflow-hidden">
+              <div id="portrait-middle-right" class="w-[200px] h-[150px] rounded-[44px] bg-red-300 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[9].image.src}
                   alt={portraitImages[9].image.alt}
@@ -385,7 +386,7 @@ const portraitImages = [
           <!-- Bottom Row  -->
           <div class="flex justify-center gap-4">
             <div class="relative">
-              <div id="portrait-bottom-left" class="w-[200px] h-[150px] rounded-[44px] bg-cyan-200 overflow-hidden">
+              <div id="portrait-bottom-left" class="w-[200px] h-[150px] rounded-[44px] bg-cyan-200 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[20].image.src}
                   alt={portraitImages[20].image.alt}
@@ -397,7 +398,7 @@ const portraitImages = [
             </div>
 
             <div class="relative">
-              <div id="portrait-bottom-right" class="w-[200px] h-[150px] rounded-[44px] bg-green-400 overflow-hidden">
+              <div id="portrait-bottom-right" class="w-[200px] h-[150px] rounded-[44px] bg-green-400 overflow-hidden max-sm:w-full">
                 <Image
                   src={portraitImages[18].image.src}
                   alt={portraitImages[0].image.alt}
@@ -411,7 +412,7 @@ const portraitImages = [
         </div>
 
         <!-- Curved Lines with Icons -->
-        <div class="absolute inset-0">
+        <div class="absolute inset-0 max-lg:hidden">
           {/* Top Left Curve */}
           <div class="absolute left-[53px] top-[76px]">
             <svg
@@ -613,7 +614,7 @@ const portraitImages = [
         </div>
 
         <!-- Middle Curved Lines with Icons -->
-        <div class="absolute inset-0">
+        <div class="absolute inset-0 max-lg:hidden">
           {/* Left Curve */}
           <div class="absolute left-[207px] top-[92px]">
             <svg width="112" height="299" viewBox="0 0 112 299" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -716,6 +717,7 @@ const portraitImages = [
               </svg>
             </div>
           </div>
+
         </div>
       </div>
     </div>
