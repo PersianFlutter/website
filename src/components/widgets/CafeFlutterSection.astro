@@ -1,10 +1,10 @@
 ---
 import type { CafeFlutterItem, Widget } from '~/types';
 import WidgetWrapper from '../ui/WidgetWrapper.astro';
-import { cafeFlutterEvents } from '~/data/mockCafeFlutter';
 import PastCafeFlutterCard from './PastCafeFlutterCard.astro';
 import CafeFlutterCountdown from '~/components/widgets/cafeFlutterCountdown/CafeFlutterCountdown.astro';
 import SectionTitle from '../widgets/SectionTitleTwo.astro';
+import { getCollection, getEntry } from 'astro:content';
 
 interface Props extends Widget {
   upcomingEvent?: CafeFlutterItem;
@@ -13,9 +13,88 @@ interface Props extends Widget {
 
 const { id, isDark = false, classes = {} } = Astro.props;
 
+const rawCollection = await getCollection('cafeFlutter');
+const cafeFlutterCollection = rawCollection.filter(({ slug }) => slug.startsWith(Astro.currentLocale!));
+
+// Convert content collection to CafeFlutterItem model
+const contentCollectionEvents: CafeFlutterItem[] = await Promise.all(
+  cafeFlutterCollection.map(async (item) => {
+    // Extract event number from ID or use a fallback
+    const numberMatch = item.id.match(/cafe-flutter-(\d+)/i);
+    const eventNumber = numberMatch ? parseInt(numberMatch[1], 10) : 0;
+
+    // Create speaker objects from talks
+    const speakers = await Promise.all(
+      item.data.talks.map(async (talk) => {
+        // Handle speaker reference safely
+        let speakerName = '';
+        let speakerImage = 'https://via.placeholder.com/50x50'; // Default placeholder image
+
+        if (talk.speaker) {
+          const speakerData = await getEntry(talk.speaker);
+          if (speakerData) {
+            // Use the name and family from the referenced collection
+            speakerName = `${speakerData.data.name} ${speakerData.data.family}`;
+
+            // Use the speaker's image if available
+            if (
+              speakerData.data.image &&
+              typeof speakerData.data.image === 'object' &&
+              'src' in speakerData.data.image
+            ) {
+              speakerImage = speakerData.data.image.src;
+            }
+          }
+        } else if (typeof talk.speaker === 'string') {
+          // If the speaker is a string, use it directly
+          speakerName = talk.speaker;
+        } else {
+          // Default fallback
+          speakerName = 'Speaker';
+        }
+
+        return {
+          name: speakerName,
+          title: talk.talkTitle,
+          image: {
+            src: speakerImage,
+            alt: speakerName,
+          },
+        };
+      })
+    );
+
+    // Create image object
+    let imageSrc = '';
+    if (typeof item.data.image === 'string') {
+      imageSrc = item.data.image;
+    } else if (item.data.image && typeof item.data.image === 'object' && 'src' in item.data.image) {
+      imageSrc = item.data.image.src;
+    }
+
+    // Convert to CafeFlutterItem
+    return {
+      number: eventNumber,
+      image: {
+        src: imageSrc,
+        alt: item.data.title,
+      },
+      speakers: speakers,
+      dateTime: new Date(item.data.dateTime), // Ensure it's a Date object
+      youtubeLink: item.data.youtubeLink,
+      googleMeetLink: item.data.googleMeetLink,
+      googleCalendarLink: item.data.calendarLink,
+    };
+  })
+);
+
+// Use only content collection events now
+const allEvents = contentCollectionEvents;
+
 // Filter past events
 const now = new Date();
-const pastEvents = cafeFlutterEvents
+
+const pastEvents = allEvents
   .filter((event) => {
     const eventDate = new Date(event.dateTime);
     const eventEndTime = new Date(eventDate.getTime() + 3 * 60 * 60 * 1000);
@@ -31,7 +110,7 @@ const getServerTime = async () => {
 const serverTime = await getServerTime();
 
 // Find an upcoming event
-const upcomingEvent = cafeFlutterEvents
+const upcomingEvent = allEvents
   .filter((event) => {
     const eventDate = new Date(event.dateTime);
     const serverTimeLocal = new Date(serverTime);
