@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import TopicsLayout from '~/layouts/TopicsLayout.astro';
+import i18n from '~/utils/i18n';
+import TopicProse from '~/components/widgets/TopicProse.astro';
+import { Image } from 'astro:assets';
+import StaffSection from '~/components/widgets/StaffSection.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('topic');
+
+  return pages
+    .filter(({ slug }) => slug.startsWith('en'))
+    .filter(({ slug }) => slug.split('/').length === 2)
+    .map((page) => {
+      const [, ...slugParts] = page.slug.split('/');
+      const baseSlug = slugParts.join('/');
+
+      return {
+        params: {
+          slug: baseSlug,
+        },
+        props: {
+          page,
+        },
+      };
+    });
+}
+
+const { page } = Astro.props;
+const data = page.data;
+
+const { Content } = await page.render();
+
+const metadata = {
+  title: `${data.title}`,
+  ignoreTitleTemplate: true,
+};
+
+i18n.setLang(Astro.currentLocale);
+---
+
+<TopicsLayout metadata={metadata}>
+  <div class="h-fit w-full relative flex flex-col items-center text-center mt-16 mb-[3rem]">
+    <Image
+      src={data.image}
+      alt={data.title}
+      quality="max"
+      class="w-[70vw] md:w-[60vw] lg:w-[50vw] object-contain rounded-3xl border-4 border-white shadow-2xl shadow-black/25"
+    />
+  </div>
+  <TopicProse>
+    <Content />
+  </TopicProse>
+  <StaffSection inTopics={true} />
+</TopicsLayout>

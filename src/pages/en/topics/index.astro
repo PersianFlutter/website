@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import i18n from '~/utils/i18n';
+import TopicCard from '~/components/topic/TopicCard.astro';
+import TopicsLayout from '~/layouts/TopicsLayout.astro';
+
+const metadata = {
+  title: 'Persin Flutter',
+  ignoreTitleTemplate: true,
+};
+const currentLocale = Astro.currentLocale!;
+const topics = await getCollection('topic');
+const effectiveTopics = topics.filter(({ slug }) => slug.startsWith(currentLocale));
+
+i18n.setLang(currentLocale);
+---
+
+<TopicsLayout metadata={metadata}>
+  {
+    effectiveTopics.length === 0 ? (
+      <div class="text-center">
+        <p class="text-lg text-gray-600 dark:text-slate-400">{'موضوعی یافت نشد'}</p>
+      </div>
+    ) : (
+      <div class="w-[90vw] max-w-[450px] lg:max-w-full xl:w-[80vw] grid grid-cols-1 lg:grid-cols-2 justify-center items-center justify-items-center gap-8 py-12">
+        {effectiveTopics.map((topic) => (
+          <TopicCard topic={topic} />
+        ))}
+      </div>
+    )
+  }
+</TopicsLayout>

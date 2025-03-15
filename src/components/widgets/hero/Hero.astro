@@ -18,6 +18,9 @@ import telegramAvatar5 from '~/assets/images/telegram/telegram-avatar-5.jpg';
 import telegramIcon from '~/assets/images/telegram-icon.png';
 import telegramSky from '~/assets/images/telegram-sky.jpg';
 
+// telegram channels members
+import { telegramChannelMembers, formatMemberCount } from '~/utils/telegram';
+
 import youtubeIcon from '~/assets/images/youtube-icon.jpg';
 
 //portrait images
@@ -126,6 +129,12 @@ const portraitImages = [
   { image: { src: portraitImage16, alt: 'portraitImage16' } },
   { image: { src: portraitImage17, alt: 'portraitImage17' } },
 ];
+
+// get the members count's of telegram channel
+const channelName = 'persian_flutter';
+const membersCount = await telegramChannelMembers(channelName);
+
+const formattedMembers = formatMemberCount(membersCount);
 ---
 
 <WidgetWrapper
@@ -193,7 +202,7 @@ const portraitImages = [
                     class="social-card__id flex flex-col justify-start align-top max-xl:justify-center max-xl:items-center"
                   >
                     <span class="rtl:text-end text-slate-800 text-sm font-medium h-5 ltr:text-start" dir="ltr"
-                      >+1.7K</span
+                      >{formattedMembers}</span
                     >
                     <span class="text-start text-slate-800 text-sm font-medium h-5"
                       >{translations.socials.telegram.members?.text || 'Default Members'}</span
